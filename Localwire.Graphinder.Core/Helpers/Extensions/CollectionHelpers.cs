@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Helpers
+﻿namespace Localwire.Graphinder.Core.Helpers.Extensions
 {
     using System.Collections.Generic;
     using System.Linq;

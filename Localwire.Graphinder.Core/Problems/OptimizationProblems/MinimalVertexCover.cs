@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Graph;
-    using Helpers;
+    using Helpers.Extensions;
 
     /// <summary>
     /// Class representing minimal vertex cover problem and its current solution
