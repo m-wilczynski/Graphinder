@@ -35,7 +35,7 @@
         }
 
         /// <summary>
-        /// Searches for solution of given problem.
+        /// Searches for solution for chosen problem.
         /// </summary>
         protected abstract void SearchForSolution();
     }
