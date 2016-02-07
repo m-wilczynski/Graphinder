@@ -40,11 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Algorithm.cs" />
+    <Compile Include="Algorithms\IAlgorithm.cs" />
+    <Compile Include="Algorithms\OptimizationAlgorithms\SimulatedAnnealing\CoolingStrategies\AllRandomCooling.cs" />
+    <Compile Include="Algorithms\OptimizationAlgorithms\SimulatedAnnealing\CoolingStrategies\ICoolingStrategy.cs" />
+    <Compile Include="Algorithms\OptimizationAlgorithms\SimulatedAnnealing\SimulatedAnnealing.cs" />
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\Helpers\NodeGenerator.cs" />
     <Compile Include="Graph\IOperableOn.cs" />
     <Compile Include="Graph\Node.cs" />
-    <Compile Include="Helpers\CollectionHelpers.cs" />
+    <Compile Include="Helpers\Extensions\CollectionHelpers.cs" />
+    <Compile Include="Helpers\Operations\Binary\BinaryOperation.cs" />
+    <Compile Include="Helpers\Operations\Binary\BinaryTransformation.cs" />
     <Compile Include="Problems\IProblem.cs" />
     <Compile Include="Problems\OptimizationProblems\MinimalVertexCover.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
