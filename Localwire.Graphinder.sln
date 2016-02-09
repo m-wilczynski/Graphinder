@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Core", "Localwire.Graphinder.Core\Localwire.Graphinder.Core.csproj", "{9BE00B94-B116-4387-9ACD-7902BC0B5E37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Core.Tests", "Localwire.Graphinder.Core.Tests\Localwire.Graphinder.Core.Tests.csproj", "{496204F1-CAA1-45B0-8DDF-937A26C9A125}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9BE00B94-B116-4387-9ACD-7902BC0B5E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BE00B94-B116-4387-9ACD-7902BC0B5E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BE00B94-B116-4387-9ACD-7902BC0B5E37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{496204F1-CAA1-45B0-8DDF-937A26C9A125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{496204F1-CAA1-45B0-8DDF-937A26C9A125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{496204F1-CAA1-45B0-8DDF-937A26C9A125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{496204F1-CAA1-45B0-8DDF-937A26C9A125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
