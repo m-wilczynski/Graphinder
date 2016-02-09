@@ -10,6 +10,6 @@ Project intends to forge my current interest in solving optimization problems in
 - [ ] Parallelizing problem solving.
 - [ ] ASP.NET MVC base implementation for algorithms and problems.
 - [ ] Task queue implementation.
-- [ ] SignalR basic reporting back on progress on searching problem.
+- [ ] SignalR basic reporting back on progress on searching solution.
 - [ ] Front-end sugar.
 - [ ] Other problems and algorithms (perhaps)?
