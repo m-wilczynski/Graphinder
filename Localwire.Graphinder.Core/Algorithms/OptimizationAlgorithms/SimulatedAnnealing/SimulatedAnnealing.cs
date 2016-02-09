@@ -4,6 +4,7 @@
     using CoolingStrategies;
     using Graph;
     using Problems;
+    using Setup;
 
     /// <summary>
     /// Class representing simulated annealing algorithm that bases on graph data structure.
@@ -132,21 +133,15 @@
                 _builtAlgorithm = new SimulatedAnnealing();
             }
 
-            public Builder WithRequiredData(Graph graph, IProblem problem, ICoolingStrategy strategy)
+            public Builder WithSetupData(SimulatedAnnealingSetup setup)
             {
-                if (graph == null || problem == null) return this;
-                _builtAlgorithm._graph = graph;
-                _builtAlgorithm._problem = problem;
+                if (!setup.IsValid) throw new ArgumentException("Setup state is invalid!", nameof(setup));
+                _builtAlgorithm._graph = setup.Graph;
+                _builtAlgorithm._problem = setup.Problem;
                 _builtAlgorithm._problem.Initialize(_builtAlgorithm._graph);
-                _builtAlgorithm.CoolingStrategy = strategy;
-                return this;
-            }
-
-            public Builder WithSettings(double initTemp, double coolingRate)
-            {
-                if (initTemp <= 0 || coolingRate <= 0) return this;
-                _builtAlgorithm.InitialTemperature = initTemp;
-                _builtAlgorithm.CoolingRate = coolingRate;
+                _builtAlgorithm.CoolingStrategy = setup.CoolingSetup.CoolingStrategy;
+                _builtAlgorithm.InitialTemperature = setup.CoolingSetup.InitialTemperature;
+                _builtAlgorithm.CoolingRate = setup.CoolingSetup.CoolingRate;
                 return this;
             }
 

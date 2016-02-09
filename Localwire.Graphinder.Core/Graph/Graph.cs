@@ -3,12 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Core.Helpers;
     using Helpers;
 
     /// <summary>
     /// Class representing undirected graph data struture.
     /// </summary>
-    public class Graph
+    public class Graph : ISelfValidable
     {
         private List<Node> _nodes;
         private readonly Random _random = new Random();
@@ -33,6 +34,14 @@
         /// Maximum neighbours per node. Zero if graph wasn't filled with NodeGenerator utility.
         /// </summary>
         public uint MaxNeigbhours { get; private set; }
+
+        /// <summary>
+        /// Decides if state of object valid.
+        /// </summary>
+        public bool IsValid
+        {
+            get { return _nodes != null && _nodes.Count > 0; }
+        }
 
         /// <summary>
         /// Return random node from graph
@@ -139,5 +148,6 @@
             }
             return output;
         }
+
     }
 }
