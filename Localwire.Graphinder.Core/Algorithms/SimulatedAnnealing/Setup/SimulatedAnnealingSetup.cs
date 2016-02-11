@@ -1,8 +1,7 @@
-﻿namespace Localwire.Graphinder.Core.Algorithms.OptimizationAlgorithms.SimulatedAnnealing.Setup
+﻿namespace Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.Setup
 {
     using System;
     using Graph;
-    using Helpers;
     using Problems;
 
     /// <summary>

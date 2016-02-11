@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Algorithms.OptimizationAlgorithms.SimulatedAnnealing.CoolingStrategies
+﻿namespace Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.CoolingStrategies
 {
     using System;
     using System.Collections.Generic;
@@ -13,21 +13,16 @@
         private readonly Random _random = new Random();
 
         /// <summary>
-        /// Target temperature for cooling. System cannot be cooled below that value, ie. it's system zero temp.
-        /// </summary>
-        public float CoolingTargetTemperature { get { return 0.001f; } }
-
-        /// <summary>
         /// Cools system until it reaches minimal, targeted temperature.
         /// </summary>
         /// <param name="algorithm">Simulated annealing algorithm being cooled.</param>
         /// <param name="coolingAction">Delegate of action to cool system by one step of cooling ratio.</param>
         /// <returns>Processor time cost</returns>
-        public long Cool(SimulatedAnnealing algorithm, Action coolingAction)
+        public long Cool(IAlgorithm algorithm, Action coolingAction)
         {
             var startTime = DateTime.Now.Ticks;
             var counter = 0;
-            while (algorithm.CurrentTemperature > CoolingTargetTemperature)
+            while (algorithm.CanContinueSearching())
             {
                 //Previous values
                 var energy = algorithm.Problem.CurrentOutcome;
@@ -35,16 +30,16 @@
 
                 //Pick random node from graph and keep on adding them to solution until correctness criteria is met
                 HashSet<Node> proposedSolution = new HashSet<Node>();
-                algorithm.Problem.AddNewSolution(proposedSolution);
-                while (!algorithm.Problem.IsCurrentSolutionCorrect)
+                while (!algorithm.Problem.IsSolutionCorrect(proposedSolution))
                 {
                     proposedSolution.Add(algorithm.Graph.GetRandomNode());
-                    algorithm.Problem.AddNewSolution(proposedSolution);
                 }
 
+                int outcome = algorithm.Problem.SolutionOutcome(proposedSolution);
+
                 //Rollback if solution has not been accepted
-                if (algorithm.AcceptanceProbability(energy, algorithm.CurrentSolution) < _random.NextDouble())
-                    algorithm.Problem.AddNewSolution(previousSolution);
+                if (algorithm.CanAcceptAnswer(outcome))
+                    algorithm.Problem.AddNewSolution(proposedSolution);
 
                 //Cool system
                 coolingAction();

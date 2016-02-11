@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Core.Tests", "Localwire.Graphinder.Core.Tests\Localwire.Graphinder.Core.Tests.csproj", "{496204F1-CAA1-45B0-8DDF-937A26C9A125}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.ConsoleApp", "Localwire.Graphinder.Console\Localwire.Graphinder.ConsoleApp.csproj", "{22E8BACD-E2B1-497D-A24C-4D57B237EC60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{496204F1-CAA1-45B0-8DDF-937A26C9A125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{496204F1-CAA1-45B0-8DDF-937A26C9A125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{496204F1-CAA1-45B0-8DDF-937A26C9A125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E8BACD-E2B1-497D-A24C-4D57B237EC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E8BACD-E2B1-497D-A24C-4D57B237EC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E8BACD-E2B1-497D-A24C-4D57B237EC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E8BACD-E2B1-497D-A24C-4D57B237EC60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

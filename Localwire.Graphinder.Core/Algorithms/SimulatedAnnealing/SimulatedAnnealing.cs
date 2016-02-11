@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Algorithms.OptimizationAlgorithms.SimulatedAnnealing
+﻿namespace Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing
 {
     using System;
     using CoolingStrategies;
@@ -11,6 +11,8 @@
     /// </summary>
     public class SimulatedAnnealing : Algorithm
     {
+        private readonly Random _random = new Random();
+
         private Graph _graph;
         private IProblem _problem;
         private long _processorTimeCost = long.MaxValue;
@@ -28,6 +30,11 @@
         /// Current system temperature.
         /// </summary>
         public double CurrentTemperature { get; private set; }
+
+        /// <summary>
+        /// Target temperature for cooling. System cannot be cooled below that value, ie. it's system zero temp.
+        /// </summary>
+        public double MinimalTemperature { get { return 0.001f; } }
 
         /// <summary>
         /// Rate of cooling the system.
@@ -59,6 +66,19 @@
         /// </summary>
         public ICoolingStrategy CoolingStrategy { get; private set; }
 
+        public override bool CanAcceptAnswer(int proposedSolution)
+        {
+            double ack = AcceptanceProbability(CurrentSolution, proposedSolution);
+            double roll = _random.NextDouble();
+
+            return ack > roll;
+        }
+
+        public override bool CanContinueSearching()
+        {
+            return CurrentTemperature > MinimalTemperature;
+        }
+
         /// <summary>
         /// Searches for solution for chosen problem.
         /// </summary>
@@ -82,7 +102,7 @@
         /// <param name="energy">Energy of current solution.</param>
         /// <param name="newEnergy">Energy of new solution.</param>
         /// <returns>Acceptance probability.</returns>
-        public double AcceptanceProbability(int energy, int newEnergy)
+        private double AcceptanceProbability(int energy, int newEnergy)
         {
             if (_problem.Criteria == ProblemCriteria.BiggerIsBetter)
             {

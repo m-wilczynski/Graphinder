@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using Algorithms;
-    using Algorithms.OptimizationAlgorithms.SimulatedAnnealing;
-    using Algorithms.OptimizationAlgorithms.SimulatedAnnealing.Setup;
+    using Algorithms.SimulatedAnnealing;
+    using Algorithms.SimulatedAnnealing.Setup;
 
     /// <summary>
     /// Class responsible for providing instance of proper factory for algorithm.

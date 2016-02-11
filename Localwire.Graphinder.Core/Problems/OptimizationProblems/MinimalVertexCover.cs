@@ -31,7 +31,7 @@
         /// <summary>
         /// Is current, chosen solution correct for the problem?
         /// </summary>
-        public bool IsCurrentSolutionCorrect { get { return CheckVertexCover(); } }
+        public bool IsCurrentSolutionCorrect { get { return IsSolutionCorrect(CurrentSolution); } }
 
         /// <summary>
         /// Is problem already initialized?
@@ -55,7 +55,10 @@
         public void AddNewSolution(ICollection<Node> nodes)
         {
             if (!IsInitialized) return;
-            SetNewCover(nodes);
+            if (nodes.All(n => _graph.Nodes.Any(n1 => n1.Equals(n))))
+            {
+                _currentCover = new HashSet<Node>(nodes);
+            }
         }
 
         /// <summary>
@@ -87,7 +90,15 @@
         /// <returns>Outcome of correctness check.</returns>
         public bool IsSolutionCorrect(ICollection<Node> nodes)
         {
-            return CheckVertexCover(nodes);
+            if (!IsInitialized) return false;
+            HashSet<Node> alreadyCovered = new HashSet<Node>();
+            foreach (var element in nodes ?? _currentCover)
+            {
+                alreadyCovered.Add(element);
+                alreadyCovered.AddRange(element.Neighbours);
+                if (alreadyCovered.Count == _graph.TotalNodes) break;
+            }
+            return alreadyCovered.Count == _graph.TotalNodes;
         }
 
         /// <summary>
@@ -98,40 +109,17 @@
         public bool IsSolutionCorrect(bool[] nodesEncodedBinary)
         {
             //TODO: Would be wiser to enumerate over everything only once and break DRY rule up here?
-            return CheckVertexCover(_graph.BinarySolutionAsNodes(nodesEncodedBinary));
+            return IsSolutionCorrect(_graph.BinarySolutionAsNodes(nodesEncodedBinary));
         }
 
         /// <summary>
-        /// Sets new solution of a problem, ie. new minimal vertex cover.
-        /// Will not add new solution if any of nodes in provided solution does not belong to the graph.
+        /// Outputs outcome of provided solution.
         /// </summary>
-        /// <param name="nodes">Collection of nodes representing new solution.</param>
-        private void SetNewCover(ICollection<Node> nodes)
+        /// <param name="nodes">Proposed solution.</param>
+        /// <returns>Solution outcome if correct. Default solution if incorrect.</returns>
+        public int SolutionOutcome(ICollection<Node> nodes)
         {
-            if (!IsInitialized) return;
-            if (nodes.All(n => _graph.Nodes.Any(n1 => n1.Equals(n))))
-            {
-                _currentCover = new HashSet<Node>(nodes);
-            }
-        }
-
-        /// <summary>
-        /// Checks if provided solution (or chosen solution for whole problem) meets Minimal Vertex Cover criteria,
-        /// ie. covers all nodes of the graph.
-        /// </summary>
-        /// <param name="nodes">Collection of nodes representing new solution.</param>
-        /// <returns></returns>
-        private bool CheckVertexCover(ICollection<Node> nodes = null)
-        {
-            if (!IsInitialized) return false;
-            HashSet<Node> alreadyCovered = new HashSet<Node>();
-            foreach (var element in nodes ?? _currentCover)
-            {
-                alreadyCovered.Add(element);
-                alreadyCovered.AddRange(element.Neighbours);
-                if (alreadyCovered.Count == _graph.TotalNodes) break;
-            }
-            return alreadyCovered.Count == _graph.TotalNodes;
+            return IsSolutionCorrect(nodes) ? nodes.Count : _graph.TotalNodes;
         }
     }
 }

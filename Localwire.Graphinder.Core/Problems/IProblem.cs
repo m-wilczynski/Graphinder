@@ -49,6 +49,13 @@
         /// <param name="nodesEncodedBinary">Collection of nodes representing new solution encoded binary.</param>
         /// <returns>Outcome of correctness check.</returns>
         bool IsSolutionCorrect(bool[] nodesEncodedBinary);
+
+        /// <summary>
+        /// Outputs outcome of provided solution.
+        /// </summary>
+        /// <param name="nodes">Proposed solution.</param>
+        /// <returns>Solution outcome if correct. Default solution if incorrect.</returns>
+        int SolutionOutcome(ICollection<Node> nodes);
     }
 
     public enum ProblemCriteria

@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9BE00B94-B116-4387-9ACD-7902BC0B5E37}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{22E8BACD-E2B1-497D-A24C-4D57B237EC60}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Localwire.Graphinder.Core</RootNamespace>
-    <AssemblyName>Localwire.Graphinder.Core</AssemblyName>
+    <RootNamespace>Localwire.Graphinder.ConsoleApp</RootNamespace>
+    <AssemblyName>Localwire.Graphinder.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -29,41 +32,32 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\Algorithm.cs" />
-    <Compile Include="Algorithms\IAlgorithm.cs" />
-    <Compile Include="Algorithms\IAlgorithmSetup.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\AllRandomCooling.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\ICoolingStrategy.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\Setup\CoolingSetup.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingFactory.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingSetup.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealing.cs" />
-    <Compile Include="Factories\IAlgorithmFactory.cs" />
-    <Compile Include="Factories\IProblemFactory.cs" />
-    <Compile Include="Factories\Providers\AlgorithmFactoryProvider.cs" />
-    <Compile Include="Factories\Providers\ProblemFactoryProvider.cs" />
-    <Compile Include="Graph\Graph.cs" />
-    <Compile Include="Graph\Helpers\NodeGenerator.cs" />
-    <Compile Include="Graph\IOperableOn.cs" />
-    <Compile Include="Graph\Node.cs" />
-    <Compile Include="Helpers\Extensions\CollectionHelpers.cs" />
-    <Compile Include="Helpers\ISelfValidable.cs" />
-    <Compile Include="Helpers\Operations\Binary\BinaryOperation.cs" />
-    <Compile Include="Helpers\Operations\Binary\BinaryTransformation.cs" />
-    <Compile Include="Problems\IProblem.cs" />
-    <Compile Include="Problems\OptimizationProblems\MinimalVertexCover.cs" />
-    <Compile Include="Problems\ProblemFactories\MinimalVertexCoverFactory.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Localwire.Graphinder.Core\Localwire.Graphinder.Core.csproj">
+      <Project>{9be00b94-b116-4387-9acd-7902bc0b5e37}</Project>
+      <Name>Localwire.Graphinder.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

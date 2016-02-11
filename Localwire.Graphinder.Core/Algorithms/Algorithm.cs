@@ -35,6 +35,20 @@
         }
 
         /// <summary>
+        /// Decides whether algorithm should accept new solution.
+        /// </summary>
+        /// <param name="proposedSolution">New solution found by algorithm.</param>
+        /// <returns>Decision if algorithm should accept answer.</returns>
+        public abstract bool CanAcceptAnswer(int proposedSolution);
+
+
+        /// <summary>
+        /// Decides whether algorithm can proceed with next step of solution searching.
+        /// </summary>
+        /// <returns>Decision if algorithm can proceed.</returns>
+        public abstract bool CanContinueSearching();
+
+        /// <summary>
         /// Searches for solution for chosen problem.
         /// </summary>
         protected abstract void SearchForSolution();
