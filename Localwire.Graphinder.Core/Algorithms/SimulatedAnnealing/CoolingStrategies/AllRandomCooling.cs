@@ -20,14 +20,12 @@
         /// <returns>Processor time cost</returns>
         public long Cool(IAlgorithm algorithm, Action coolingAction)
         {
+            if (algorithm == null) throw new ArgumentException(nameof(algorithm));
+            if (coolingAction == null) throw new ArgumentException(nameof(coolingAction));
+
             var startTime = DateTime.Now.Ticks;
-            var counter = 0;
             while (algorithm.CanContinueSearching())
             {
-                //Previous values
-                var energy = algorithm.Problem.CurrentOutcome;
-                var previousSolution = algorithm.Problem.CurrentSolution;
-
                 //Pick random node from graph and keep on adding them to solution until correctness criteria is met
                 HashSet<Node> proposedSolution = new HashSet<Node>();
                 while (!algorithm.Problem.IsSolutionCorrect(proposedSolution))
@@ -35,14 +33,12 @@
                     proposedSolution.Add(algorithm.Graph.GetRandomNode());
                 }
 
-                int outcome = algorithm.Problem.SolutionOutcome(proposedSolution);
-
                 //Rollback if solution has not been accepted
-                if (algorithm.CanAcceptAnswer(outcome))
+                if (algorithm.CanAcceptAnswer(proposedSolution))
                     algorithm.Problem.AddNewSolution(proposedSolution);
 
                 //Cool system
-                coolingAction();
+                coolingAction.Invoke();
             }
             return DateTime.Now.Ticks - startTime;
         }

@@ -1,5 +1,6 @@
 ﻿namespace Localwire.Graphinder.Core.Algorithms
 {
+    using System.Collections.Generic;
     using Graph;
     using Problems;
 
@@ -36,7 +37,7 @@
         /// </summary>
         /// <param name="proposedSolution">New solution found by algorithm.</param>
         /// <returns>Decision if algorithm should accept answer.</returns>
-        bool CanAcceptAnswer(int proposedSolution);
+        bool CanAcceptAnswer(ICollection<Node> proposedSolution);
 
         /// <summary>
         /// Decides whether algorithm can proceed with next step of solution searching.

@@ -1,6 +1,7 @@
 ﻿namespace Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing
 {
     using System;
+    using System.Collections.Generic;
     using CoolingStrategies;
     using Graph;
     using Problems;
@@ -66,14 +67,21 @@
         /// </summary>
         public ICoolingStrategy CoolingStrategy { get; private set; }
 
-        public override bool CanAcceptAnswer(int proposedSolution)
+        /// <summary>
+        /// Decides whether algorithm should accept new solution.
+        /// </summary>
+        /// <param name="proposedSolution">New solution found by algorithm.</param>
+        /// <returns>Decision if algorithm should accept answer.</returns>
+        public override bool CanAcceptAnswer(ICollection<Node> proposedSolution)
         {
-            double ack = AcceptanceProbability(CurrentSolution, proposedSolution);
-            double roll = _random.NextDouble();
-
-            return ack > roll;
+            int solutionOutcome = Problem.SolutionOutcome(proposedSolution);
+            return AcceptanceProbability(CurrentSolution, solutionOutcome) > _random.NextDouble();
         }
 
+        /// <summary>
+        /// Decides whether algorithm can proceed with next step of solution searching.
+        /// </summary>
+        /// <returns>Decision if algorithm can proceed.</returns>
         public override bool CanContinueSearching()
         {
             return CurrentTemperature > MinimalTemperature;
