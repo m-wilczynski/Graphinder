@@ -69,8 +69,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Algorithms\Providers\DataStructuresFactory.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\AllRandomCoolingTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingSetupTests.cs" />
+    <Compile Include="Algorithms\Providers\SimulatedAnnealingComponentsFactory.cs" />
+    <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingSetupTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

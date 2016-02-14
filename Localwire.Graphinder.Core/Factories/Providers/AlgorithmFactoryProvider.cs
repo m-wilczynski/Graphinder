@@ -6,12 +6,10 @@
     using Algorithms.SimulatedAnnealing;
     using Algorithms.SimulatedAnnealing.Setup;
 
-    /// <summary>
-    /// Class responsible for providing instance of proper factory for algorithm.
-    /// </summary>
+
     public class AlgorithmFactoryProvider
     {
-        //TODO: Not ideal, isn't it?
+        //TODO: Transform into IIndex<T, T1> with Autofac
         private static readonly IDictionary<Type, IAlgorithmFactory> FactoriesForTypes = 
             new Dictionary<Type, IAlgorithmFactory>
             {

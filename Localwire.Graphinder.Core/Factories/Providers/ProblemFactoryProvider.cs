@@ -8,7 +8,7 @@
 
     public class ProblemFactoryProvider
     {
-        //TODO: Not ideal, isn't it?
+        //TODO: Transform into IIndex<T, T1> with Autofac
         private static readonly IDictionary<Type, IProblemFactory> FactoriesForTypes =
             new Dictionary<Type, IProblemFactory>
             {
