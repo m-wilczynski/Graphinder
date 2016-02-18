@@ -99,7 +99,7 @@
         /// <summary>
         /// Cools system until cooling strategy minimal temperature is met.
         /// </summary>
-        public void CoolSystem()
+        private void CoolSystem()
         {
             _processorTimeCost = CoolingStrategy.Cool(this, CoolOnce);
         }
@@ -163,7 +163,7 @@
 
             public Builder WithSetupData(SimulatedAnnealingSetup setup)
             {
-                if (!setup.IsValid) throw new ArgumentException("Setup state is invalid!", nameof(setup));
+                if (setup == null || !setup.IsValid) throw new ArgumentException("Setup state is invalid!", nameof(setup));
                 _builtAlgorithm._graph = setup.Graph;
                 _builtAlgorithm._problem = setup.Problem;
                 _builtAlgorithm._problem.Initialize(_builtAlgorithm._graph);
