@@ -75,6 +75,8 @@
     <Compile Include="Algorithms\Providers\SimulatedAnnealingComponentsFactory.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingSetupTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingTests.cs" />
+    <Compile Include="Problems\IProblemTests.cs" />
+    <Compile Include="Problems\MinimalVertexCover\MinimalVertexCoverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graph\" />
-    <Folder Include="Problems\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Localwire.Graphinder.Core\Localwire.Graphinder.Core.csproj">

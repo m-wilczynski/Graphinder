@@ -2,6 +2,7 @@
 {
     using System;
     using Core.Algorithms.SimulatedAnnealing.Setup;
+    using Core.Problems;
     using Graph;
     using NSubstitute;
     using Problems;

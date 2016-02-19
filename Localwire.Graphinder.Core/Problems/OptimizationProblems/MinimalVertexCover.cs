@@ -1,5 +1,6 @@
 ﻿namespace Localwire.Graphinder.Core.Problems.OptimizationProblems
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Graph;
@@ -54,6 +55,7 @@
         /// <param name="nodes">Collection of nodes representing new solution.</param>
         public void AddNewSolution(ICollection<Node> nodes)
         {
+            if (nodes == null) throw new ArgumentException(nameof(nodes));
             if (!IsInitialized) return;
             if (nodes.All(n => _graph.Nodes.Any(n1 => n1.Equals(n))))
             {
@@ -67,6 +69,7 @@
         /// <param name="graph">Graph that represents problem to solve.</param>
         public void Initialize(Graph graph)
         {
+            if (graph == null) throw new ArgumentException(nameof(graph));
             if (_isInitialized) return;
             _currentCover = new HashSet<Node>(graph.Nodes);
             _graph = graph;
@@ -90,9 +93,10 @@
         /// <returns>Outcome of correctness check.</returns>
         public bool IsSolutionCorrect(ICollection<Node> nodes)
         {
+            if (nodes == null) throw new ArgumentException(nameof(nodes));
             if (!IsInitialized) return false;
             HashSet<Node> alreadyCovered = new HashSet<Node>();
-            foreach (var element in nodes ?? _currentCover)
+            foreach (var element in nodes)
             {
                 alreadyCovered.Add(element);
                 alreadyCovered.AddRange(element.Neighbours);
@@ -108,6 +112,7 @@
         /// <returns>Outcome of correctness check.</returns>
         public bool IsSolutionCorrect(bool[] nodesEncodedBinary)
         {
+            if (nodesEncodedBinary == null) throw new ArgumentException(nameof(nodesEncodedBinary));
             //TODO: Would be wiser to enumerate over everything only once and break DRY rule up here?
             return IsSolutionCorrect(_graph.BinarySolutionAsNodes(nodesEncodedBinary));
         }
@@ -119,6 +124,7 @@
         /// <returns>Solution outcome if correct. Default solution if incorrect.</returns>
         public int SolutionOutcome(ICollection<Node> nodes)
         {
+            if (nodes == null) throw new ArgumentException(nameof(nodes));
             return IsSolutionCorrect(nodes) ? nodes.Count : _graph.TotalNodes;
         }
     }
