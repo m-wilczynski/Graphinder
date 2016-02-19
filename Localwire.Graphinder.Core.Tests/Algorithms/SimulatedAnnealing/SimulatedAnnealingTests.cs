@@ -1,18 +1,16 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Algorithms.SimulatedAnnealing
 {
     using System;
-    using System.CodeDom;
     using System.Collections.Generic;
     using Core.Algorithms.SimulatedAnnealing;
     using Core.Algorithms.SimulatedAnnealing.Setup;
     using Graph;
     using NSubstitute;
-    using NSubstitute.Core.Arguments;
     using Problems;
     using Providers;
     using Xunit;
 
-    public class SimulatedAnnealingTests
+    public class SimulatedAnnealingTests : IAlgorithmTests
     {
         private readonly SimulatedAnnealingComponentsFactory _componentsFactory = new SimulatedAnnealingComponentsFactory();
         private SimulatedAnnealingSetup _setup;
@@ -20,6 +18,9 @@
         public SimulatedAnnealingTests()
         {
             _setup = _componentsFactory.ProvideValidSimulatedAnnealingSetup();
+            _algorithm = new SimulatedAnnealing.Builder()
+                .WithSetupData(_setup)
+                .Build();
         }
 
         [Fact]
