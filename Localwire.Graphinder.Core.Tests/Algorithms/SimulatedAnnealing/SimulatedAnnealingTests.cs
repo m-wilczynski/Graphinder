@@ -12,12 +12,12 @@
 
     public class SimulatedAnnealingTests : IAlgorithmTests
     {
-        private readonly SimulatedAnnealingComponentsFactory _componentsFactory = new SimulatedAnnealingComponentsFactory();
+        private readonly ITestDataProvider<SimulatedAnnealingSetup> _saSetupProvider = new TestSimulatedAnnealingSetupProvider();
         private SimulatedAnnealingSetup _setup;
 
         public SimulatedAnnealingTests()
         {
-            _setup = _componentsFactory.ProvideValidSimulatedAnnealingSetup();
+            _setup = _saSetupProvider.ProvideValid();
             _algorithm = new SimulatedAnnealing.Builder()
                 .WithSetupData(_setup)
                 .Build();

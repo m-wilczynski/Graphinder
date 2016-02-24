@@ -69,11 +69,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Algorithms\GeneticAlgorithm\IndividualTests.cs" />
     <Compile Include="Algorithms\IAlgorithmTests.cs" />
     <Compile Include="Algorithms\Providers\DataStructuresFactory.cs" />
+    <Compile Include="Algorithms\Providers\ITestDataProvider.cs" />
+    <Compile Include="Algorithms\Providers\TestSimulatedAnnealingSetupProvider.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\AllRandomCoolingTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingSetupTests.cs" />
-    <Compile Include="Algorithms\Providers\SimulatedAnnealingComponentsFactory.cs" />
+    <Compile Include="Algorithms\Providers\TestCoolingSetupProvider.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingSetupTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingTests.cs" />
     <Compile Include="Problems\IProblemTests.cs" />

@@ -11,8 +11,8 @@
 
     public class SimulatedAnnealingSetupTests
     {
-        private readonly SimulatedAnnealingComponentsFactory _componentsFactory = new SimulatedAnnealingComponentsFactory();
-        private readonly DataStructuresFactory _dataFactory = new DataStructuresFactory();
+        private readonly ITestDataProvider<CoolingSetup> _coolingSetupProvider = new TestCoolingSetupProvider();
+        private readonly TestGraphProvider _dataFactory = new TestGraphProvider();
 
         private IProblem _problem;
         private CoolingSetup _validCoolingSetup;
@@ -21,8 +21,8 @@
         public SimulatedAnnealingSetupTests()
         {
             _problem = Substitute.For<IProblem>();
-            _validCoolingSetup = _componentsFactory.ProvideValidCoolingSetup();
-            _validGraph = _dataFactory.ProvideValidGraph();
+            _validCoolingSetup = _coolingSetupProvider.ProvideValid();
+            _validGraph = _dataFactory.ProvideValid();
         }
 
         [Fact]
