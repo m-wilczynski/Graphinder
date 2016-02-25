@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Tests.Algorithms.Providers
+﻿namespace Localwire.Graphinder.Core.Tests.Providers.TestData
 {
     using Core.Algorithms.SimulatedAnnealing.CoolingStrategies;
     using Core.Algorithms.SimulatedAnnealing.Setup;

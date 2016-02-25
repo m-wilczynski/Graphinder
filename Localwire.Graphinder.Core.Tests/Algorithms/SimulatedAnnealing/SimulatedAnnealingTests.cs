@@ -8,6 +8,7 @@
     using NSubstitute;
     using Problems;
     using Providers;
+    using Providers.TestData;
     using Xunit;
 
     public class SimulatedAnnealingTests : IAlgorithmTests

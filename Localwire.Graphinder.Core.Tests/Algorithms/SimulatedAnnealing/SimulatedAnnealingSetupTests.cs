@@ -7,13 +7,15 @@
     using NSubstitute;
     using Problems;
     using Providers;
+    using Providers.SubstituteData;
     using Providers.TestData;
     using Xunit;
 
     public class SimulatedAnnealingSetupTests
     {
         private readonly ITestDataProvider<CoolingSetup> _coolingSetupProvider = new TestCoolingSetupProvider();
-        private readonly TestGraphProvider _dataFactory = new TestGraphProvider();
+        private readonly ISubstituteProvider<IProblem> _problemProvider = new ProblemSubstituteProvider();
+        private readonly ITestDataProvider<Graph> _dataFactory = new TestGraphProvider();
 
         private IProblem _problem;
         private CoolingSetup _validCoolingSetup;
@@ -21,7 +23,7 @@
 
         public SimulatedAnnealingSetupTests()
         {
-            _problem = Substitute.For<IProblem>();
+            _problem = _problemProvider.ProvideSubstitute();
             _validCoolingSetup = _coolingSetupProvider.ProvideValid();
             _validGraph = _dataFactory.ProvideValid();
         }

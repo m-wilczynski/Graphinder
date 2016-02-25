@@ -8,7 +8,7 @@
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
     using NSubstitute.Exceptions;
-    using Providers;
+    using Providers.TestData;
     using Tests.Providers;
     using Tests.Providers.SubstituteData;
     using Xunit;
