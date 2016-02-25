@@ -6,6 +6,7 @@
     using Core.Algorithms.SimulatedAnnealing.Setup;
     using Graph;
     using NSubstitute;
+    using NSubstitute.Exceptions;
     using Problems;
     using Providers;
     using Providers.TestData;
@@ -57,8 +58,14 @@
         [Fact]
         public void SimulatedAnnealing_LaunchAlgorithm_UsesCoolingStrategy_Cool()
         {
+            var setup = _saSetupProvider.ProvideValid();
+            Assert.Throws<ReceivedCallsException>(() =>
+            {
+                setup.CoolingSetup.CoolingStrategy
+                .Received().Cool(Arg.Any<SimulatedAnnealing>(), Arg.Any<Action>());
+            });
             var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(_saSetupProvider.ProvideValid())
+                .WithSetupData(setup)
                 .Build();
             algorithm.LaunchAlgorithm();
             algorithm.CoolingStrategy.Received().Cool(algorithm, Arg.Any<Action>());
@@ -67,22 +74,32 @@
         [Fact]
         public void SimulatedAnnealing_LaunchAlgorithm_RestartsProblem()
         {
+            var setup = _saSetupProvider.ProvideValid();
+            Assert.Throws<ReceivedCallsException>(() =>
+            {
+                setup.Problem.Received().RestartProblemState();
+            });
             var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(_saSetupProvider.ProvideValid())
+                .WithSetupData(setup)
                 .Build();
             algorithm.LaunchAlgorithm();
-            algorithm.Problem.Received().RestartProblemState();
+            setup.Problem.Received(2).RestartProblemState();
         }
 
         [Fact]
         public void SimulatedAnnealing_CanAcceptAnswer_ChecksAgainstProblem()
         {
-            var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(_saSetupProvider.ProvideValid())
-                .Build();
+            var setup = _saSetupProvider.ProvideValid();
             var solution = new List<Node>();
+            Assert.Throws<ReceivedCallsException>(() =>
+            {
+                setup.Problem.Received().SolutionOutcome(solution);
+            });
+            var algorithm = new SimulatedAnnealing.Builder()
+                .WithSetupData(setup)
+                .Build();
             algorithm.CanAcceptAnswer(solution);
-            algorithm.Problem.Received().SolutionOutcome(solution);
+            setup.Problem.Received().SolutionOutcome(solution);
         }
     }
 }
