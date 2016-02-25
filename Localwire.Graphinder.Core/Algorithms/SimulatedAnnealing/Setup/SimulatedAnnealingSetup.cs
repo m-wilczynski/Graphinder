@@ -17,11 +17,11 @@
         /// <param name="coolSetup">Setup for cooling the system.</param>
         public SimulatedAnnealingSetup(Graph graph, IProblem problem, CoolingSetup coolSetup)
         {
-            if (graph == null || !graph.IsValid)
+            if (graph == null || !graph.IsValid())
                 throw new ArgumentException(nameof(graph));
             if (problem == null)
                 throw new ArgumentException(nameof(problem));
-            if (coolSetup == null || !coolSetup.IsValid)
+            if (coolSetup == null || !coolSetup.IsValid())
                 throw new ArgumentException(nameof(coolSetup));
             Graph = graph;
             Problem = problem;
@@ -46,12 +46,9 @@
         /// <summary>
         /// Decides if state of object valid.
         /// </summary>
-        public bool IsValid
+        public bool IsValid()
         {
-            get
-            {
-                return Graph != null && Graph.IsValid && Problem != null && CoolingSetup != null && CoolingSetup.IsValid;
-            }
+            return Graph != null && Graph.IsValid() && Problem != null && CoolingSetup != null && CoolingSetup.IsValid();
         }
     }
 }

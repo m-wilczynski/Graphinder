@@ -46,6 +46,9 @@
         /// <summary>
         /// Decides if state of object valid.
         /// </summary>
-        public bool IsValid { get { return CoolingRate > 0 && InitialTemperature > 0 && CoolingStrategy != null; } }
+        public bool IsValid()
+        {
+            return CoolingRate > 0 && InitialTemperature > 0 && CoolingStrategy != null;
+        }
     }
 }

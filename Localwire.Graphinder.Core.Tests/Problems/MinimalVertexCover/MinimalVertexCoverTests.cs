@@ -1,8 +1,8 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Problems.MinimalVertexCover
 {
-    using Algorithms.Providers;
     using Core.Problems.OptimizationProblems;
     using Graph;
+    using Providers.TestData;
     using Xunit;
 
     public class MinimalVertexCoverTests : IProblemTests

@@ -5,6 +5,6 @@
         /// <summary>
         /// Decides if state of object valid.
         /// </summary>
-        bool IsValid { get; }
+        bool IsValid();
     }
 }

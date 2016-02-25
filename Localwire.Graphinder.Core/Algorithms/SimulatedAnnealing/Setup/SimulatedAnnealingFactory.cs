@@ -18,7 +18,7 @@
             var castedSetup = setup as SimulatedAnnealingSetup;
             if (castedSetup == null)
                 throw new ArgumentException("Provided setup is invalid for requested algorithm!", nameof(setup));
-            if (!castedSetup.IsValid)
+            if (!castedSetup.IsValid())
                 throw new ArgumentException("Setup state is invalid!", nameof(setup));
 
             return new SimulatedAnnealing.Builder()

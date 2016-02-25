@@ -38,9 +38,9 @@
         /// <summary>
         /// Decides if state of object valid.
         /// </summary>
-        public bool IsValid
+        public bool IsValid()
         {
-            get { return _nodes != null && _nodes.Count > 0; }
+            return _nodes != null && _nodes.Count > 0;
         }
 
         /// <summary>

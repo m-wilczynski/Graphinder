@@ -13,13 +13,11 @@
     public class SimulatedAnnealingTests : IAlgorithmTests
     {
         private readonly ITestDataProvider<SimulatedAnnealingSetup> _saSetupProvider = new TestSimulatedAnnealingSetupProvider();
-        private SimulatedAnnealingSetup _setup;
 
         public SimulatedAnnealingTests()
         {
-            _setup = _saSetupProvider.ProvideValid();
             _algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(_setup)
+                .WithSetupData(_saSetupProvider.ProvideValid())
                 .Build();
         }
 
@@ -48,10 +46,10 @@
             //1. No setup and build
             Assert.False(builder.Build() is SimulatedAnnealing);
             //2. Valid setup and 1st proper usage
-            builder.WithSetupData(_setup);
+            builder.WithSetupData(_saSetupProvider.ProvideValid());
             Assert.True(builder.Build() is SimulatedAnnealing);
             //3. Valid setup and 2st proper usage
-            builder.WithSetupData(_setup);
+            builder.WithSetupData(_saSetupProvider.ProvideValid());
             Assert.False(builder.Build() is SimulatedAnnealing);
         }
 
@@ -59,7 +57,7 @@
         public void SimulatedAnnealing_LaunchAlgorithm_UsesCoolingStrategy_Cool()
         {
             var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(_setup)
+                .WithSetupData(_saSetupProvider.ProvideValid())
                 .Build();
             algorithm.LaunchAlgorithm();
             algorithm.CoolingStrategy.Received().Cool(algorithm, Arg.Any<Action>());
@@ -69,7 +67,7 @@
         public void SimulatedAnnealing_LaunchAlgorithm_RestartsProblem()
         {
             var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(_setup)
+                .WithSetupData(_saSetupProvider.ProvideValid())
                 .Build();
             algorithm.LaunchAlgorithm();
             algorithm.Problem.Received().RestartProblemState();
@@ -79,7 +77,7 @@
         public void SimulatedAnnealing_CanAcceptAnswer_ChecksAgainstProblem()
         {
             var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(_setup)
+                .WithSetupData(_saSetupProvider.ProvideValid())
                 .Build();
             var solution = new List<Node>();
             algorithm.CanAcceptAnswer(solution);
