@@ -21,6 +21,8 @@
         {
             if (maxNeighbours >= int.MaxValue || nodeCount >= int.MaxValue)
                 throw new ArgumentOutOfRangeException(nameof(maxNeighbours));
+            if (nodeCount <= maxNeighbours)
+                throw new ArgumentOutOfRangeException(nameof(nodeCount), "You cannot have less or equal amount of nodes than max neighbours possible!");
 
             List<Node> nodes = new List<Node>();
 

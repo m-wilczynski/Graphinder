@@ -1,12 +1,10 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Algorithms.GeneticAlgorithm
 {
     using System;
-    using System.Collections.Generic;
     using Core.Algorithms.GeneticAlgorithm;
+    using Core.Graph;
     using Core.Problems;
-    using Graph;
     using NSubstitute;
-    using NSubstitute.ExceptionExtensions;
     using NSubstitute.Exceptions;
     using Providers.TestData;
     using Tests.Providers;

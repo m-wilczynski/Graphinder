@@ -2,9 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using Core.Algorithms;
+    using Core.Graph;
     using Core.Problems;
-    using Graph;
     using Xunit;
 
     public abstract class IProblemTests

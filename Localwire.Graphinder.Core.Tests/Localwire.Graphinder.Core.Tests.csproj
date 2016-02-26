@@ -73,6 +73,7 @@
     <Compile Include="Algorithms\GeneticAlgorithm\IndividualTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\RouletteStrategyTests.cs" />
     <Compile Include="Algorithms\IAlgorithmTests.cs" />
+    <Compile Include="Graph\NodeGeneratorTests.cs" />
     <Compile Include="Providers\ISubstituteProvider.cs" />
     <Compile Include="Providers\SubstituteData\ProblemSubstituteProvider.cs" />
     <Compile Include="Providers\TestData\TestGraphProvider.cs" />
@@ -90,9 +91,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Graph\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Localwire.Graphinder.Core\Localwire.Graphinder.Core.csproj">
       <Project>{9be00b94-b116-4387-9acd-7902bc0b5e37}</Project>

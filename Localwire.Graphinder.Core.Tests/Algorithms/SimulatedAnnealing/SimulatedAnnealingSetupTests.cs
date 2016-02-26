@@ -10,6 +10,7 @@
     using Providers.SubstituteData;
     using Providers.TestData;
     using Xunit;
+    using Core.Graph;
 
     public class SimulatedAnnealingSetupTests
     {

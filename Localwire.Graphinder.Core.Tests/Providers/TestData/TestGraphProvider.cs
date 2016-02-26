@@ -1,7 +1,7 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Providers.TestData
 {
     using System.Collections.Generic;
-    using Graph;
+    using Core.Graph;
 
     public class TestGraphProvider : ITestDataProvider<Graph>
     {

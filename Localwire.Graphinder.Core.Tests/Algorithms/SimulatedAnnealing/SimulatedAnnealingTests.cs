@@ -4,10 +4,9 @@
     using System.Collections.Generic;
     using Core.Algorithms.SimulatedAnnealing;
     using Core.Algorithms.SimulatedAnnealing.Setup;
-    using Graph;
+    using Core.Graph;
     using NSubstitute;
     using NSubstitute.Exceptions;
-    using Problems;
     using Providers;
     using Providers.TestData;
     using Xunit;

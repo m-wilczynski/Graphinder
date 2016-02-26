@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Core.Graph;
     using Core.Problems;
     using Graph;
     using NSubstitute;

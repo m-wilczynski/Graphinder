@@ -2,8 +2,7 @@
 {
     using Core.Algorithms.SimulatedAnnealing.Setup;
     using Core.Problems;
-    using Graph;
-    using NSubstitute;
+    using Core.Graph;
     using SubstituteData;
 
     public class TestSimulatedAnnealingSetupProvider : ITestDataProvider<SimulatedAnnealingSetup>
