@@ -46,6 +46,9 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
 
         public int SolutionOutcome { get { return _currentOutcome; } }
 
+        //TODO: Should be dependent on IProblem's criterias!
+        public uint SolutionFitness { get { return Convert.ToUInt32(_graph.TotalNodes - SolutionOutcome) + 1; } }
+
         /// <summary>
         /// Ensure correctness of solution that individual holds
         /// </summary>

@@ -16,7 +16,7 @@
         bool IsCurrentSolutionCorrect { get; }
 
         /// <summary>
-        /// Is problem already initialized?
+        /// Current outcome of the solution.
         /// </summary>
         int CurrentOutcome { get; }
 

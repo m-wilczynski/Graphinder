@@ -18,7 +18,7 @@
         public void Set(ICollection<Individual> newPopulation)
         {
             _population = newPopulation;
-            _population = _population.OrderBy(p => p.SolutionOutcome).ToList();
+            _population = _population.OrderBy(p => p.SolutionFitness).ToList();
             InitializeRoulette();
         }
 
@@ -27,13 +27,15 @@
             if (_population == null || _population.Count == 0)
                 throw new InvalidOperationException("Selection strategy needs to have population set first!");
             var totalWeightsSkipped = 0.0;
+            var randomWeight = _random.NextDouble();
+            Individual previous = null;
             foreach (var element in _individualsWeight)
             {
-                totalWeightsSkipped += element.Value;
-                if (_random.NextDouble() < totalWeightsSkipped)
-                    return element.Key;
+                if (element.Value > randomWeight)
+                    return previous ?? element.Key;
+                previous = element.Key;
             }
-            return _population.Last();
+            return previous;
         }
 
         public Tuple<Individual, Individual> NextCouple()
@@ -44,9 +46,14 @@
         private void InitializeRoulette()
         {
             _individualsWeight.Clear();
-            var populationSum = _population.Sum(p => p.SolutionOutcome);
-            foreach(var element in _population)
-                _individualsWeight.Add(element, (double)element.SolutionOutcome/populationSum);
+            var populationSum = _population.Sum(p => p.SolutionFitness);
+            var probabilitiesSum = 0d;
+            foreach (var element in _population)
+            {
+                var probability = (double) element.SolutionFitness/populationSum;
+                _individualsWeight.Add(element, probabilitiesSum + probability);
+                probabilitiesSum += probability;
+            }
         }
     }
 }
