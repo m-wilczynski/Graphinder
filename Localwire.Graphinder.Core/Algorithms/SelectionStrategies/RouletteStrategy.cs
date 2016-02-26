@@ -17,6 +17,8 @@
 
         public void Set(ICollection<Individual> newPopulation)
         {
+            if (newPopulation == null)
+                throw new ArgumentException(nameof(newPopulation));
             _population = newPopulation;
             _population = _population.OrderBy(p => p.SolutionFitness).ToList();
             InitializeRoulette();
