@@ -52,11 +52,13 @@
         }
 
         //TODO: Test actual results of generator
+        [Fact]
         public void NodeGenerator_ProvideNodeCollection_ReturnsValidAmountOfNodes()
         {
             throw new NotImplementedException();
         }
 
+        [Fact]
         public void NodeGenerator_ProvideNodeCollection_ReturnsValidRangeOfNeighours()
         {
             throw new NotImplementedException();

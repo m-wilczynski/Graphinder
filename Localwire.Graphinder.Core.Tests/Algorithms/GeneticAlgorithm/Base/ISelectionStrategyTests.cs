@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Core.Algorithms.GeneticAlgorithm;
-    using Core.Algorithms.SelectionStrategies;
+    using Core.Algorithms.GeneticAlgorithm.SelectionStrategies;
     using Xunit;
 
     public abstract class ISelectionStrategyTests

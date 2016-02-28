@@ -2,7 +2,7 @@
 {
     using System;
     using Base;
-    using Core.Algorithms.SelectionStrategies;
+    using Core.Algorithms.GeneticAlgorithm.SelectionStrategies;
     using Xunit;
 
     public class RouletteStrategyTests : ISelectionStrategyTests

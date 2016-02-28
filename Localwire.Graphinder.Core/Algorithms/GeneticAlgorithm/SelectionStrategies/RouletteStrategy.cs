@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Algorithms.SelectionStrategies
+﻿namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.SelectionStrategies
 {
     using System;
     using System.Collections.Generic;

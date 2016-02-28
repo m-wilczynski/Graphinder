@@ -41,8 +41,8 @@
     <Compile Include="Algorithms\GeneticAlgorithm\Individual.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
     <Compile Include="Algorithms\IAlgorithmSetup.cs" />
-    <Compile Include="Algorithms\SelectionStrategies\ISelectionStrategy.cs" />
-    <Compile Include="Algorithms\SelectionStrategies\RouletteStrategy.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\ISelectionStrategy.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\RouletteStrategy.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\AllRandomCooling.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\ICoolingStrategy.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\CoolingSetup.cs" />
