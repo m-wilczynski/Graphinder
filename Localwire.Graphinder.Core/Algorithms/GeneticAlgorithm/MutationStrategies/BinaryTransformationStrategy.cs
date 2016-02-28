@@ -38,7 +38,8 @@
 
         public void Mutate(Individual individual)
         {
-            if (individual == null) return;
+            if (individual == null)
+                throw new ArgumentException(nameof(individual));
             _binaryTransformation(individual.CurrentSolution);
         }
     }
