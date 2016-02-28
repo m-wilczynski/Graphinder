@@ -39,6 +39,8 @@
   <ItemGroup>
     <Compile Include="Algorithms\Algorithm.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\Individual.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\BinaryTransformationStrategy.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\IMutationStrategy.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
     <Compile Include="Algorithms\IAlgorithmSetup.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\ISelectionStrategy.cs" />

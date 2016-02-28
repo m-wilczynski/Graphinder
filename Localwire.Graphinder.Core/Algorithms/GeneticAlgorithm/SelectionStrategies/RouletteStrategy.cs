@@ -28,7 +28,6 @@
         {
             if (_population == null || _population.Count == 0)
                 throw new InvalidOperationException("Selection strategy needs to have population set first!");
-            var totalWeightsSkipped = 0.0;
             var randomWeight = _random.NextDouble();
             Individual previous = null;
             foreach (var element in _individualsWeight)
