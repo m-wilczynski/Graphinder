@@ -33,16 +33,28 @@
             //Fill neighbours for each one of them
             for (int i = 0; i < nodeCount; i++)
             {
-                var howManyNeigbhours = _random.Next((int)maxNeighbours + 1) - nodes[i].Neighbours.Count;
-                List<int> alreadyPickedIndexes = new List<int>();
+                var howManyNeigbhours = _random.Next((int)maxNeighbours) - nodes[i].Neighbours.Count;
+                HashSet<int> alreadyPickedIndexes = new HashSet<int>();
                 while (howManyNeigbhours > 0)
                 {
                     var pick = _random.Next((int)nodeCount);
-                    while (pick == i || alreadyPickedIndexes.Any(p => p == pick))
+                    while (pick == i 
+                        || alreadyPickedIndexes.Contains(pick)
+                        || nodes[pick].Neighbours.Count == maxNeighbours)
                         pick = _random.Next((int)nodeCount);
                     nodes[i].AddNeighbour(nodes[pick]);
                     alreadyPickedIndexes.Add(pick);
                     howManyNeigbhours--;
+                }
+                //Make sure to not produce dead end
+                if (nodes[i].Neighbours.Count == 0)
+                {
+                    var pick = _random.Next((int)nodeCount);
+                    while (pick == i
+                        || alreadyPickedIndexes.Contains(pick)
+                        || nodes[pick].Neighbours.Count == maxNeighbours)
+                        pick = _random.Next((int)nodeCount);
+                    nodes[i].AddNeighbour(nodes[pick]);
                 }
             }
             return nodes;

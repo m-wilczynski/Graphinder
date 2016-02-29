@@ -51,17 +51,25 @@
             _generator.ProvideNodeCollection(4, 3);
         }
 
-        //TODO: Test actual results of generator
         [Fact]
         public void NodeGenerator_ProvideNodeCollection_ReturnsValidAmountOfNodes()
         {
-            throw new NotImplementedException();
+            var generated = _generator.ProvideNodeCollection(10);
+            Assert.Equal(generated.Count, 10);
         }
 
         [Fact]
         public void NodeGenerator_ProvideNodeCollection_ReturnsValidRangeOfNeighours()
         {
-            throw new NotImplementedException();
+            const uint nodesCount = 2000;
+            const uint nghMax = 10;
+            var generated = _generator.ProvideNodeCollection(nodesCount, nghMax);
+            foreach (var element in generated)
+            {
+                var count = element.Neighbours.Count;
+                Assert.True(element.Neighbours.Count <= nghMax && element.Neighbours.Count > 0);
+            }
+
         }
     }
 }
