@@ -11,6 +11,7 @@
     /// </summary>
     public class Graph : ISelfValidable
     {
+        private bool _isLocked;
         private List<Node> _nodes;
         private readonly Random _random = new Random();
         private Stack<int> _randomNodeIndexes = new Stack<int>();
@@ -78,8 +79,10 @@
         /// <param name="maxNeighbours">Maximum number of neighbours per node</param>
         public void FillGraphRandomly(uint nodesCount, uint maxNeighbours)
         {
+            if (!CanAdd()) return;
             MaxNeigbhours = maxNeighbours;
             _nodes = new List<Node>(new NodeGenerator().ProvideNodeCollection(nodesCount, maxNeighbours));
+            LockGraph();
         }
 
         /// <summary>
@@ -88,6 +91,7 @@
         /// <param name="key">Key representing node to be added</param>
         public void AddNode(string key)
         {
+            if (!CanAdd()) return;
             if (_nodes.Any(n => n.Key == key)) return;
             _nodes.Add(new Node(key));
         }
@@ -98,6 +102,7 @@
         /// <param name="key">Key representing node to be added</param>
         public void RemoveNode(string key)
         {
+            if (!CanAdd()) return;
             var match = _nodes.SingleOrDefault(n => n.Key == key);
             if (match == null) return;
             _nodes.Remove(match);
@@ -113,6 +118,7 @@
         /// <param name="to">Second vertex of an edge.</param>
         public void AddEdge(string from, string to)
         {
+            if (!CanAdd()) return;
             var matchFrom = _nodes.SingleOrDefault(n => n.Key == from);
             var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
             if (matchFrom == null || matchTo == null) return;
@@ -126,6 +132,7 @@
         /// <param name="to">Second vertex of an edge.</param>
         public void RemoveEdge(string from, string to)
         {
+            if (!CanAdd()) return;
             var matchFrom = _nodes.SingleOrDefault(n => n.Key == from);
             var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
             if (matchFrom == null || matchTo == null) return;
@@ -149,5 +156,18 @@
             return output;
         }
 
+        /// <summary>
+        /// Locks graph and assumes its population has completed.
+        /// No items can be added to Graph later on.
+        /// </summary>
+        public void LockGraph()
+        {
+            _isLocked = true;
+        }
+
+        private bool CanAdd()
+        {
+            return !_isLocked;
+        }
     }
 }
