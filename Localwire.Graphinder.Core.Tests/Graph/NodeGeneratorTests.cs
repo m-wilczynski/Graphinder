@@ -66,7 +66,6 @@
             var generated = _generator.ProvideNodeCollection(nodesCount, nghMax);
             foreach (var element in generated)
             {
-                var count = element.Neighbours.Count;
                 Assert.True(element.Neighbours.Count <= nghMax && element.Neighbours.Count > 0);
             }
 

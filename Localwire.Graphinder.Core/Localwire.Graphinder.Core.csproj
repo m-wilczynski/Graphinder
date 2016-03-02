@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Algorithm.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\CrossoverStrategies\ICrossoverStrategies.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\Individual.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\BinaryTransformationStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\IMutationStrategy.cs" />

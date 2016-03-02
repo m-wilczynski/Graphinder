@@ -6,11 +6,11 @@
     /// <summary>
     /// Factory for minimal vertex cover problem.
     /// </summary>
-    public class MinimalVertexCoverFactory : IProblemFactory
+    public class MinimumVertexCoverFactory : IProblemFactory
     {
         public IProblem Provide()
         {
-            return new MinimalVertexCover();
+            return new MinimumVertexCover();
         }
     }
 }

@@ -20,17 +20,17 @@
             {
                 new SimulatedAnnealing.Builder()
                     .WithSetupData(new SimulatedAnnealingSetup(
-                        graph, new MinimalVertexCover(),
+                        graph, new MinimumVertexCover(),
                         new CoolingSetup(1000, 0.03, new AllRandomCooling())))
                     .Build(),
                 new SimulatedAnnealing.Builder()
                     .WithSetupData(new SimulatedAnnealingSetup(
-                        graph, new MinimalVertexCover(),
+                        graph, new MinimumVertexCover(),
                         new CoolingSetup(1000, 0.03, new AllRandomCooling())))
                     .Build(),
                 new SimulatedAnnealing.Builder()
                     .WithSetupData(new SimulatedAnnealingSetup(
-                        graph, new MinimalVertexCover(),
+                        graph, new MinimumVertexCover(),
                         new CoolingSetup(1000, 0.03, new AllRandomCooling())))
                     .Build()
             };

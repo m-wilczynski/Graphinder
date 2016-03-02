@@ -12,7 +12,7 @@
         private static readonly IDictionary<Type, IProblemFactory> FactoriesForTypes =
             new Dictionary<Type, IProblemFactory>
             {
-                { typeof(MinimalVertexCover), new MinimalVertexCoverFactory() },
+                { typeof(MinimumVertexCover), new MinimumVertexCoverFactory() },
             };
 
         /// <summary>
