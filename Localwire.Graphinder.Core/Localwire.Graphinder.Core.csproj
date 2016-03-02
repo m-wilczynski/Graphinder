@@ -56,6 +56,7 @@
     <Compile Include="Factories\IProblemFactory.cs" />
     <Compile Include="Factories\Providers\AlgorithmFactoryProvider.cs" />
     <Compile Include="Factories\Providers\ProblemFactoryProvider.cs" />
+    <Compile Include="Graph\Edge.cs" />
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\Helpers\NodeGenerator.cs" />
     <Compile Include="Graph\IOperableOn.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="Helpers\Operations\Binary\BinaryOperation.cs" />
     <Compile Include="Helpers\Operations\Binary\BinaryTransformation.cs" />
     <Compile Include="Problems\IProblem.cs" />
-    <Compile Include="Problems\OptimizationProblems\MinimalVertexCover.cs" />
+    <Compile Include="Problems\OptimizationProblems\MinimumVertexCover.cs" />
     <Compile Include="Problems\ProblemFactories\MinimalVertexCoverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

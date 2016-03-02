@@ -75,6 +75,7 @@
     <Compile Include="Algorithms\GeneticAlgorithm\IndividualTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\RouletteStrategyTests.cs" />
     <Compile Include="Algorithms\IAlgorithmTests.cs" />
+    <Compile Include="Graph\EdgeTests.cs" />
     <Compile Include="Graph\NodeGeneratorTests.cs" />
     <Compile Include="Providers\ISubstituteProvider.cs" />
     <Compile Include="Providers\SubstituteData\ProblemSubstituteProvider.cs" />
@@ -88,7 +89,7 @@
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingSetupTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingTests.cs" />
     <Compile Include="Problems\IProblemTests.cs" />
-    <Compile Include="Problems\MinimalVertexCover\MinimalVertexCoverTests.cs" />
+    <Compile Include="Problems\MinimumVertexCover\MinimumVertexCoverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

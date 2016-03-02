@@ -13,17 +13,21 @@
     {
         private bool _isLocked;
         private List<Node> _nodes;
+        //Redundancy vs performance, eh?
+        private readonly HashSet<string> _nodeKeys;
+        private readonly HashSet<Edge> _edges; 
         private readonly Random _random = new Random();
         private Stack<int> _randomNodeIndexes = new Stack<int>();
 
         public Graph()
         {
             _nodes = new List<Node>();
+            _nodeKeys = new HashSet<string>();
+            _edges = new HashSet<Edge>();
         }
 
-        public Graph(IEnumerable<string> nodes)
+        public Graph(IEnumerable<string> nodes) : this()
         {
-            _nodes = new List<Node>();
             if (nodes != null)
             {
                 foreach (var element in nodes.Where(n => n != null && _nodes.All(node => node.Key != n)))
@@ -81,7 +85,7 @@
         {
             if (!CanAdd()) return;
             MaxNeigbhours = maxNeighbours;
-            _nodes = new List<Node>(new NodeGenerator().ProvideNodeCollection(nodesCount, maxNeighbours));
+            _nodes = new List<Node>(new NodeGenerator().ProvideNodeCollection(this, nodesCount, maxNeighbours));
             LockGraph();
         }
 
@@ -91,9 +95,9 @@
         /// <param name="key">Key representing node to be added</param>
         public void AddNode(string key)
         {
-            if (!CanAdd()) return;
-            if (_nodes.Any(n => n.Key == key)) return;
-            _nodes.Add(new Node(key));
+            if (!CanAdd() || ContainsNode(key)) return;
+            _nodes.Add(new Node(key, this));
+            _nodeKeys.Add(key);
         }
 
         /// <summary>
@@ -103,9 +107,11 @@
         public void RemoveNode(string key)
         {
             if (!CanAdd()) return;
+            //TODO: Find index of match for O(1) access, instead of iterating over twice
             var match = _nodes.SingleOrDefault(n => n.Key == key);
             if (match == null) return;
             _nodes.Remove(match);
+            _nodeKeys.Remove(key);
             //Remove relations with other nodes too
             foreach (var ngh in match.Neighbours)
                 match.RemoveNeighbour(ngh);
@@ -157,12 +163,33 @@
         }
 
         /// <summary>
-        /// Locks graph and assumes its population has completed.
+        /// Locks graph and assumes populating process has completed.
         /// No items can be added to Graph later on.
         /// </summary>
         public void LockGraph()
         {
             _isLocked = true;
+        }
+
+        /// <summary>
+        /// Check if graph contains node of given key.
+        /// </summary>
+        /// <param name="key">Node key to look for</param>
+        /// <returns></returns>
+        public bool ContainsNode(string key)
+        {
+            return _nodeKeys.Contains(key);
+        }
+
+        /// <summary>
+        /// Checks if graph contains edge connecting given nodes.
+        /// </summary>
+        /// <param name="from">First vertex of an edge.</param>
+        /// <param name="to">Second vertex of an edge.</param>
+        /// <returns></returns>
+        public bool ContainsEdge(Node from, Node to)
+        {
+            return _edges.Contains(new Edge(from, to));
         }
 
         private bool CanAdd()

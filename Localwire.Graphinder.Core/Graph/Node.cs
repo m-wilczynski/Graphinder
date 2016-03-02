@@ -11,27 +11,32 @@
     {
         public readonly HashSet<Node> Neighbours;
         public readonly string Key;
+        public readonly Graph Parent;
 
         /// <summary>
         /// Creates node with given key
         /// </summary>
         /// <param name="key">Key that ensures node uniqueness</param>
-        public Node(string key)
+        /// <param name="parent">Graph of which node is part of.</param>
+        public Node(string key, Graph parent)
         {
             if (string.IsNullOrEmpty(key)) throw new ArgumentException("Node needs valid key!");
+            if (parent == null) throw new ArgumentNullException(nameof(parent));
             Key = key;
             Neighbours = new HashSet<Node>();
+            Parent = parent;
         }
 
         /// <summary>
         /// Adds neighbouring node
         /// </summary>
-        /// <param name="n">New neighbour to add</param>
-        public void AddNeighbour(Node n)
+        /// <param name="node">New neighbour to add</param>
+        public void AddNeighbour(Node node)
         {
-            if (n == null || n.Equals(this) || Neighbours.Any(node => node.Equals(n))) return;
-            Neighbours.Add(n);
-            n.AddNeighbour(this);
+            if (node == null || node.Equals(this) || Neighbours.Contains(node)) return;
+            if (!CanAddNeighbour(node)) throw new InvalidOperationException("Attempt to connect nodes from different graph!");
+            Neighbours.Add(node);
+            node.AddNeighbour(this);
         }
 
         /// <summary>
@@ -41,7 +46,7 @@
         public void RemoveNeighbour(Node n)
         {
             if (n == null || n.Equals(this)) return;
-            var match = Neighbours.Single(node => node.Equals(n));
+            var match = Neighbours.SingleOrDefault(node => node.Equals(n));
             if (match == null) return;
             Neighbours.Remove(match);
             match.RemoveNeighbour(this);
@@ -58,6 +63,18 @@
         public override int GetHashCode()
         {
             return Key.GetHashCode();
+        }
+
+        /// <summary>
+        /// Determines whether new neighbour actually belongs to same graph.
+        /// </summary>
+        /// <param name="node">Node to add.</param>
+        /// <returns></returns>
+        private bool CanAddNeighbour(Node node)
+        {
+            if (node == null) return false;
+            //Check if the same graph, ie. same reference
+            return Parent.Equals(node.Parent) && Parent.ContainsNode(node.Key);
         }
     }
 }
