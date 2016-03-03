@@ -34,7 +34,7 @@
         public void AddNeighbour(Node node)
         {
             if (node == null || node.Equals(this) || Neighbours.Contains(node)) return;
-            if (!CanAddNeighbour(node)) throw new InvalidOperationException("Attempt to connect nodes from different graph!");
+            if (!CanAddNeighbour(node)) throw new InvalidOperationException("Neighbour cannot be added!");
             Neighbours.Add(node);
             node.AddNeighbour(this);
         }
@@ -74,7 +74,8 @@
         {
             if (node == null) return false;
             //Check if the same graph, ie. same reference
-            return Parent.Equals(node.Parent) && Parent.ContainsNode(node.Key);
+            //Allow adding only if edge was added by Graph beforehand
+            return Parent.Equals(node.Parent) && Parent.ContainsNode(node.Key) && Parent.ContainsEdge(this, node);
         }
     }
 }

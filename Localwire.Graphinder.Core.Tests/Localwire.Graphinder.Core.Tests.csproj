@@ -76,7 +76,9 @@
     <Compile Include="Algorithms\GeneticAlgorithm\RouletteStrategyTests.cs" />
     <Compile Include="Algorithms\IAlgorithmTests.cs" />
     <Compile Include="Graph\EdgeTests.cs" />
+    <Compile Include="Graph\GraphTests.cs" />
     <Compile Include="Graph\NodeGeneratorTests.cs" />
+    <Compile Include="Graph\NodeTests.cs" />
     <Compile Include="Providers\ISubstituteProvider.cs" />
     <Compile Include="Providers\SubstituteData\ProblemSubstituteProvider.cs" />
     <Compile Include="Providers\TestData\TestGraphProvider.cs" />

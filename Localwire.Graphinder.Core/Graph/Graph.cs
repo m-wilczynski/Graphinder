@@ -114,7 +114,10 @@
             _nodeKeys.Remove(key);
             //Remove relations with other nodes too
             foreach (var ngh in match.Neighbours)
+            {
+                _edges.Remove(new Edge(ngh, match));
                 match.RemoveNeighbour(ngh);
+            }
         }
 
         /// <summary>
@@ -128,6 +131,7 @@
             var matchFrom = _nodes.SingleOrDefault(n => n.Key == from);
             var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
             if (matchFrom == null || matchTo == null) return;
+            _edges.Add(new Edge(matchFrom, matchTo));
             matchFrom.AddNeighbour(matchTo);
         }
 
@@ -142,6 +146,7 @@
             var matchFrom = _nodes.SingleOrDefault(n => n.Key == from);
             var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
             if (matchFrom == null || matchTo == null) return;
+            _edges.Remove(new Edge(matchFrom, matchTo));
             matchFrom.RemoveNeighbour(matchTo);
         }
 
