@@ -6,6 +6,7 @@
     using Providers;
     using Providers.TestData;
     using Xunit;
+    using Xunit.Sdk;
 
     public class NodeGeneratorTests
     {
@@ -22,17 +23,19 @@
         [Fact]
         public void NodeGenerator_ProvideNodeCollection_ThrowsMaxValueNodeCount()
         {
+            ResetState();
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
                 _generator.ProvideNodeCollection(_graph, UInt32.MaxValue);
             });
-
+            
             _generator.ProvideNodeCollection(_graph, 3);
         }
 
         [Fact]
         public void NodeGenerator_ProvideNodeCollection_ThrowsMaxValueMaxNeighbours()
         {
+            ResetState();
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
                 _generator.ProvideNodeCollection(_graph, 2, UInt32.MaxValue);
@@ -44,6 +47,7 @@
         [Fact]
         public void NodeGenerator_ProvideNodeCollection_ThrowsOnEqualOrLessNodesThanNeighbours()
         {
+            ResetState();
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
                 _generator.ProvideNodeCollection(_graph, 2, 2);
@@ -60,6 +64,7 @@
         [Fact]
         public void NodeGenerator_ProvideNodeCollection_ReturnsValidAmountOfNodes()
         {
+            ResetState();
             var generated = _generator.ProvideNodeCollection(_graph, 10);
             Assert.Equal(generated.Count, 10);
         }
@@ -67,6 +72,7 @@
         [Fact]
         public void NodeGenerator_ProvideNodeCollection_ReturnsValidRangeOfNeighours()
         {
+            ResetState();
             const uint nodesCount = 2000;
             const uint nghMax = 10;
             var generated = _generator.ProvideNodeCollection(_graph, nodesCount, nghMax);
@@ -75,6 +81,11 @@
                 Assert.True(element.Neighbours.Count <= nghMax && element.Neighbours.Count > 0);
             }
 
+        }
+
+        private void ResetState()
+        {
+            _graph = new Graph();
         }
     }
 }

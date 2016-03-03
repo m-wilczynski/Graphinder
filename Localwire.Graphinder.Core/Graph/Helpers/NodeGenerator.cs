@@ -3,12 +3,18 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
 
     /// <summary>
     /// Class providing utility (generation/parsing) functionalities for graph data structure
     /// </summary>
     public class NodeGenerator
     {
+        /// <summary>
+        /// How many times should generator attempt to add additional neighbour before giving up,
+        /// due to rolled node not meeting requirements
+        /// </summary>
+        public const uint RollsBeforeGivingUp = 10;
         private readonly Random _random = new Random();
 
         /// <summary>
@@ -28,24 +34,36 @@
             List<Node> nodes = new List<Node>();
 
             //Create random nodes
-            for (int i = 0; i < nodeCount; i++)
-                nodes.Add(new Node(_random.Next().ToString(), parent));
+            while (nodes.Count < nodeCount)
+            {
+                var node = parent.AddNode(_random.Next().ToString());
+                if (node != null) nodes.Add(node);
+            }
 
             //Fill neighbours for each one of them
             for (int i = 0; i < nodeCount; i++)
             {
                 var howManyNeigbhours = _random.Next((int)maxNeighbours) - nodes[i].Neighbours.Count;
                 HashSet<int> alreadyPickedIndexes = new HashSet<int>();
-                while (howManyNeigbhours > 0)
+                while (nodes[i].Neighbours.Count < howManyNeigbhours)
                 {
                     var pick = _random.Next((int)nodeCount);
-                    while (pick == i 
-                        || alreadyPickedIndexes.Contains(pick)
-                        || nodes[pick].Neighbours.Count == maxNeighbours)
-                        pick = _random.Next((int)nodeCount);
-                    nodes[i].AddNeighbour(nodes[pick]);
+                    uint attempts = 0;
+                    while (pick == i
+                           || alreadyPickedIndexes.Contains(pick)
+                           || nodes[pick].Neighbours.Count == maxNeighbours)
+                    {
+                        pick = _random.Next((int) nodeCount);
+                        attempts++;
+                        //Give up if rolling takes too long
+                        if (attempts == RollsBeforeGivingUp)
+                            break;
+                    }
+                    //Give up if rolling takes too long
+                    if (attempts == RollsBeforeGivingUp)
+                        break;
+                    parent.AddEdge(nodes[i].Key, nodes[pick].Key);
                     alreadyPickedIndexes.Add(pick);
-                    howManyNeigbhours--;
                 }
                 //Make sure to not produce dead end
                 if (nodes[i].Neighbours.Count == 0)
@@ -55,7 +73,7 @@
                         || alreadyPickedIndexes.Contains(pick)
                         || nodes[pick].Neighbours.Count == maxNeighbours)
                         pick = _random.Next((int)nodeCount);
-                    nodes[i].AddNeighbour(nodes[pick]);
+                    parent.AddEdge(nodes[i].Key, nodes[pick].Key);
                 }
             }
             return nodes;

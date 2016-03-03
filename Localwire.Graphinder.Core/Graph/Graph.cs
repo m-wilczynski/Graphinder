@@ -77,6 +77,14 @@
         }
 
         /// <summary>
+        /// Total edges in graph.
+        /// </summary>
+        public int TotalEdges
+        {
+            get { return _edges.Count; }
+        }
+        
+        /// <summary>
         /// Fills graph with randomly generated data based on seleceted parameters.
         /// </summary>
         /// <param name="nodesCount">Amount of nodes to generate</param>
@@ -93,11 +101,13 @@
         /// Adds node to the graph.
         /// </summary>
         /// <param name="key">Key representing node to be added</param>
-        public void AddNode(string key)
+        public Node AddNode(string key)
         {
-            if (!CanAdd() || ContainsNode(key)) return;
-            _nodes.Add(new Node(key, this));
+            if (!CanAdd() || ContainsNode(key)) return null;
+            var node = new Node(key, this);
+            _nodes.Add(node);
             _nodeKeys.Add(key);
+            return node;
         }
 
         /// <summary>
