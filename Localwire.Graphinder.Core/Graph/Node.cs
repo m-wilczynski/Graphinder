@@ -70,7 +70,7 @@
         /// </summary>
         /// <param name="node">Node to add.</param>
         /// <returns></returns>
-        private bool CanAddNeighbour(Node node)
+        public bool CanAddNeighbour(Node node)
         {
             if (node == null) return false;
             //Check if the same graph, ie. same reference

@@ -57,7 +57,7 @@
         {
             if (nodes == null) throw new ArgumentException(nameof(nodes));
             if (!IsInitialized) return;
-            if (nodes.All(n => _graph.Nodes.Any(n1 => n1.Equals(n))))
+            if (nodes.All(n => _graph.ContainsNode(n.Key)))
             {
                 _currentCover = new HashSet<Node>(nodes);
             }
@@ -95,14 +95,16 @@
         {
             if (nodes == null) throw new ArgumentException(nameof(nodes));
             if (!IsInitialized) return false;
-            HashSet<Node> alreadyCovered = new HashSet<Node>();
+            HashSet<Edge> alreadyCovered = new HashSet<Edge>();
             foreach (var element in nodes)
             {
-                alreadyCovered.Add(element);
-                alreadyCovered.AddRange(element.Neighbours);
-                if (alreadyCovered.Count == _graph.TotalNodes) break;
+                foreach (var neighbour in element.Neighbours)
+                {
+                    alreadyCovered.Add(new Edge(element, neighbour));
+                }
+                if (alreadyCovered.Count == _graph.TotalEdges) break;
             }
-            return alreadyCovered.Count == _graph.TotalNodes;
+            return alreadyCovered.Count == _graph.TotalEdges;
         }
 
         /// <summary>

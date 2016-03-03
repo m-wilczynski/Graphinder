@@ -17,6 +17,7 @@
         private readonly HashSet<string> _nodeKeys;
         private readonly HashSet<Edge> _edges; 
         private readonly Random _random = new Random();
+        private readonly NodeGenerator _nodeGenerator = new NodeGenerator();
         private Stack<int> _randomNodeIndexes = new Stack<int>();
 
         public Graph()
@@ -93,7 +94,7 @@
         {
             if (!CanAdd()) return;
             MaxNeigbhours = maxNeighbours;
-            _nodes = new List<Node>(new NodeGenerator().ProvideNodeCollection(this, nodesCount, maxNeighbours));
+            _nodeGenerator.ProvideNodeCollection(this, nodesCount, maxNeighbours);
             LockGraph();
         }
 
