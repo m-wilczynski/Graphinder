@@ -57,7 +57,7 @@
         {
             if (nodes == null) throw new ArgumentException(nameof(nodes));
             if (!IsInitialized) return;
-            if (nodes.All(n => _graph.ContainsNode(n.Key)))
+            if (nodes.All(n => _graph.ContainsNode(n.Key) && _graph == n.Parent))
             {
                 _currentCover = new HashSet<Node>(nodes);
             }
