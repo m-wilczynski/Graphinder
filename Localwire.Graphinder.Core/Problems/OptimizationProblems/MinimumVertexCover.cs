@@ -50,10 +50,10 @@
         public ICollection<Node> CurrentSolution { get { return new HashSet<Node>(_currentCover); } }
 
         /// <summary>
-        /// Adds new solution of the problem.
+        /// Sets new solution of the problem.
         /// </summary>
         /// <param name="nodes">Collection of nodes representing new solution.</param>
-        public void AddNewSolution(ICollection<Node> nodes)
+        public void SetNewSolution(ICollection<Node> nodes)
         {
             if (nodes == null) throw new ArgumentException(nameof(nodes));
             if (!IsInitialized) return;

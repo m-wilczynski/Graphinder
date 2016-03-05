@@ -35,7 +35,7 @@
 
                 //Rollback if solution has not been accepted
                 if (algorithm.CanAcceptAnswer(proposedSolution))
-                    algorithm.Problem.AddNewSolution(proposedSolution);
+                    algorithm.Problem.SetNewSolution(proposedSolution);
 
                 //Cool system
                 coolingAction.Invoke();

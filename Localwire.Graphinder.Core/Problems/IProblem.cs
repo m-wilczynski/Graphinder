@@ -26,10 +26,10 @@
         ICollection<Node> CurrentSolution { get; }
 
         /// <summary>
-        /// Adds new solution of the problem.
+        /// Sets new solution of the problem.
         /// </summary>
         /// <param name="nodes">Collection of nodes representing new solution.</param>
-        void AddNewSolution(ICollection<Node> nodes);
+        void SetNewSolution(ICollection<Node> nodes);
 
         /// <summary>
         /// Restart problem to initial state.

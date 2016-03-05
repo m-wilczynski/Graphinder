@@ -28,7 +28,7 @@
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                _problem.AddNewSolution(null);
+                _problem.SetNewSolution(null);
             });
         }
 
