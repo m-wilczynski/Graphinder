@@ -13,7 +13,7 @@
     {
         private bool _isLocked;
         private List<Node> _nodes;
-        //Redundancy vs performance, eh?
+        //TODO: Redundancy vs performance, eh?
         private readonly HashSet<string> _nodeKeys;
         private readonly HashSet<Edge> _edges; 
         private readonly Random _random = new Random();

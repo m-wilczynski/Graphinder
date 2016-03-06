@@ -10,6 +10,10 @@
         private readonly ITestDataProvider<Graph> _graphProvider = new TestGraphProvider();
         private readonly ISubstituteProvider<IProblem> _problemProvider = new ProblemSubstituteProvider();
 
+        /// <summary>
+        /// Provides valid instance of declared type.
+        /// </summary>
+        /// <returns></returns>
         public Individual ProvideValid()
         {
             return new Individual(_graphProvider.ProvideValid(), _problemProvider.ProvideSubstitute());

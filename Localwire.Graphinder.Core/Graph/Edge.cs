@@ -24,8 +24,9 @@
             if (obj == null) return false;
             var casted = obj as Edge;
             if (casted == null) return false;
-            return casted.From.Equals(From) && casted.To.Equals(To) ||
-                   casted.From.Equals(To) && casted.To.Equals(From);
+            return (casted.From.Equals(From) && casted.To.Equals(To) ||
+                   casted.From.Equals(To) && casted.To.Equals(From)) &&
+                   casted.From.Parent.Equals(From.Parent);
         }
 
         public override int GetHashCode()
