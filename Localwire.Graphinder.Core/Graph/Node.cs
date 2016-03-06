@@ -5,7 +5,7 @@
     using System.Linq;
 
     /// <summary>
-    /// Class representing basic node of undirected graph
+    /// Represents basic node of undirected graph
     /// </summary>
     public class Node
     {
@@ -14,7 +14,7 @@
         public readonly Graph Parent;
 
         /// <summary>
-        /// Creates node with given key
+        /// Instantiates node with given key
         /// </summary>
         /// <param name="key">Key that ensures node uniqueness</param>
         /// <param name="parent">Graph of which node is part of.</param>

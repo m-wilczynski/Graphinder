@@ -4,10 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using Graph;
-    using Helpers.Extensions;
 
     /// <summary>
-    /// Class representing minimal vertex cover problem and its current solution
+    /// Represents minimal vertex cover problem and its current solution
     /// </summary>
     public class MinimumVertexCover : IProblem
     {
@@ -15,6 +14,12 @@
         private Graph _graph;
         private HashSet<Node> _currentCover;
         private readonly ProblemCriteria _criteria = ProblemCriteria.SmallerIsBetter;
+
+        /// <summary>
+        /// Instantiates minimum vertex cover problem.
+        /// </summary>
+        public MinimumVertexCover()
+        { }
 
         /// <summary>
         /// Current solution value.
@@ -63,6 +68,7 @@
             }
         }
 
+        //TODO: Why on earth not in ctor?
         /// <summary>
         /// Initialize the problem with graph data structure.
         /// </summary>
@@ -108,9 +114,9 @@
         }
 
         /// <summary>
-        /// Checks passed solution encoded binary for correctness.
+        /// Checks passed solution encoded in binary for correctness.
         /// </summary>
-        /// <param name="nodesEncodedBinary">Collection of nodes representing new solution encoded binary.</param>
+        /// <param name="nodesEncodedBinary">Collection of nodes representing new solution encoded in binary.</param>
         /// <returns>Outcome of correctness check.</returns>
         public bool IsSolutionCorrect(bool[] nodesEncodedBinary)
         {

@@ -3,12 +3,12 @@
     using System;
 
     /// <summary>
-    /// Class representing binary operations on bits arrays.
+    /// Represents binary operations on bits arrays.
     /// </summary>
     public class BinaryOperation
     {
         /// <summary>
-        /// Performs OR operation on two bits arrays.
+        /// Performss OR operation on two bits arrays.
         /// </summary>
         /// <param name="left">Left bits array.</param>
         /// <param name="right">Right bits array.</param>
@@ -48,7 +48,7 @@
         }
 
         /// <summary>
-        /// Request function for given operation type.
+        /// Requests function for given operation type.
         /// </summary>
         /// <param name="operation">Operation type.</param>
         /// <returns>Operation function.</returns>

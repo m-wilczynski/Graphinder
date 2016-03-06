@@ -5,7 +5,7 @@
     using Problems;
 
     /// <summary>
-    /// Class representing problem and data structure setup for simulated annealing algorithm
+    /// Represents problem and data structure setup for simulated annealing algorithm
     /// </summary>
     public class SimulatedAnnealingSetup : IAlgorithmSetup
     {
@@ -29,7 +29,7 @@
         }
 
         /// <summary>
-        /// Graph on which algorithm operate.
+        /// Graph on which algorithm operates.
         /// </summary>
         public Graph Graph { get; private set; }
 

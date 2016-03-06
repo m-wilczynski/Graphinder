@@ -3,14 +3,14 @@
     using System;
 
     /// <summary>
-    /// Class representing binary transformations on bits arrays.
+    /// Represents binary transformations on bits arrays.
     /// </summary>
     public class BinaryTransformation
     {
         private readonly Random _random = new Random();
 
         /// <summary>
-        /// Flip random bit in array
+        /// Flips random bit in array
         /// </summary>
         /// <param name="array">Bits array.</param>
         public void RandomBitFlip(bool[] array)
@@ -28,7 +28,7 @@
         }
 
         /// <summary>
-        /// Flip all array bits.
+        /// Flips all array bits.
         /// </summary>
         /// <param name="array">Bits array.</param>
         public void AllBitFlip(bool[] array)
@@ -38,7 +38,7 @@
         }
 
         /// <summary>
-        /// Request action for given transformation type.
+        /// Requests action for given transformation type.
         /// </summary>
         /// <param name="transformation">Transformation type.</param>
         /// <returns>Transformation action.</returns>

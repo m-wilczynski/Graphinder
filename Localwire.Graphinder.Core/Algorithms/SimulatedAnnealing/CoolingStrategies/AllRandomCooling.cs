@@ -5,12 +5,18 @@
     using Graph;
 
     /// <summary>
-    /// Class representing all random cooling strategy.
+    /// Represents all random cooling strategy.
     /// New solution is being found by polling for random nodes until soluton correctness criteria is met.
     /// </summary>
     public class AllRandomCooling : ICoolingStrategy
     {
         private readonly Random _random = new Random();
+
+        /// <summary>
+        /// Instantiates new all random cooling strategy used to cool <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> based system.
+        /// </summary>
+        public AllRandomCooling()
+        { }
 
         /// <summary>
         /// Cools system until it reaches minimal, targeted temperature.

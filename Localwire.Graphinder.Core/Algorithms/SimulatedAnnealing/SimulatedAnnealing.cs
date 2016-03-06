@@ -8,7 +8,7 @@
     using Setup;
 
     /// <summary>
-    /// Class representing simulated annealing algorithm that bases on graph data structure.
+    /// Represents simulated annealing algorithm that bases on graph data structure.
     /// </summary>
     public class SimulatedAnnealing : Algorithm
     {
@@ -132,7 +132,7 @@
         }
 
         /// <summary>
-        /// Restart system to initial state.
+        /// Restarts system to initial state.
         /// </summary>
         private void RestartSystem()
         {
@@ -142,7 +142,7 @@
         }
 
         /// <summary>
-        /// Cool system temperature by one step of cooling ratio.
+        /// Cools system temperature by one step of cooling ratio.
         /// </summary>
         private void CoolOnce()
         {
@@ -150,18 +150,26 @@
         }
 
         /// <summary>
-        /// Builder of Simulated Annealing algorithm instance.
+        /// Builder of <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm instances.
         /// </summary>
         public class Builder
         {
             private readonly SimulatedAnnealing _builtAlgorithm;
             private bool _isBuilt;
 
+            /// <summary>
+            /// Instantiates builder for <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm.
+            /// </summary>
             public Builder()
             {
                 _builtAlgorithm = new SimulatedAnnealing();
             }
 
+            /// <summary>
+            /// Sets up required data for <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm.
+            /// </summary>
+            /// <param name="setup">Setup for algorithm.</param>
+            /// <returns></returns>
             public Builder WithSetupData(SimulatedAnnealingSetup setup)
             {
                 if (setup == null || !setup.IsValid()) throw new ArgumentException("Setup state is invalid!", nameof(setup));
@@ -174,6 +182,10 @@
                 return this;
             }
 
+            /// <summary>
+            /// Builds <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm.
+            /// </summary>
+            /// <returns><see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> instance if valid. Null if already built or invalid.</returns>
             public SimulatedAnnealing Build()
             {
                 if (_isBuilt) return null;

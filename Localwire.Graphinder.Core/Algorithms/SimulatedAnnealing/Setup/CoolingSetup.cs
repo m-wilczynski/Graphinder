@@ -5,7 +5,7 @@
     using Helpers;
 
     /// <summary>
-    /// Class representing initial setup for simulated annealing cooling
+    /// Represents initial setup for simulated annealing cooling
     /// </summary>
     public class CoolingSetup : ISelfValidable
     {

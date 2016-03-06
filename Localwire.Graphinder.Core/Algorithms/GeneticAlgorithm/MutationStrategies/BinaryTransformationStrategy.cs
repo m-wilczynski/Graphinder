@@ -4,13 +4,17 @@
     using Helpers.Operations.Binary;
 
     /// <summary>
-    /// Class representing mutation strategy that transforms binary encoded individual.
+    /// Represents mutation strategy that transforms binary encoded individual.
     /// </summary>
     public class BinaryTransformationStrategy : IMutationStrategy
     {
         private BinaryTransformationType _transformationType;
         private Action<bool[]> _binaryTransformation;
 
+        /// <summary>
+        /// Instantiates binary transformation strategy used by <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/> mutation.
+        /// </summary>
+        /// <param name="transformationType"></param>
         public BinaryTransformationStrategy(BinaryTransformationType transformationType)
         {
             TransformationType = transformationType;
@@ -36,6 +40,10 @@
             }
         }
 
+        /// <summary>
+        /// Mutate given encoded individual.
+        /// </summary>
+        /// <param name="individual">Individual to mutate.</param>
         public void Mutate(Individual individual)
         {
             if (individual == null)

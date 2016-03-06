@@ -7,7 +7,7 @@
     using Helpers;
 
     /// <summary>
-    /// Class representing undirected graph data struture.
+    /// Represents undirected graph data struture.
     /// </summary>
     public class Graph : ISelfValidable
     {
@@ -20,6 +20,9 @@
         private readonly NodeGenerator _nodeGenerator = new NodeGenerator();
         private Stack<int> _randomNodeIndexes = new Stack<int>();
 
+        /// <summary>
+        /// Instantiates undirected graph.
+        /// </summary>
         public Graph()
         {
             _nodes = new List<Node>();
@@ -27,6 +30,10 @@
             _edges = new HashSet<Edge>();
         }
 
+        /// <summary>
+        /// Instantiates undirected graph based on key collection.
+        /// </summary>
+        /// <param name="nodes">Collection of nodes' keys.</param>
         public Graph(IEnumerable<string> nodes) : this()
         {
             if (nodes != null)
@@ -50,9 +57,9 @@
         }
 
         /// <summary>
-        /// Return random node from graph
+        /// Returns random node from graph
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Random node</returns>
         public Node GetRandomNode()
         {
             //If sequence of available, preselected, random nodes is empty, refill it

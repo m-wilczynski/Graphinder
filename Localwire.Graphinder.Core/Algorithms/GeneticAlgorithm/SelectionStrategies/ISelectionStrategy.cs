@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using GeneticAlgorithm;
 
     public interface ISelectionStrategy
     {

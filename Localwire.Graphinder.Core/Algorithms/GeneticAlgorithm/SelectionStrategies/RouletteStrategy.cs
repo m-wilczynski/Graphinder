@@ -3,10 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using GeneticAlgorithm;
 
     /// <summary>
-    /// Class representing selection strategy based on roulette wheel aka Fitness Proportionate Selection.
+    /// Represents selection strategy based on roulette wheel aka Fitness Proportionate Selection.
     /// </summary>
     //TODO: Inject ProblemCriteria?
     public class RouletteStrategy : ISelectionStrategy
@@ -15,6 +14,16 @@
         private ICollection<Individual> _population;
         private readonly IDictionary<Individual, double> _individualsWeight = new Dictionary<Individual, double>();
 
+        /// <summary>
+        /// Instantiates roulette wheel selection strategy used by <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/>.
+        /// </summary>
+        public RouletteStrategy()
+        { }
+
+        /// <summary>
+        /// Resets strategy with new population of individuals.
+        /// </summary>
+        /// <param name="newPopulation">New population for strategy.</param>
         public void Set(ICollection<Individual> newPopulation)
         {
             if (newPopulation == null)
@@ -24,6 +33,10 @@
             InitializeRoulette();
         }
 
+        /// <summary>
+        /// Returns randomly chosen individual.
+        /// </summary>
+        /// <returns></returns>
         public Individual Next()
         {
             if (_population == null || _population.Count == 0)
@@ -39,6 +52,10 @@
             return previous;
         }
 
+        /// <summary>
+        /// Returns randomly chosen pair of individuals.
+        /// </summary>
+        /// <returns></returns>
         public Tuple<Individual, Individual> NextCouple()
         {
             return new Tuple<Individual, Individual>(Next(), Next());
