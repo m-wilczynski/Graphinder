@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Exceptions;
     using Graph;
 
     /// <summary>
@@ -65,6 +66,10 @@
             if (nodes.All(n => _graph.ContainsNode(n.Key) && _graph == n.Parent))
             {
                 _currentCover = new HashSet<Node>(nodes);
+            }
+            else
+            {
+                throw new ProblemException("Setting new solution", "Graph mismatch or node key not found");
             }
         }
 

@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\Algorithm.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\CrossoverStrategies\ICrossoverStrategies.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\GeneticAlgorithm.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\Individual.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\BinaryTransformationStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\IMutationStrategy.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingFactory.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingSetup.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealing.cs" />
+    <Compile Include="Exceptions\AlgorithmException.cs" />
     <Compile Include="Factories\IAlgorithmFactory.cs" />
     <Compile Include="Factories\IProblemFactory.cs" />
     <Compile Include="Factories\Providers\AlgorithmFactoryProvider.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Helpers\ISelfValidable.cs" />
     <Compile Include="Helpers\Operations\Binary\BinaryOperation.cs" />
     <Compile Include="Helpers\Operations\Binary\BinaryTransformation.cs" />
+    <Compile Include="Exceptions\ProblemException.cs" />
     <Compile Include="Problems\IProblem.cs" />
     <Compile Include="Problems\OptimizationProblems\MinimumVertexCover.cs" />
     <Compile Include="Problems\ProblemFactories\MinimalVertexCoverFactory.cs" />
