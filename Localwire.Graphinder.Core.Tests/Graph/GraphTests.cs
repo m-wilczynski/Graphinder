@@ -1,6 +1,7 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Graph
 {
     using System;
+    using System.Collections.Generic;
     using Core.Graph;
     using Exceptions;
     using Xunit;
@@ -170,6 +171,27 @@
             Assert.Throws<InvalidOperationException>(() => _validGraph.AddEdge("1", "2"));
         }
 
+        [Fact]
+        public void Graph_BinarySolutionAsNodes_ValidMapping()
+        {
+            var node1 = _validGraph.AddNode("1");
+            var node2 = _validGraph.AddNode("2");
+            var node3 = _validGraph.AddNode("3");
+            var binaryEncoded = new [] {true, false, true};
+            var decoded = _validGraph.BinarySolutionAsNodes(binaryEncoded);
+            Assert.Equal(2, decoded.Count);
+            Assert.DoesNotContain(decoded, n => n.Equals(node2));
+            Assert.Contains(decoded, n => n.Equals(node1) || n.Equals(node3));
+        }
 
+        [Fact]
+        public void Graph_BinarySolutionAsNodes_ThrowOnTotalNodesMismatch()
+        {
+            var node1 = _validGraph.AddNode("1");
+            var node2 = _validGraph.AddNode("2");
+            var node3 = _validGraph.AddNode("3");
+            var binaryEncoded = new[] {true, false, false, false};
+            Assert.Throws<InvalidOperationException>(() => _validGraph.BinarySolutionAsNodes(binaryEncoded));
+        }
     }
 }
