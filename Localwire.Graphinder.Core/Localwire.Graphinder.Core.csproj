@@ -70,7 +70,7 @@
     <Compile Include="Exceptions\ProblemException.cs" />
     <Compile Include="Problems\IProblem.cs" />
     <Compile Include="Problems\OptimizationProblems\MinimumVertexCover.cs" />
-    <Compile Include="Problems\ProblemFactories\MinimalVertexCoverFactory.cs" />
+    <Compile Include="Problems\ProblemFactories\MinimumVertexCoverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

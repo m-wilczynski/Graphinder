@@ -21,7 +21,7 @@
             _validNode1 = _graph.AddNode("1");
             _validNode2 = _graph.AddNode("2");
             _validNode3 = _graph.AddNode("3");
-            _otherGraphNode = _graphProvider.ProvideValid().AddNode("4");
+            _otherGraphNode = _graphProvider.ProvideValid().AddNode("1");
             _notAddedNode = new Node("5", _graph);
         }
 

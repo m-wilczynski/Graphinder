@@ -138,6 +138,7 @@
             }
         }
 
+        //TODO: Expensive unless Dictionary of nodes is introduced
         /// <summary>
         /// Adds edge to the graph.
         /// </summary>
@@ -150,9 +151,11 @@
             var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
             if (matchFrom == null || matchTo == null) return;
             _edges.Add(new Edge(matchFrom, matchTo));
+            //TODO: What if fails here? Rollback in try catch!
             matchFrom.AddNeighbour(matchTo);
         }
 
+        //TODO: Expensive unless Dictionary of nodes is introduced
         /// <summary>
         /// Removes edge from the graph.
         /// </summary>

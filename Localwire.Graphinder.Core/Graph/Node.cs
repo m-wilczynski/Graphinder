@@ -28,13 +28,20 @@
         }
 
         /// <summary>
-        /// Adds neighbouring node
+        /// Adds neighbouring node. Will fail if not added via <see cref="T:Localwire.Graphinder.Core.Graph.Graph"/>.
         /// </summary>
         /// <param name="node">New neighbour to add</param>
         public void AddNeighbour(Node node)
         {
-            if (node == null || node.Equals(this) || Neighbours.Contains(node)) return;
-            if (!CanAddNeighbour(node)) throw new InvalidOperationException("Neighbour cannot be added!");
+            if (node == null)
+                throw new ArgumentNullException(nameof(node));
+            //Prevent endless circular adding
+            if (Neighbours.Contains(node))
+                return;
+            if (node.Equals(this))
+                throw new InvalidOperationException("Attempt to add self as neighbour!");
+            if (!CanAddNeighbour(node))
+                throw new InvalidOperationException("Neighbour cannot be added!");
             Neighbours.Add(node);
             node.AddNeighbour(this);
         }
@@ -42,12 +49,17 @@
         /// <summary>
         /// Removes neighbouring node
         /// </summary>
-        /// <param name="n">Neighbour to remove</param>
-        public void RemoveNeighbour(Node n)
+        /// <param name="node">Neighbour to remove</param>
+        public void RemoveNeighbour(Node node)
         {
-            if (n == null || n.Equals(this)) return;
-            var match = Neighbours.SingleOrDefault(node => node.Equals(n));
-            if (match == null) return;
+            if (node == null)
+                throw new ArgumentNullException(nameof(node));
+            var match = Neighbours.SingleOrDefault(n => node.Equals(n));
+            //Prevent endless circular removing
+            if (match == null)
+                return;
+            if (!CanRemoveNeighbour(node))
+                throw new InvalidOperationException("Neighbour cannot be removed!");
             Neighbours.Remove(match);
             match.RemoveNeighbour(this);
         }
@@ -57,7 +69,7 @@
             if (obj == null) return false;
             var casted = obj as Node;
             if (casted == null) return false;
-            return casted.Key == Key;
+            return casted.Key == Key && casted.Parent == Parent;
         }
 
         public override int GetHashCode()
@@ -65,17 +77,18 @@
             return Key.GetHashCode();
         }
 
-        /// <summary>
-        /// Determines whether new neighbour actually belongs to same graph.
-        /// </summary>
-        /// <param name="node">Node to add.</param>
-        /// <returns></returns>
-        public bool CanAddNeighbour(Node node)
+        private bool CanAddNeighbour(Node node)
         {
             if (node == null) return false;
             //Check if the same graph, ie. same reference
             //Allow adding only if edge was added by Graph beforehand
             return Parent.Equals(node.Parent) && Parent.ContainsNode(node.Key) && Parent.ContainsEdge(this, node);
+        }
+
+        private bool CanRemoveNeighbour(Node node)
+        {
+            if (node == null) return false;
+            return Parent.ContainsNode(node.Key) && !Parent.ContainsEdge(this, node);
         }
     }
 }
