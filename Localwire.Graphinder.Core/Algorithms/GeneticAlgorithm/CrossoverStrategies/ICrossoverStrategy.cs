@@ -2,6 +2,9 @@
 {
     using Problems;
 
+    /// <summary>
+    /// Defines crossover strategy of genetic algorithm.
+    /// </summary>
     public interface ICrossoverStrategy
     {
         /// <summary>
@@ -16,12 +19,5 @@
         /// <param name="rightParent">Right parent for new genotype.</param>
         /// <returns>Result of crossing over - new offspring.</returns>
         Individual PerformCrossover(Individual leftParent, Individual rightParent);
-
-        //TODO: Ctor perhaps?
-        /// <summary>
-        /// Initialize crossover with problem.
-        /// </summary>
-        /// <param name="problem">Problem to solve.</param>
-        void InitializeProblem(IProblem problem);
     }
 }

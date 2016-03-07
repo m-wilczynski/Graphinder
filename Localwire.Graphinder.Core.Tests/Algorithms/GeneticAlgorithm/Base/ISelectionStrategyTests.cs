@@ -39,10 +39,39 @@
         }
 
         [Fact]
+        public void ISelectionStrategy_Next_ReturnsValid()
+        {
+            var individuals = new List<Individual>
+            {
+                _individualProvider.ProvideValid(),
+                _individualProvider.ProvideValid(),
+                _individualProvider.ProvideValid()
+            };
+            _strategy.Set(individuals);
+            Assert.Contains(individuals, i => i.Equals(_strategy.Next()));
+        }
+
+        [Fact]
         public void ISelectionStrategy_Next_ReturnsProperValueIfOneIndividualPopulation()
         {
-            _strategy.Set(new List<Individual> { _individualProvider.ProvideValid() });
-            _strategy.Next();
+            var individuals = new List<Individual> {_individualProvider.ProvideValid()};
+            _strategy.Set(individuals);
+            Assert.Contains(individuals, i => i.Equals(_strategy.Next()));
         }
+
+        [Fact]
+        public void ISelectionStrategy_NextCouple_ReturnsValid()
+        {
+            var individuals = new List<Individual>
+            {
+                _individualProvider.ProvideValid(),
+                _individualProvider.ProvideValid(),
+                _individualProvider.ProvideValid()
+            };
+            _strategy.Set(individuals);
+            Assert.Contains(individuals, i => i.Equals(_strategy.NextCouple().Item1));
+            Assert.Contains(individuals, i => i.Equals(_strategy.NextCouple().Item2));
+        }
+
     }
 }
