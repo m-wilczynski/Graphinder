@@ -51,7 +51,8 @@
                     uint attempts = 0;
                     while (pick == i
                            || alreadyPickedIndexes.Contains(pick)
-                           || nodes[pick].Neighbours.Count == maxNeighbours)
+                           || nodes[pick].Neighbours.Count == maxNeighbours
+                           || parent.ContainsEdge(nodes[pick], nodes[i]))
                     {
                         pick = _random.Next((int) nodeCount);
                         attempts++;

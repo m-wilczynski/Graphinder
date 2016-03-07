@@ -155,13 +155,25 @@
         /// <param name="to">Second vertex of an edge.</param>
         public void AddEdge(string from, string to)
         {
-            if (!CanAdd()) return;
+            if (!CanAdd())
+                throw new DataStructureLockedException("Adding edge to graph", GetType());
             var matchFrom = _nodes.SingleOrDefault(n => n.Key == from);
             var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
-            if (matchFrom == null || matchTo == null) return;
-            _edges.Add(new Edge(matchFrom, matchTo));
-            //TODO: What if fails here? Rollback in try catch!
-            matchFrom.AddNeighbour(matchTo);
+            if (matchFrom == null || matchTo == null)
+                throw new InvalidOperationException("Attempt to connect nonexistent node(-s)!");
+            var edge = new Edge(matchFrom, matchTo);
+            if (_edges.Contains(edge))
+                throw new InvalidOperationException("Attempt to add duplicate edge!");
+            _edges.Add(edge);
+            try
+            {
+                matchFrom.AddNeighbour(matchTo);
+            }
+            catch
+            {
+                //Rollback
+                RemoveEdge(from, to);
+            }
         }
 
         //TODO: Expensive unless Dictionary of nodes is introduced
@@ -172,10 +184,12 @@
         /// <param name="to">Second vertex of an edge.</param>
         public void RemoveEdge(string from, string to)
         {
-            if (!CanAdd()) return;
+            if (!CanAdd())
+                throw new DataStructureLockedException("Removing edge from graph", GetType());
             var matchFrom = _nodes.SingleOrDefault(n => n.Key == from);
             var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
-            if (matchFrom == null || matchTo == null) return;
+            if (matchFrom == null || matchTo == null)
+                throw new InvalidOperationException("Attempt to disconnect nonexistent nodes!");
             _edges.Remove(new Edge(matchFrom, matchTo));
             matchFrom.RemoveNeighbour(matchTo);
         }

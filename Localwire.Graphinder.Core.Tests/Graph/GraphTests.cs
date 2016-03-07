@@ -65,16 +65,17 @@
         [Fact]
         public void Graph_RemoveNode_ValidNodeRemoved()
         {
-            var node = _validGraph.AddNode("1");
-            _validGraph.AddNode("2");
+            _validGraph.AddNode("1");
+            var node = _validGraph.AddNode("2");
             _validGraph.AddEdge("1", "2");
             //Assert proper setup
             Assert.Equal(2, _validGraph.TotalNodes);
             Assert.Equal(1, _validGraph.TotalEdges);
 
-            _validGraph.RemoveNode(node.Key);
+            _validGraph.RemoveNode("1");
             //Assert proper removal
             Assert.Equal(1, _validGraph.TotalNodes);
+            Assert.Equal(0, node.Neighbours.Count);
             Assert.Equal(0, _validGraph.TotalEdges);
         }
 
@@ -91,6 +92,82 @@
         {
             _validGraph.AddNode("1");
             Assert.Throws<InvalidOperationException>(() => _validGraph.RemoveNode("2"));
+        }
+
+        [Fact]
+        public void Graph_AddEdge_ValidEdgeAdded()
+        {
+            var node1 = _validGraph.AddNode("1");
+            var node2 = _validGraph.AddNode("2");
+            _validGraph.AddEdge("1", "2");
+            Assert.Equal(1, _validGraph.TotalEdges);
+            Assert.Equal(1, node1.Neighbours.Count);
+            Assert.Equal(1, node2.Neighbours.Count);
+        }
+
+        [Fact]
+        public void Graph_AddEdge_ThrowOnGraphLocked()
+        {
+            _validGraph.LockGraph();
+            Assert.Throws<DataStructureLockedException>(() => _validGraph.AddEdge("1", "2"));
+        }
+
+        [Fact]
+        public void Graph_AddEdge_ThrowOnNodeNotFound()
+        {
+            _validGraph.AddNode("1");
+            Assert.Throws<InvalidOperationException>(() => _validGraph.AddEdge("1", "2"));
+        }
+
+        [Fact]
+        public void Graph_AddEdge_ThrowOnDuplicateAttempt()
+        {
+            _validGraph.AddNode("1");
+            _validGraph.AddNode("2");
+            _validGraph.AddEdge("1", "2");
+            Assert.Throws<InvalidOperationException>(() => _validGraph.AddEdge("1", "2"));
+        }
+
+        [Fact]
+        public void Graph_AddEdge_RollbackOnAddNeighbourException()
+        {
+            _validGraph.AddNode("1");
+            _validGraph.AddEdge("1", "1");
+            Assert.Equal(0, _validGraph.TotalEdges);
+        }
+
+        [Fact]
+        public void Graph_RemoveEdge_ValidEdgeRemoved()
+        {
+            var node1 = _validGraph.AddNode("1");
+            var node2 = _validGraph.AddNode("2");
+            _validGraph.AddEdge("1", "2");
+            //Assert valid addition
+            Assert.Equal(1, _validGraph.TotalEdges);
+            Assert.Equal(1, node1.Neighbours.Count);
+            Assert.Equal(1, node2.Neighbours.Count);
+
+            _validGraph.RemoveEdge("1", "2");
+            //Assert valid removal
+            Assert.Equal(0, _validGraph.TotalEdges);
+            Assert.Equal(0, node1.Neighbours.Count);
+            Assert.Equal(0, node2.Neighbours.Count);
+        }
+
+        [Fact]
+        public void Graph_RemoveEdge_ThrowOnGraphLocked()
+        {
+            _validGraph.AddNode("1");
+            _validGraph.AddNode("2");
+            _validGraph.LockGraph();
+            Assert.Throws<DataStructureLockedException>(() => _validGraph.AddEdge("1", "2"));
+        }
+
+        [Fact]
+        public void Graph_RemoveEdge_ThrowIfNodeNotFound()
+        {
+            _validGraph.AddNode("1");
+            Assert.Throws<InvalidOperationException>(() => _validGraph.AddEdge("1", "2"));
         }
 
 
