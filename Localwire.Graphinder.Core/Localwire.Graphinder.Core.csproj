@@ -54,6 +54,7 @@
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingSetup.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealing.cs" />
     <Compile Include="Exceptions\AlgorithmException.cs" />
+    <Compile Include="Exceptions\DataStructureLockedException.cs" />
     <Compile Include="Factories\IAlgorithmFactory.cs" />
     <Compile Include="Factories\IProblemFactory.cs" />
     <Compile Include="Factories\Providers\AlgorithmFactoryProvider.cs" />

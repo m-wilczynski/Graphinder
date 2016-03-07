@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Core.Helpers;
+    using Exceptions;
     using Helpers;
 
     /// <summary>
@@ -36,11 +37,10 @@
         /// <param name="nodes">Collection of nodes' keys.</param>
         public Graph(IEnumerable<string> nodes) : this()
         {
-            if (nodes != null)
-            {
-                foreach (var element in nodes.Where(n => n != null && _nodes.All(node => node.Key != n)))
-                    AddNode(element);
-            }
+            if (nodes == null)
+                throw new ArgumentNullException(nameof(nodes));
+            foreach (var element in nodes.Where(n => n != null && _nodes.All(node => node.Key != n)))
+                AddNode(element);
         }
 
         /// <summary>
@@ -99,43 +99,52 @@
         /// <param name="maxNeighbours">Maximum number of neighbours per node</param>
         public void FillGraphRandomly(uint nodesCount, uint maxNeighbours)
         {
-            if (!CanAdd()) return;
+            if (!CanAdd())
+                throw new DataStructureLockedException("Filling graph with random nodes", GetType());
             MaxNeigbhours = maxNeighbours;
             _nodeGenerator.ProvideNodeCollection(this, nodesCount, maxNeighbours);
             LockGraph();
         }
 
+        //TODO: Expensive unless Dictionary of nodes is introduced
         /// <summary>
         /// Adds node to the graph.
         /// </summary>
         /// <param name="key">Key representing node to be added</param>
         public Node AddNode(string key)
         {
-            if (!CanAdd() || ContainsNode(key)) return null;
+            if (!CanAdd())
+                throw new DataStructureLockedException("Adding node to graph", GetType()); 
+            if (ContainsNode(key))
+                throw new InvalidOperationException("Attempt to add duplicate node!");
             var node = new Node(key, this);
             _nodes.Add(node);
             _nodeKeys.Add(key);
             return node;
         }
 
+        //TODO: Expensive unless Dictionary of nodes is introduced
         /// <summary>
         /// Removes node from the graph.
         /// </summary>
         /// <param name="key">Key representing node to be added</param>
         public void RemoveNode(string key)
         {
-            if (!CanAdd()) return;
+            if (!CanAdd()) 
+                throw new DataStructureLockedException("Removing node from graph", GetType());
             //TODO: Find index of match for O(1) access, instead of iterating over twice
             var match = _nodes.SingleOrDefault(n => n.Key == key);
-            if (match == null) return;
-            _nodes.Remove(match);
-            _nodeKeys.Remove(key);
-            //Remove relations with other nodes too
-            foreach (var ngh in match.Neighbours)
+            if (match == null) 
+                throw new InvalidOperationException("Attempt to remove nonexistent node!");
+            //Remove relations with other nodes
+            foreach (var ngh in match.Neighbours.ToList())
             {
                 _edges.Remove(new Edge(ngh, match));
                 match.RemoveNeighbour(ngh);
             }
+            //Remove node
+            _nodes.Remove(match);
+            _nodeKeys.Remove(key);
         }
 
         //TODO: Expensive unless Dictionary of nodes is introduced
@@ -218,7 +227,13 @@
             return _edges.Contains(new Edge(from, to));
         }
 
-        private bool CanAdd()
+        /// <summary>
+        /// Decides whether graph is locked for any other addition/removal.
+        /// If true, graph is still under building and modification is allowed.
+        /// If false, graph have completed building and is from now on locked for any modification.
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAdd()
         {
             return !_isLocked;
         }
