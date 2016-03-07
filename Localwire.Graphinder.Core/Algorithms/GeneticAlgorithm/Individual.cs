@@ -20,8 +20,8 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
 
         public Individual(Graph graph, IProblem problem, bool[] solution = null)
         {
-            if (graph == null || problem == null) throw new ArgumentException("Neither graph nor problem can be null!");
-            if (!graph.IsValid()) throw new ArgumentException(nameof(graph) + " is not valid!");
+            if (graph == null || problem == null) throw new ArgumentNullException("Neither graph nor problem can be null!");
+            if (!graph.IsValid()) throw new ArgumentException("Graph is not valid!");
             _graph = graph;
             _problem = problem;
             _totalSize = (uint)_graph.TotalNodes;

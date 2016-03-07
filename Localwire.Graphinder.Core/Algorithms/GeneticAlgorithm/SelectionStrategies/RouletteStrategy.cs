@@ -58,7 +58,16 @@
         /// <returns></returns>
         public Tuple<Individual, Individual> NextCouple()
         {
-            return new Tuple<Individual, Individual>(Next(), Next());
+            if (_population.Count < 2)
+                throw new InvalidOperationException("Cannot choose two different individuals from population smaller than 2.");
+            Individual first = Next();
+            Individual second = null;
+            while (second == null || second.Equals(first))
+            {
+                second = Next();
+            }
+
+            return new Tuple<Individual, Individual>(first, second);
         }
 
         private void InitializeRoulette()

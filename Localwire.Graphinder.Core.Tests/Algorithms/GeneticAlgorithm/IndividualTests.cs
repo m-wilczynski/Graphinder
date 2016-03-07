@@ -22,13 +22,13 @@
         [Fact]
         public void Individual_ctor_ThrowsOnNoGraph()
         {
-            Assert.Throws<ArgumentException>(() => new Individual(null, Problem));
+            Assert.Throws<ArgumentNullException>(() => new Individual(null, Problem));
         }
 
         [Fact]
         public void Individual_ctor_ThrowsOnNoProblem()
         {
-            Assert.Throws<ArgumentException>(() => new Individual(Graph, null));
+            Assert.Throws<ArgumentNullException>(() => new Individual(Graph, null));
         }
 
         [Fact]
