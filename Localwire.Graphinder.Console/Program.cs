@@ -16,8 +16,6 @@
             var graph = new Graph();
             graph.FillGraphRandomly(50, 6);
 
-            graph.GetRandomNode();
-
             var alghs = new List<IAlgorithm>
             {
                 new SimulatedAnnealing.Builder()
