@@ -7,7 +7,7 @@
     {
         public RouletteStrategyTests()
         {
-            _strategy = new RouletteStrategy();
+            Strategy = new RouletteStrategy();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
     using Problems;
 
     /// <summary>
-    /// Klasa reprezentujaca strategie krzyzowania oparta o losowy podzial w jednym punkcie.
+    /// Class representing crossover strategy based on random division in single point.
     /// </summary>
     public class OnePointCrossoverStrategy : ICrossoverStrategy
     {
@@ -21,25 +21,31 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
 
         private readonly Random _random = new Random();
         private readonly Graph _graph;
-        private readonly IProblem _problem;
 
-        public OnePointCrossoverStrategy(Graph graph, IProblem problem)
+        public OnePointCrossoverStrategy(Graph graph)
         {
             if (graph == null)
                 throw new ArgumentNullException(nameof(graph));
             if (!graph.IsValid())
                 throw new ArgumentException("Graph is invalid!");
             _graph = graph;
-            if (problem == null)
-                throw new ArgumentNullException(nameof(problem));
-            _problem = problem;
             RandomizeCrossoverPoint();
         }
 
+        /// <summary>
+        /// Point of crossing over individual's genotype.
+        /// </summary>
         public int CrossoverPointIndex { get; private set; }
 
+        /// <summary>
+        /// Perform cross over two individuals' genotypes.
+        /// </summary>
+        /// <param name="leftParent">Left parent for new genotype.</param>
+        /// <param name="rightParent">Right parent for new genotype.</param>
+        /// <returns>Result of crossing over - new offspring.</returns>
         public Individual PerformCrossover(Individual leftParent, Individual rightParent)
         {
+            //TODO: Should different length be even accepted here!?
             var length = leftParent.CurrentSolution.Length >= rightParent.CurrentSolution.Length
                 ? leftParent.CurrentSolution.Length
                 : rightParent.CurrentSolution.Length;
@@ -54,7 +60,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
                 else
                     outputSolution[i] = el2;
             }
-            return new Individual(_graph, _problem, outputSolution);
+            return new Individual(_graph, leftParent.Problem, outputSolution);
         }
 
         private void RandomizeCrossoverPoint()

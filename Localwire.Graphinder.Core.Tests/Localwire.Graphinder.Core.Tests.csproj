@@ -74,6 +74,7 @@
     <Compile Include="Algorithms\GeneticAlgorithm\Base\ISelectionStrategyTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\BinaryTransformationMutationTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\IndividualTests.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\OnePointCrossoverStrategyTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\RouletteStrategyTests.cs" />
     <Compile Include="Algorithms\IAlgorithmTests.cs" />
     <Compile Include="Graph\EdgeTests.cs" />

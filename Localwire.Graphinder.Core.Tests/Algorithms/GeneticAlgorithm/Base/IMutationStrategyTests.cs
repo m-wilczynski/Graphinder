@@ -9,12 +9,12 @@
 
     public abstract class IMutationStrategyTests
     {
-        protected IMutationStrategy _strategy;
-        protected ITestDataProvider<Individual> _individualProvider; 
+        protected IMutationStrategy Strategy;
+        protected ITestDataProvider<Individual> IndividualProvider; 
 
         protected IMutationStrategyTests()
         {
-            _individualProvider = new TestIndividualProvider();
+            IndividualProvider = new TestIndividualProvider();
         }
 
         [Fact]
@@ -22,10 +22,10 @@
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                _strategy.Mutate(null);
+                Strategy.Mutate(null);
             });
 
-            _strategy.Mutate(_individualProvider.ProvideValid());
+            Strategy.Mutate(IndividualProvider.ProvideValid());
         }
     }
 }

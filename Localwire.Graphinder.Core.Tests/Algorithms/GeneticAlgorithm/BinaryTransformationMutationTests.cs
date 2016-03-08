@@ -8,7 +8,7 @@
     {
         public BinaryTransformationMutationTests()
         {
-            _strategy = new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip);
+            Strategy = new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip);
         }
     }
 }
