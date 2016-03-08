@@ -39,7 +39,7 @@
                     proposedSolution.Add(algorithm.Graph.GetRandomNode());
                 }
 
-                //Rollback if solution has not been accepted
+                //Accept the answer if algorithm allows
                 if (algorithm.CanAcceptAnswer(proposedSolution))
                     algorithm.Problem.SetNewSolution(proposedSolution);
 
