@@ -1,5 +1,6 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Algorithms.GeneticAlgorithm.Base
 {
+    using System.Collections.Generic;
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Algorithms.GeneticAlgorithm.CrossoverStrategies;
     using Core.Graph;
@@ -13,7 +14,7 @@
     public abstract class ICrossoverStrategyTests
     {
         protected ICrossoverStrategy Strategy;
-        protected readonly ITestDataProvider<Individual> IndividualProvider = new TestIndividualProvider();
+        protected readonly ITestDataProvider<ICollection<Individual>> IndividualProvider = new TestIndividualProvider();
         protected readonly ITestDataProvider<Graph> GraphProvider = new TestGraphProvider();
         protected readonly ISubstituteProvider<IProblem> ProblemProvider = new ProblemSubstituteProvider(); 
         protected Graph ValidGraph;
@@ -28,8 +29,8 @@
         [Fact]
         public void ICrossoverStrategy_PerformCrossover_ValidCrossover()
         {
-            var parent1 = IndividualProvider.ProvideValid();
-            var parent2 = IndividualProvider.ProvideValid();
+            var parent1 = new Individual(ValidGraph, ValidProblem);
+            var parent2 = new Individual(ValidGraph, ValidProblem);
             var offspring = Strategy.PerformCrossover(parent1, parent2);
 
             //Only reference check can be performaed here as parents having same genotype

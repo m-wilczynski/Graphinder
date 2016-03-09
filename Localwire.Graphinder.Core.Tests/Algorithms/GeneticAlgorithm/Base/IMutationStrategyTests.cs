@@ -1,6 +1,8 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Algorithms.GeneticAlgorithm.Base
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Algorithms.GeneticAlgorithm.MutationStrategies;
     using Providers;
@@ -10,7 +12,7 @@
     public abstract class IMutationStrategyTests
     {
         protected IMutationStrategy Strategy;
-        protected ITestDataProvider<Individual> IndividualProvider; 
+        protected ITestDataProvider<ICollection<Individual>> IndividualProvider; 
 
         protected IMutationStrategyTests()
         {
@@ -25,7 +27,7 @@
                 Strategy.Mutate(null);
             });
 
-            Strategy.Mutate(IndividualProvider.ProvideValid());
+            Strategy.Mutate(IndividualProvider.ProvideValid().FirstOrDefault());
         }
     }
 }

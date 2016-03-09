@@ -2,6 +2,7 @@
 
 namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrategies
 {
+    using Exceptions;
     using Graph;
     using Problems;
 
@@ -45,6 +46,10 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
         /// <returns>Result of crossing over - new offspring.</returns>
         public Individual PerformCrossover(Individual leftParent, Individual rightParent)
         {
+            if (leftParent.Graph != rightParent.Graph)
+                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals represent solutions for different graph");
+            if (leftParent.Problem != rightParent.Problem)
+                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals represent solutions for different problem");
             //TODO: Should different length be even accepted here!?
             var length = leftParent.CurrentSolution.Length >= rightParent.CurrentSolution.Length
                 ? leftParent.CurrentSolution.Length

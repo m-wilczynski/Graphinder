@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Exceptions;
 
     /// <summary>
     /// Represents selection strategy based on roulette wheel aka Fitness Proportionate Selection.
@@ -28,6 +29,12 @@
         {
             if (newPopulation == null)
                 throw new ArgumentException(nameof(newPopulation));
+            if (newPopulation.Count == 0)
+                throw new InvalidOperationException("Attempt to set empty population");
+            var problem = newPopulation.First().Problem;
+            var graph = newPopulation.First().Graph;
+            if (newPopulation.Any(i => i.Graph != graph || i.Problem != problem))
+                throw new AlgorithmException("Setting up new population", "Individuals in population represent either different graphs or different problems");
             _population = newPopulation;
             _population = _population.OrderBy(p => p.SolutionFitness).ToList();
             InitializeRoulette();

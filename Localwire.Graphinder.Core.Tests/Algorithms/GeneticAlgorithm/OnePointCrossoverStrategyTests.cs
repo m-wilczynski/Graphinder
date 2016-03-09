@@ -25,7 +25,7 @@
         [Fact]
         public void OnePointCrossoverStrategy_ctor_ThrowOnInvalidGraph()
         {
-            Assert.Throws<ArgumentNullException>(
+            Assert.Throws<ArgumentException>(
                 () => new OnePointCrossoverStrategy(new Graph()));
         }
     }

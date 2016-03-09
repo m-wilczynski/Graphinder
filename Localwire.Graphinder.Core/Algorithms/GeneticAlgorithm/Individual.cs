@@ -11,8 +11,8 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
     /// </summary>
     public class Individual
     {
+        public readonly Graph Graph;
         private readonly Random _random = new Random();
-        private readonly Graph _graph;
         private readonly IProblem _problem;
         private readonly bool[] _currentSolution;
         private readonly uint _totalSize;
@@ -22,9 +22,9 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
         {
             if (graph == null || problem == null) throw new ArgumentNullException("Neither graph nor problem can be null!");
             if (!graph.IsValid()) throw new ArgumentException("Graph is not valid!");
-            _graph = graph;
+            Graph = graph;
             _problem = problem;
-            _totalSize = (uint)_graph.TotalNodes;
+            _totalSize = (uint)Graph.TotalNodes;
             if (solution == null || solution.Length < _totalSize)
             {
                 _currentSolution = new bool[_totalSize];
@@ -47,7 +47,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
         public int SolutionOutcome { get { return _currentOutcome; } }
 
         //TODO: Should be dependent on IProblem's criterias!
-        public uint SolutionFitness { get { return Convert.ToUInt32(_graph.TotalNodes - SolutionOutcome) + 1; } }
+        public uint SolutionFitness { get { return Convert.ToUInt32(Graph.TotalNodes - SolutionOutcome) + 1; } }
 
         /// <summary>
         /// Ensure correctness of solution that individual holds

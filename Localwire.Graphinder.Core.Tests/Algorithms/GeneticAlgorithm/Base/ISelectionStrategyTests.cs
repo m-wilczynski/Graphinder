@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Algorithms.GeneticAlgorithm.SelectionStrategies;
     using Core.Graph;
@@ -15,7 +16,7 @@
     public abstract class ISelectionStrategyTests
     {
         protected ISelectionStrategy Strategy;
-        protected readonly ITestDataProvider<Individual> IndividualProvider = new TestIndividualProvider();
+        protected readonly ITestDataProvider<ICollection<Individual>> IndividualProvider = new TestIndividualProvider();
         protected readonly ITestDataProvider<Graph> GraphDataProvider = new TestGraphProvider();
         protected readonly ISubstituteProvider<IProblem> ProblemProvider = new ProblemSubstituteProvider(); 
 
@@ -31,7 +32,7 @@
                 Strategy.Set(null);
             });
 
-            Strategy.Set(new List<Individual>());
+            Strategy.Set(IndividualProvider.ProvideValid());
         }
 
         [Fact]
@@ -67,45 +68,25 @@
         }
 
         [Fact]
-        public void ISelectionStrategy_Next_ThrowsOnEmptyPopulation()
-        {
-            Strategy.Set(new List<Individual>());
-            Assert.Throws<InvalidOperationException>(() =>
-            {
-                Strategy.Next();
-            });
-        }
-
-        [Fact]
         public void ISelectionStrategy_Next_ReturnsValid()
         {
-            var individuals = new List<Individual>
-            {
-                IndividualProvider.ProvideValid(),
-                IndividualProvider.ProvideValid(),
-                IndividualProvider.ProvideValid()
-            };
+            var individuals = IndividualProvider.ProvideValid();
             Strategy.Set(individuals);
-            Assert.Contains(individuals, i => i.Equals(Strategy.Next()));
+            Assert.True(individuals.Any(i => i.Equals(Strategy.Next())));
         }
 
         [Fact]
         public void ISelectionStrategy_Next_ReturnsProperValueIfOneIndividualPopulation()
         {
-            var individuals = new List<Individual> {IndividualProvider.ProvideValid()};
+            var individuals = IndividualProvider.ProvideValid().Take(1).ToList();
             Strategy.Set(individuals);
-            Assert.Contains(individuals, i => i.Equals(Strategy.Next()));
+            Assert.True(individuals.Any(i => i.Equals(Strategy.Next())));
         }
 
         [Fact]
         public void ISelectionStrategy_NextCouple_ReturnsValid()
         {
-            var individuals = new List<Individual>
-            {
-                IndividualProvider.ProvideValid(),
-                IndividualProvider.ProvideValid(),
-                IndividualProvider.ProvideValid()
-            };
+            var individuals = IndividualProvider.ProvideValid();
             Strategy.Set(individuals);
             var couple = Strategy.NextCouple();
             Assert.Contains(individuals, i => i.Equals(couple.Item1));
@@ -116,7 +97,7 @@
         [Fact]
         public void ISelectionStrategy_NextCouple_ThrowOnPopulationLessThanTwo()
         {
-            var individuals = new List<Individual> { IndividualProvider.ProvideValid() };
+            var individuals = IndividualProvider.ProvideValid().Take(1).ToList();
             Strategy.Set(individuals);
             Assert.Throws<InvalidOperationException>(() => Strategy.NextCouple());
         }
