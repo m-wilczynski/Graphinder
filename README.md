@@ -9,6 +9,12 @@
 
 Project intends to forge my current interest in solving optimization problems into something bigger, that will also allow me to try (and catch!) some new technologies I wanted to try out before while practicing a little more my design (patterns/architecture) skills along with some web development skills refresh from ASP.NET MVC stack.
 
+### Current status:
+##### Trello:
+https://trello.com/b/g6Rm8Cdm/graphinder
+##### Blog:
+http://localwire.pl/category/dajsiepoznac/
+
 ### Current roadmap:
 
 - [ ] Porting current solution with Simulated Annealing and Genetic alghoritms working on Minimal Vertex Cover problem from initial, console application to library.
