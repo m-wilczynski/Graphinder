@@ -45,7 +45,6 @@
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\BinaryTransformationStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\IMutationStrategy.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
-    <Compile Include="Algorithms\IAlgorithmSetup.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\ISelectionStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\RouletteStrategy.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\AllRandomCooling.cs" />

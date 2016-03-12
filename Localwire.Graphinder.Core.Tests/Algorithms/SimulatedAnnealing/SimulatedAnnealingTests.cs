@@ -5,100 +5,50 @@
     using Core.Algorithms.SimulatedAnnealing;
     using Core.Algorithms.SimulatedAnnealing.Setup;
     using Core.Graph;
+    using Core.Problems;
     using NSubstitute;
     using NSubstitute.Exceptions;
     using Providers;
+    using Providers.SubstituteData;
     using Providers.TestData;
     using Xunit;
 
     public class SimulatedAnnealingTests : IAlgorithmTests
     {
-        private readonly ITestDataProvider<SimulatedAnnealingSetup> _saSetupProvider = new TestSimulatedAnnealingSetupProvider();
+        private readonly ITestDataProvider<Graph> _graphFactory = new TestGraphProvider();
+        private readonly ITestDataProvider<CoolingSetup> _coolingSetupFactory = new TestCoolingSetupProvider();
+        private readonly ISubstituteProvider<IProblem> _problemProvider = new ProblemSubstituteProvider();
 
         public SimulatedAnnealingTests()
         {
-            _algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(_saSetupProvider.ProvideValid())
-                .Build();
-        }
+            _algorithm =
+                new SimulatedAnnealing(
+                    _graphFactory.ProvideValid(),
+                    _problemProvider.ProvideSubstitute(),
+                    _coolingSetupFactory.ProvideValid());
 
-        [Fact]
-        public void SimulatedAnnealing_Builder_ThrowOnNoSetup()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                new SimulatedAnnealing.Builder()
-                .WithSetupData(null)
-                .Build();
-            });
-        }
-
-        [Fact]
-        public void SimulatedAnnealing_Builder_NullIfNotSetup()
-        {
-            var output = new SimulatedAnnealing.Builder().Build();
-            Assert.Equal(null, output);
-        }
-
-        [Fact]
-        public void SimulatedAnnealing_Builder_UsageOfBuilderAllowedOnlyOnce()
-        {
-            var builder = new SimulatedAnnealing.Builder();
-            //1. No setup and build
-            Assert.False(builder.Build() is SimulatedAnnealing);
-            //2. Valid setup and 1st proper usage
-            builder.WithSetupData(_saSetupProvider.ProvideValid());
-            Assert.True(builder.Build() is SimulatedAnnealing);
-            //3. Valid setup and 2st proper usage
-            builder.WithSetupData(_saSetupProvider.ProvideValid());
-            Assert.False(builder.Build() is SimulatedAnnealing);
         }
 
         [Fact]
         public void SimulatedAnnealing_LaunchAlgorithm_UsesCoolingStrategy_Cool()
         {
-            var setup = _saSetupProvider.ProvideValid();
-            Assert.Throws<ReceivedCallsException>(() =>
-            {
-                setup.CoolingSetup.CoolingStrategy
-                .Received().Cool(Arg.Any<SimulatedAnnealing>(), Arg.Any<Action>());
-            });
-            var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(setup)
-                .Build();
-            algorithm.LaunchAlgorithm();
-            algorithm.CoolingStrategy.Received().Cool(algorithm, Arg.Any<Action>());
+            _algorithm.LaunchAlgorithm();
+            ((SimulatedAnnealing)_algorithm).CoolingSetup.CoolingStrategy.Received().Cool(_algorithm, Arg.Any<Action>());
         }
 
         [Fact]
         public void SimulatedAnnealing_LaunchAlgorithm_RestartsProblem()
         {
-            var setup = _saSetupProvider.ProvideValid();
-            Assert.Throws<ReceivedCallsException>(() =>
-            {
-                setup.Problem.Received().RestartProblemState();
-            });
-            var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(setup)
-                .Build();
-            algorithm.LaunchAlgorithm();
-            setup.Problem.Received(2).RestartProblemState();
+            _algorithm.LaunchAlgorithm();
+            _algorithm.Problem.Received().RestartProblemState();
         }
 
         [Fact]
         public void SimulatedAnnealing_CanAcceptAnswer_ChecksAgainstProblem()
         {
-            var setup = _saSetupProvider.ProvideValid();
             var solution = new List<Node>();
-            Assert.Throws<ReceivedCallsException>(() =>
-            {
-                setup.Problem.Received().SolutionOutcome(solution);
-            });
-            var algorithm = new SimulatedAnnealing.Builder()
-                .WithSetupData(setup)
-                .Build();
-            algorithm.CanAcceptAnswer(solution);
-            setup.Problem.Received().SolutionOutcome(solution);
+            _algorithm.CanAcceptAnswer(solution);
+            _algorithm.Problem.Received().SolutionOutcome(solution);
         }
     }
 }

@@ -18,21 +18,12 @@
 
             var alghs = new List<IAlgorithm>
             {
-                new SimulatedAnnealing.Builder()
-                    .WithSetupData(new SimulatedAnnealingSetup(
-                        graph, new MinimumVertexCover(),
-                        new CoolingSetup(1000, 0.03, new AllRandomCooling())))
-                    .Build(),
-                new SimulatedAnnealing.Builder()
-                    .WithSetupData(new SimulatedAnnealingSetup(
-                        graph, new MinimumVertexCover(),
-                        new CoolingSetup(1000, 0.03, new AllRandomCooling())))
-                    .Build(),
-                new SimulatedAnnealing.Builder()
-                    .WithSetupData(new SimulatedAnnealingSetup(
-                        graph, new MinimumVertexCover(),
-                        new CoolingSetup(1000, 0.03, new AllRandomCooling())))
-                    .Build()
+                new SimulatedAnnealing(graph, new MinimumVertexCover(),
+                    new CoolingSetup(1000, 0.03, new AllRandomCooling())),
+                new SimulatedAnnealing(graph, new MinimumVertexCover(),
+                    new CoolingSetup(2000, 0.03, new AllRandomCooling())),
+                new SimulatedAnnealing(graph, new MinimumVertexCover(),
+                    new CoolingSetup(4000, 0.03, new AllRandomCooling()))
             };
             foreach (var algh in alghs)
             {

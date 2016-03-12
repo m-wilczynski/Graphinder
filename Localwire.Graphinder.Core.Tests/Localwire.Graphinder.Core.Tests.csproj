@@ -86,7 +86,6 @@
     <Compile Include="Providers\TestData\TestGraphProvider.cs" />
     <Compile Include="Providers\ITestDataProvider.cs" />
     <Compile Include="Providers\TestData\TestIndividualProvider.cs" />
-    <Compile Include="Providers\TestData\TestSimulatedAnnealingSetupProvider.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\AllRandomCoolingTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingSetupTests.cs" />
     <Compile Include="Providers\TestData\TestCoolingSetupProvider.cs" />

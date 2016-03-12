@@ -1,5 +1,6 @@
 ﻿namespace Localwire.Graphinder.Core.Algorithms
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using Graph;
@@ -7,10 +8,23 @@
 
     public abstract class Algorithm : IAlgorithm
     {
+        protected Algorithm(Graph graph, IProblem problem)
+        {
+            if (problem == null)
+                throw new ArgumentNullException(nameof(problem));
+            if (graph == null)
+                throw new ArgumentNullException(nameof(graph));
+            if (!graph.IsValid())
+                throw new ArgumentException("Graphic is invalid", nameof(graph));
+            Graph = graph;
+            Problem = problem;
+            problem.Initialize(graph);
+        }
+
         /// <summary>
         /// Problem for which algorithm will search for solution.
         /// </summary>
-        public abstract IProblem Problem { get; }
+        public IProblem Problem { get; }
 
         /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
@@ -25,7 +39,7 @@
         /// <summary>
         /// Graph on which algorithm operate.
         /// </summary>
-        public abstract Graph Graph { get; }
+        public Graph Graph { get; }
 
         /// <summary>
         /// Launches algorithm and searches for solution.

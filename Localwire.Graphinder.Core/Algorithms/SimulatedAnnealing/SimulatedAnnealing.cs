@@ -13,19 +13,16 @@
     public class SimulatedAnnealing : Algorithm
     {
         private readonly Random _random = new Random();
-
-        private Graph _graph;
-        private IProblem _problem;
         private long _processorTimeCost = long.MaxValue;
-
-        private SimulatedAnnealing()
+        
+        public SimulatedAnnealing(Graph graph, IProblem problem, CoolingSetup setup) : base(graph, problem)
         {
+            if (setup == null)
+                throw new ArgumentNullException(nameof(setup));
+            if (!setup.IsValid())
+                throw new ArgumentException("Setup is invalid", nameof(setup));
+            CoolingSetup = setup;
         }
-
-        /// <summary>
-        /// Initial system temperature.
-        /// </summary>
-        public double InitialTemperature { get; private set; }
 
         /// <summary>
         /// Current system temperature.
@@ -38,16 +35,6 @@
         public double MinimalTemperature { get { return 0.001f; } }
 
         /// <summary>
-        /// Rate of cooling the system.
-        /// </summary>
-        public double CoolingRate { get; private set; }
-
-        /// <summary>
-        /// Problem for which algorithm will search for solution.
-        /// </summary>
-        public override IProblem Problem { get { return _problem; } }
-
-        /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
         /// </summary>
         public override long ProcessorTimeCost { get { return _processorTimeCost; } }
@@ -55,17 +42,12 @@
         /// <summary>
         /// Current solution value.
         /// </summary>
-        public override int CurrentSolution { get { return _problem.CurrentOutcome; } }
+        public override int CurrentSolution { get { return Problem.CurrentOutcome; } }
 
         /// <summary>
-        /// Graph on which algorithm operate.
+        /// Setup of strategy and startup values for cooling. 
         /// </summary>
-        public override Graph Graph { get { return _graph; } }
-
-        /// <summary>
-        /// Chosen cooling strategy for annealing.
-        /// </summary>
-        public ICoolingStrategy CoolingStrategy { get; private set; }
+        public CoolingSetup CoolingSetup { get; }
 
         /// <summary>
         /// Decides whether algorithm should accept new solution.
@@ -102,7 +84,7 @@
         /// </summary>
         private void CoolSystem()
         {
-            _processorTimeCost = CoolingStrategy.Cool(this, CoolOnce);
+            _processorTimeCost = CoolingSetup.CoolingStrategy.Cool(this, CoolOnce);
         }
 
         /// <summary>
@@ -113,7 +95,7 @@
         /// <returns>Acceptance probability.</returns>
         private double AcceptanceProbability(int energy, int newEnergy)
         {
-            if (_problem.Criteria == ProblemCriteria.BiggerIsBetter)
+            if (Problem.Criteria == ProblemCriteria.BiggerIsBetter)
             {
                 //Accept if it's better than current one
                 if (newEnergy > energy)
@@ -136,8 +118,8 @@
         /// </summary>
         private void RestartSystem()
         {
-            CurrentTemperature = InitialTemperature;
-            _problem.RestartProblemState();
+            CurrentTemperature = CoolingSetup.InitialTemperature;
+            Problem.RestartProblemState();
             _processorTimeCost = long.MaxValue;
         }
 
@@ -146,54 +128,7 @@
         /// </summary>
         private void CoolOnce()
         {
-            CurrentTemperature *= 1 - CoolingRate;
-        }
-
-        /// <summary>
-        /// Builder of <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm instances.
-        /// </summary>
-        public class Builder
-        {
-            private readonly SimulatedAnnealing _builtAlgorithm;
-            private bool _isBuilt;
-
-            /// <summary>
-            /// Instantiates builder for <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm.
-            /// </summary>
-            public Builder()
-            {
-                _builtAlgorithm = new SimulatedAnnealing();
-            }
-
-            /// <summary>
-            /// Sets up required data for <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm.
-            /// </summary>
-            /// <param name="setup">Setup for algorithm.</param>
-            /// <returns></returns>
-            public Builder WithSetupData(SimulatedAnnealingSetup setup)
-            {
-                if (setup == null || !setup.IsValid()) throw new ArgumentException("Setup state is invalid!", nameof(setup));
-                _builtAlgorithm._graph = setup.Graph;
-                _builtAlgorithm._problem = setup.Problem;
-                _builtAlgorithm._problem.Initialize(_builtAlgorithm._graph);
-                _builtAlgorithm.CoolingStrategy = setup.CoolingSetup.CoolingStrategy;
-                _builtAlgorithm.InitialTemperature = setup.CoolingSetup.InitialTemperature;
-                _builtAlgorithm.CoolingRate = setup.CoolingSetup.CoolingRate;
-                return this;
-            }
-
-            /// <summary>
-            /// Builds <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm.
-            /// </summary>
-            /// <returns><see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> instance if valid. Null if already built or invalid.</returns>
-            public SimulatedAnnealing Build()
-            {
-                if (_isBuilt) return null;
-                if (_builtAlgorithm._graph == null) return null;
-                _isBuilt = true;
-                _builtAlgorithm.RestartSystem();
-                return _builtAlgorithm;
-            }
+            CurrentTemperature *= 1 - CoolingSetup.CoolingRate;
         }
     }
 }

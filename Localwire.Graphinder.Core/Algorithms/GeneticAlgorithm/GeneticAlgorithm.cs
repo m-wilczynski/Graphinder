@@ -6,10 +6,12 @@
 
     class GeneticAlgorithm : Algorithm
     {
-        public override IProblem Problem { get; }
         public override long ProcessorTimeCost { get; }
         public override int CurrentSolution { get; }
-        public override Graph Graph { get; }
+        
+        public GeneticAlgorithm(Graph graph, IProblem problem) : base(graph, problem)
+        {
+        }
 
         public override bool CanAcceptAnswer(ICollection<Node> proposedSolution)
         {
