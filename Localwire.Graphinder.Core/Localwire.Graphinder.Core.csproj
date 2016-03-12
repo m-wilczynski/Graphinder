@@ -44,13 +44,13 @@
     <Compile Include="Algorithms\GeneticAlgorithm\Individual.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\BinaryTransformationStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\IMutationStrategy.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\Setup\GeneticOperators.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\ISelectionStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\RouletteStrategy.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\AllRandomCooling.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\ICoolingStrategy.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\CoolingSetup.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingSetup.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealing.cs" />
     <Compile Include="Exceptions\AlgorithmException.cs" />
     <Compile Include="Exceptions\DataStructureLockedException.cs" />

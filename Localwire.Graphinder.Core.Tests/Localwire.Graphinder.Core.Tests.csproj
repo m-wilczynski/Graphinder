@@ -89,7 +89,6 @@
     <Compile Include="Algorithms\SimulatedAnnealing\AllRandomCoolingTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingSetupTests.cs" />
     <Compile Include="Providers\TestData\TestCoolingSetupProvider.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingSetupTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingTests.cs" />
     <Compile Include="Problems\IProblemTests.cs" />
     <Compile Include="Problems\MinimumVertexCover\MinimumVertexCoverTests.cs" />

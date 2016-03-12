@@ -3,15 +3,19 @@
     using System.Collections.Generic;
     using Graph;
     using Problems;
+    using Setup;
 
     class GeneticAlgorithm : Algorithm
     {
+        public GeneticAlgorithm(Graph graph, IProblem problem, 
+            GeneticOperators geneticOperators, uint populationSize = 50) : base(graph, problem)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override long ProcessorTimeCost { get; }
         public override int CurrentSolution { get; }
-        
-        public GeneticAlgorithm(Graph graph, IProblem problem) : base(graph, problem)
-        {
-        }
+        public uint PopulationSize { get; set; }
 
         public override bool CanAcceptAnswer(ICollection<Node> proposedSolution)
         {
