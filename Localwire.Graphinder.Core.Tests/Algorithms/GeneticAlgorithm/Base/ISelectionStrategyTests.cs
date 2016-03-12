@@ -72,7 +72,8 @@
         {
             var individuals = IndividualProvider.ProvideValid();
             Strategy.Set(individuals);
-            Assert.True(individuals.Any(i => i.Equals(Strategy.Next())));
+            var next = Strategy.Next();
+            Assert.True(individuals.Any(i => i.Equals(next)));
         }
 
         [Fact]
@@ -80,7 +81,8 @@
         {
             var individuals = IndividualProvider.ProvideValid().Take(1).ToList();
             Strategy.Set(individuals);
-            Assert.True(individuals.Any(i => i.Equals(Strategy.Next())));
+            var next = Strategy.Next();
+            Assert.True(individuals.Any(i => i.Equals(next)));
         }
 
         [Fact]

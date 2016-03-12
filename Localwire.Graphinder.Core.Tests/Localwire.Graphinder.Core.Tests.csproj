@@ -73,6 +73,7 @@
     <Compile Include="Algorithms\GeneticAlgorithm\Base\IMutationStrategyTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\Base\ISelectionStrategyTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\BinaryTransformationMutationTests.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\GeneticOperatorsTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\IndividualTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\OnePointCrossoverStrategyTests.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\RouletteStrategyTests.cs" />
@@ -82,7 +83,10 @@
     <Compile Include="Graph\NodeGeneratorTests.cs" />
     <Compile Include="Graph\NodeTests.cs" />
     <Compile Include="Providers\ISubstituteProvider.cs" />
+    <Compile Include="Providers\SubstituteData\CrossoverStrategyProvider.cs" />
+    <Compile Include="Providers\SubstituteData\MutationStrategyProvider.cs" />
     <Compile Include="Providers\SubstituteData\ProblemSubstituteProvider.cs" />
+    <Compile Include="Providers\SubstituteData\SelectionStrategyProvider.cs" />
     <Compile Include="Providers\TestData\TestGraphProvider.cs" />
     <Compile Include="Providers\ITestDataProvider.cs" />
     <Compile Include="Providers\TestData\TestIndividualProvider.cs" />
