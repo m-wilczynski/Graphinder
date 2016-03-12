@@ -2,12 +2,13 @@
 {
     using System;
     using Graph;
+    using Helpers;
     using Problems;
 
     /// <summary>
     /// Represents problem and data structure setup for simulated annealing algorithm
     /// </summary>
-    public class SimulatedAnnealingSetup : IAlgorithmSetup<SimulatedAnnealing>
+    public class SimulatedAnnealingSetup : ISelfValidable
     {
         /// <summary>
         /// Creates setup for simulated annealing algorithm
