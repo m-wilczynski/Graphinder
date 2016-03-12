@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents problem and data structure setup for simulated annealing algorithm
     /// </summary>
-    public class SimulatedAnnealingSetup : IAlgorithmSetup
+    public class SimulatedAnnealingSetup : IAlgorithmSetup<SimulatedAnnealing>
     {
         /// <summary>
         /// Creates setup for simulated annealing algorithm

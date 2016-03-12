@@ -4,7 +4,7 @@
     using Helpers;
     using Problems;
 
-    public interface IAlgorithmSetup : ISelfValidable
+    public interface IAlgorithmSetup<T> : ISelfValidable where T : IAlgorithm
     {
         /// <summary>
         /// Graph on which algorithm operate.

@@ -51,15 +51,10 @@
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\AllRandomCooling.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\ICoolingStrategy.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\CoolingSetup.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingFactory.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingSetup.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealing.cs" />
     <Compile Include="Exceptions\AlgorithmException.cs" />
     <Compile Include="Exceptions\DataStructureLockedException.cs" />
-    <Compile Include="Factories\IAlgorithmFactory.cs" />
-    <Compile Include="Factories\IProblemFactory.cs" />
-    <Compile Include="Factories\Providers\AlgorithmFactoryProvider.cs" />
-    <Compile Include="Factories\Providers\ProblemFactoryProvider.cs" />
     <Compile Include="Graph\Edge.cs" />
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\Helpers\NodeGenerator.cs" />
@@ -72,7 +67,6 @@
     <Compile Include="Exceptions\ProblemException.cs" />
     <Compile Include="Problems\IProblem.cs" />
     <Compile Include="Problems\OptimizationProblems\MinimumVertexCover.cs" />
-    <Compile Include="Problems\ProblemFactories\MinimumVertexCoverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
