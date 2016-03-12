@@ -15,7 +15,7 @@
             if (graph == null)
                 throw new ArgumentNullException(nameof(graph));
             if (!graph.IsValid())
-                throw new ArgumentException("Graphic is invalid", nameof(graph));
+                throw new ArgumentException("Graph is invalid", nameof(graph));
             Graph = graph;
             Problem = problem;
             problem.Initialize(graph);

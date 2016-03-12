@@ -13,11 +13,9 @@
     using Providers.TestData;
     using Xunit;
 
-    public class SimulatedAnnealingTests : IAlgorithmTests
+    public class SimulatedAnnealingTests : AlgorithmTests
     {
-        private readonly ITestDataProvider<Graph> _graphFactory = new TestGraphProvider();
         private readonly ITestDataProvider<CoolingSetup> _coolingSetupFactory = new TestCoolingSetupProvider();
-        private readonly ISubstituteProvider<IProblem> _problemProvider = new ProblemSubstituteProvider();
 
         public SimulatedAnnealingTests()
         {
@@ -27,6 +25,50 @@
                     _problemProvider.ProvideSubstitute(),
                     _coolingSetupFactory.ProvideValid());
 
+        }
+
+        [Fact]
+        public void SimulatedAnnealing_ctor_ThrowsOnNullGraph()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                new SimulatedAnnealing(null,
+                    _problemProvider.ProvideSubstitute(),
+                    _coolingSetupFactory.ProvideValid());
+            });
+        }
+
+        [Fact]
+        public void SimulatedAnnealing_ctor_ThrowsOnNullProblem()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                new SimulatedAnnealing(_graphFactory.ProvideValid(),
+                    null,
+                    _coolingSetupFactory.ProvideValid());
+            });
+        }
+
+        [Fact]
+        public void SimulatedAnnealing_ctor_ThrowsOnInvalidGraph()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                new SimulatedAnnealing(new Graph(), 
+                    _problemProvider.ProvideSubstitute(),
+                    _coolingSetupFactory.ProvideValid());
+            });
+        }
+
+        [Fact]
+        public void SimulatedAnnealing_ctor_ThrowsOnNullCoolingSetup()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                new SimulatedAnnealing(_graphFactory.ProvideValid(),
+                    _problemProvider.ProvideSubstitute(),
+                    null);
+            });
         }
 
         [Fact]
