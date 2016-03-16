@@ -6,15 +6,20 @@
     using Core.Graph;
     using Providers;
     using Providers.SubstituteData;
+    using Providers.TestData;
     using Xunit;
 
     public class GeneticAlgorithmTests : AlgorithmTests
     {
         private readonly ISubstituteProvider<GeneticOperators> _operatorsProvider = new GeneticOperatorsProvider(); 
+        private readonly ITestDataProvider<GeneticAlgorithmSettings> _settingsProvider = new GeneticAlgorithmSettingsProvider(); 
 
         public GeneticAlgorithmTests()
         {
-            _algorithm = new GeneticAlgorithm(_graphFactory.ProvideValid(), _problemProvider.ProvideSubstitute(), _operatorsProvider.ProvideSubstitute());
+            _algorithm = new GeneticAlgorithm(_graphFactory.ProvideValid(), 
+                _problemProvider.ProvideSubstitute(), 
+                _operatorsProvider.ProvideSubstitute(), 
+                _settingsProvider.ProvideValid());
         }
 
         [Fact]
@@ -22,7 +27,8 @@
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new GeneticAlgorithm(null, _problemProvider.ProvideSubstitute(), _operatorsProvider.ProvideSubstitute());
+                new GeneticAlgorithm(null, _problemProvider.ProvideSubstitute(), 
+                    _operatorsProvider.ProvideSubstitute(), _settingsProvider.ProvideValid());
             });
         }
 
@@ -32,7 +38,7 @@
             Assert.Throws<ArgumentNullException>(() =>
             {
                 new GeneticAlgorithm(new Graph(), _problemProvider.ProvideSubstitute(),
-                    _operatorsProvider.ProvideSubstitute());
+                    _operatorsProvider.ProvideSubstitute(), _settingsProvider.ProvideValid());
             });
         }
 
@@ -42,7 +48,7 @@
             Assert.Throws<ArgumentNullException>(() =>
             {
                 new GeneticAlgorithm(_graphFactory.ProvideValid(), null,
-                    _operatorsProvider.ProvideSubstitute());
+                    _operatorsProvider.ProvideSubstitute(), _settingsProvider.ProvideValid());
             });
         }
 
@@ -52,7 +58,7 @@
             Assert.Throws<ArgumentNullException>(() =>
             {
                 new GeneticAlgorithm(_graphFactory.ProvideValid(), _problemProvider.ProvideSubstitute(),
-                    null);
+                    null, _settingsProvider.ProvideValid());
             });
         }
 
@@ -62,7 +68,27 @@
             Assert.Throws<ArgumentNullException>(() =>
             {
                 new GeneticAlgorithm(_graphFactory.ProvideValid(), _problemProvider.ProvideSubstitute(),
-                    new GeneticOperators(null, null, null));
+                    new GeneticOperators(null, null, null), _settingsProvider.ProvideValid());
+            });
+        }
+
+        [Fact]
+        public void GeneticAlgorithm_ctor_ThrowsOnNullAlgorithmSettings()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                new GeneticAlgorithm(_graphFactory.ProvideValid(), _problemProvider.ProvideSubstitute(),
+                    _operatorsProvider.ProvideSubstitute(), null);
+            });
+        }
+
+        [Fact]
+        public void GeneticAlgorithm_ctor_ThrowsOnInvalidAlgorithmSettings()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                new GeneticAlgorithm(_graphFactory.ProvideValid(), _problemProvider.ProvideSubstitute(),
+                    _operatorsProvider.ProvideSubstitute(), new GeneticAlgorithmSettings(0, 0, 0, 0));
             });
         }
     }
