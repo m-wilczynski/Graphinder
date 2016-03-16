@@ -5,10 +5,20 @@
     using Problems;
     using Setup;
 
+    /// <summary>
+    /// Represents genetic algorithm that bases on graph data structure.
+    /// </summary>
     public class GeneticAlgorithm : Algorithm
     {
+        /// <summary>
+        /// Creates instance of genetic algorithm
+        /// </summary>
+        /// <param name="graph">Graph on which algorithm will operate</param>
+        /// <param name="problem">Problem for which algorithm will attempt to find solution</param>
+        /// <param name="geneticOperators">Genetic operators used for breeding new generations</param>
+        /// <param name="settings">General settings for solution finding process</param>
         public GeneticAlgorithm(Graph graph, IProblem problem, 
-            GeneticOperators geneticOperators, uint populationSize = 50) : base(graph, problem)
+            GeneticOperators geneticOperators, GeneticAlgorithmSettings settings) : base(graph, problem)
         {
             throw new System.NotImplementedException();
         }
