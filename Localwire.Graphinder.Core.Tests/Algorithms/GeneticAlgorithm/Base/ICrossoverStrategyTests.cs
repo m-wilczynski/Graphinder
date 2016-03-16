@@ -61,5 +61,15 @@
             });
         }
 
+        [Fact]
+        public void ICrossoverStrategy_PerformCrossover_ThrowOnCrossoverBetweenSameIndividual()
+        {
+            var parent1 = new Individual(ValidGraph, ValidProblem);
+            Assert.Throws<AlgorithmException>(() =>
+            {
+                Strategy.PerformCrossover(parent1, parent1);
+            });
+        }
+
     }
 }

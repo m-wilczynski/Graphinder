@@ -44,6 +44,7 @@
     <Compile Include="Algorithms\GeneticAlgorithm\Individual.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\BinaryTransformationStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\IMutationStrategy.cs" />
+    <Compile Include="Algorithms\GeneticAlgorithm\Setup\GeneticAlgorithmSettings.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\Setup\GeneticOperators.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\ISelectionStrategy.cs" />

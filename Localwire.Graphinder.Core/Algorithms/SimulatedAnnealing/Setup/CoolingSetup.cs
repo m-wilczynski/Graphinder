@@ -44,7 +44,7 @@
         public ICoolingStrategy CoolingStrategy { get; private set; }
 
         /// <summary>
-        /// Decides if state of object valid.
+        /// Decides if state of object is valid.
         /// </summary>
         public bool IsValid()
         {

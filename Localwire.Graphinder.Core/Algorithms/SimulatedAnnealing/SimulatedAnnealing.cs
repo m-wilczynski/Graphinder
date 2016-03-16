@@ -15,6 +15,12 @@
         private readonly Random _random = new Random();
         private long _processorTimeCost = long.MaxValue;
         
+        /// <summary>
+        /// Creates SimulatedAnnealing algorithm instance
+        /// </summary>
+        /// <param name="graph">Graph on which algorithm will operate</param>
+        /// <param name="problem">Problem for which algorithm will attempt to find solution</param>
+        /// <param name="setup">Setup for algorithm's cooling process</param>
         public SimulatedAnnealing(Graph graph, IProblem problem, CoolingSetup setup) : base(graph, problem)
         {
             if (setup == null)

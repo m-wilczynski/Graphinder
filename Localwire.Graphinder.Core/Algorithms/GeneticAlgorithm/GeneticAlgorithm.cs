@@ -16,6 +16,8 @@
         public override long ProcessorTimeCost { get; }
         public override int CurrentSolution { get; }
         public uint PopulationSize { get; set; }
+        public uint GenerationsToCome { get; }
+        public uint CurrentGeneration { get; private set; }
 
         public override bool CanAcceptAnswer(ICollection<Node> proposedSolution)
         {
