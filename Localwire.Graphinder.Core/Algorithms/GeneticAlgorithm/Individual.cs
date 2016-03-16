@@ -22,6 +22,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
         {
             if (graph == null || problem == null) throw new ArgumentNullException("Neither graph nor problem can be null!");
             if (!graph.IsValid()) throw new ArgumentException("Graph is not valid!");
+            //TODO: No reason to assign graph here. Breaks individual role btw.
             Graph = graph;
             _problem = problem;
             _totalSize = (uint)Graph.TotalNodes;

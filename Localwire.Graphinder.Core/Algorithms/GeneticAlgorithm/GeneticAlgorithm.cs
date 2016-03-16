@@ -5,7 +5,7 @@
     using Problems;
     using Setup;
 
-    class GeneticAlgorithm : Algorithm
+    public class GeneticAlgorithm : Algorithm
     {
         public GeneticAlgorithm(Graph graph, IProblem problem, 
             GeneticOperators geneticOperators, uint populationSize = 50) : base(graph, problem)
