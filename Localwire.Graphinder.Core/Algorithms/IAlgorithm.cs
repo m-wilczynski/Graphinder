@@ -17,11 +17,6 @@
         long ProcessorTimeCost { get; }
 
         /// <summary>
-        /// Current solution value.
-        /// </summary>
-        int CurrentSolution { get; }
-
-        /// <summary>
         /// Graph on which algorithm operate.
         /// </summary>
         Graph Graph { get; }

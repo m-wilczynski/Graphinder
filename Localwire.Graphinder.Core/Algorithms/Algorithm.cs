@@ -32,11 +32,6 @@
         public abstract long ProcessorTimeCost { get; }
 
         /// <summary>
-        /// Current solution value.
-        /// </summary>
-        public abstract int CurrentSolution { get; }
-
-        /// <summary>
         /// Graph on which algorithm operate.
         /// </summary>
         public Graph Graph { get; }

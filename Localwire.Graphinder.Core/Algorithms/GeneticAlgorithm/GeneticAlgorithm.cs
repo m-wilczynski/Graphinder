@@ -11,6 +11,16 @@
     public class GeneticAlgorithm : Algorithm
     {
         /// <summary>
+        /// Operators used for breeding new generation of individuals
+        /// </summary>
+        public readonly GeneticOperators GeneticOperators;
+
+        /// <summary>
+        /// Generael settings for solution finding process
+        /// </summary>
+        public readonly GeneticAlgorithmSettings Settings;
+
+        /// <summary>
         /// Creates instance of genetic algorithm
         /// </summary>
         /// <param name="graph">Graph on which algorithm will operate</param>
@@ -23,22 +33,38 @@
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Processor time cost in ticks (1 tick = 100 ns).
+        /// </summary>
         public override long ProcessorTimeCost { get; }
-        public override int CurrentSolution { get; }
-        public uint PopulationSize { get; set; }
-        public uint GenerationsToCome { get; }
+
+        /// <summary>
+        /// Current generation that algorithm bred.
+        /// </summary>
         public uint CurrentGeneration { get; private set; }
 
+        /// <summary>
+        /// Decides whether algorithm should accept new solution.
+        /// </summary>
+        /// <param name="proposedSolution">New solution found by algorithm.</param>
+        /// <returns>Decision if algorithm should accept answer.</returns>
         public override bool CanAcceptAnswer(ICollection<Node> proposedSolution)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Decides whether algorithm can proceed with next step of solution searching.
+        /// </summary>
+        /// <returns>Decision if algorithm can proceed.</returns>
         public override bool CanContinueSearching()
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Searches for solution for chosen problem.
+        /// </summary>
         protected override void SearchForSolution()
         {
             throw new System.NotImplementedException();

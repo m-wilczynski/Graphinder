@@ -14,7 +14,7 @@
         public static void Main()
         {
             var graph = new Graph();
-            graph.FillGraphRandomly(50, 6);
+            graph.FillGraphRandomly(50, 5);
 
             var alghs = new List<IAlgorithm>
             {
@@ -27,7 +27,7 @@
             };
             foreach (var algh in alghs)
             {
-                System.Console.WriteLine(algh.CurrentSolution);
+                System.Console.WriteLine(algh.Problem.CurrentOutcome);
             }
 
             foreach (var algh in alghs)
@@ -35,7 +35,7 @@
 
             foreach (var algh in alghs)
             {
-                Console.WriteLine(algh.CurrentSolution);
+                Console.WriteLine(algh.Problem.CurrentOutcome);
             }
 
             Console.ReadKey();

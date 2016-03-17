@@ -1,9 +1,11 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Algorithms.GeneticAlgorithm
 {
     using System;
+    using System.Collections.Generic;
     using Core.Algorithms.GeneticAlgorithm.Setup;
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Graph;
+    using NSubstitute;
     using Providers;
     using Providers.SubstituteData;
     using Providers.TestData;
@@ -12,7 +14,9 @@
     public class GeneticAlgorithmTests : AlgorithmTests
     {
         private readonly ISubstituteProvider<GeneticOperators> _operatorsProvider = new GeneticOperatorsProvider(); 
-        private readonly ITestDataProvider<GeneticAlgorithmSettings> _settingsProvider = new GeneticAlgorithmSettingsProvider(); 
+        private readonly ITestDataProvider<GeneticAlgorithmSettings> _settingsProvider = new GeneticAlgorithmSettingsProvider();
+        private GeneticAlgorithm _geneticAlgorithmThatAlwaysCrossoversAndMutates;
+        private GeneticAlgorithm _geneticAlgorithmThatHasLotsOfGenerations;
 
         public GeneticAlgorithmTests()
         {
@@ -20,6 +24,14 @@
                 _problemProvider.ProvideSubstitute(), 
                 _operatorsProvider.ProvideSubstitute(), 
                 _settingsProvider.ProvideValid());
+            _geneticAlgorithmThatAlwaysCrossoversAndMutates = new GeneticAlgorithm(_graphFactory.ProvideValid(),
+                _problemProvider.ProvideSubstitute(),
+                _operatorsProvider.ProvideSubstitute(),
+                new GeneticAlgorithmSettings(crossoverProbability: 1d, mutationProbability: 1d));
+            _geneticAlgorithmThatHasLotsOfGenerations = new GeneticAlgorithm(_graphFactory.ProvideValid(),
+                _problemProvider.ProvideSubstitute(),
+                _operatorsProvider.ProvideSubstitute(),
+                new GeneticAlgorithmSettings(generationsToCome: 20, populationSize: 4));
         }
 
         [Fact]
@@ -90,6 +102,58 @@
                 new GeneticAlgorithm(_graphFactory.ProvideValid(), _problemProvider.ProvideSubstitute(),
                     _operatorsProvider.ProvideSubstitute(), new GeneticAlgorithmSettings(0, 0, 0, 0));
             });
+        }
+
+        [Fact]
+        public void GeneticAlgorithm_LaunchAlgorithm_ResetsSelectionStrategyPopulation()
+        {
+            var algorithm = _algorithm as GeneticAlgorithm;
+            if (algorithm == null)
+                throw new InvalidCastException("GeneticAlgorithm");
+            algorithm.LaunchAlgorithm();
+            algorithm.GeneticOperators.SelectionStrategy.Received().Set(Arg.Any<ICollection<Individual>>());        
+        }
+
+        [Fact]
+        public void GeneticAlgorithm_LaunchAlgorithm_UsesSelectionStrategyForChoosing()
+        {
+            var algorithm = _algorithm as GeneticAlgorithm;
+            if (algorithm == null)
+                throw new InvalidCastException("GeneticAlgorithm");
+            algorithm.LaunchAlgorithm();
+            algorithm.GeneticOperators.SelectionStrategy.Received().NextCouple();
+        }
+
+        [Fact]
+        public void GeneticAlgorithm_LaunchAlgorithm_UsesCrossoverStrategyIfRolled()
+        {
+            _geneticAlgorithmThatAlwaysCrossoversAndMutates.LaunchAlgorithm();
+            _geneticAlgorithmThatAlwaysCrossoversAndMutates.GeneticOperators.CrossoverStrategy.Received()
+                .PerformCrossover(Arg.Any<Individual>(), Arg.Any<Individual>());
+        }
+
+        [Fact]
+        public void GeneticAlgorithm_LaunchAlgorithm_UsesMutationStrategyIfRolled()
+        {
+            _geneticAlgorithmThatAlwaysCrossoversAndMutates.LaunchAlgorithm();
+            _geneticAlgorithmThatAlwaysCrossoversAndMutates.GeneticOperators.MutationStrategy.Received()
+                .Mutate(Arg.Any<Individual>());
+        }
+
+        [Fact]
+        public void GeneticAlgorithm_LaunchAlgorithm_ExecutesUntilCanContinueSearching()
+        {
+            Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, (uint)0);
+            _geneticAlgorithmThatHasLotsOfGenerations.LaunchAlgorithm();
+            Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, _geneticAlgorithmThatHasLotsOfGenerations.Settings.GenerationsToCome);
+        }
+
+        [Fact]
+        public void GeneticAlgorith_LaunchAlgorithm_SolutionChangesDuringSearch()
+        {
+            var currentSolution = _algorithm.Problem.CurrentSolution;
+            _algorithm.LaunchAlgorithm();
+            Assert.NotEqual(currentSolution, _algorithm.Problem.CurrentSolution);
         }
     }
 }

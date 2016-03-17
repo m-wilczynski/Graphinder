@@ -46,11 +46,6 @@
         public override long ProcessorTimeCost { get { return _processorTimeCost; } }
 
         /// <summary>
-        /// Current solution value.
-        /// </summary>
-        public override int CurrentSolution { get { return Problem.CurrentOutcome; } }
-
-        /// <summary>
         /// Setup of strategy and startup values for cooling. 
         /// </summary>
         public CoolingSetup CoolingSetup { get; }
@@ -64,7 +59,7 @@
         {
             if (proposedSolution == null) throw new ArgumentException(nameof(proposedSolution));
             int solutionOutcome = Problem.SolutionOutcome(proposedSolution);
-            return AcceptanceProbability(CurrentSolution, solutionOutcome) > _random.NextDouble();
+            return AcceptanceProbability(Problem.CurrentOutcome, solutionOutcome) > _random.NextDouble();
         }
 
         /// <summary>

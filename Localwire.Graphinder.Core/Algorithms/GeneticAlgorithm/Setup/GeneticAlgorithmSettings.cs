@@ -35,7 +35,7 @@
         /// <param name="populationSize">How big should each population for each generation be</param>
         /// <param name="crossoverProbability">How likely chosen couple will crossover and breed new individual</param>
         /// <param name="mutationProbability">How likely newly bred individual will mutate</param>
-        public GeneticAlgorithmSettings(uint generationsToCome = 20, uint populationSize = 50, double crossoverProbability = 0.5f, double mutationProbability = 0.1f)
+        public GeneticAlgorithmSettings(uint generationsToCome = 1, uint populationSize = 50, double crossoverProbability = 0.5f, double mutationProbability = 0.1f)
         {
             if (populationSize <= 1)
                 throw new ArgumentOutOfRangeException(nameof(populationSize), populationSize, "Population size is too small");
