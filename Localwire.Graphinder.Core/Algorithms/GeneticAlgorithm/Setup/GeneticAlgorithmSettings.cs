@@ -6,7 +6,7 @@
     /// <summary>
     /// Represents settings for <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/> solution finding. 
     /// </summary>
-    public class GeneticAlgorithmSettings : ISelfValidable
+    public class GeneticAlgorithmSettings
     {
         /// <summary>
         /// Defines how big will each population for each generation be
@@ -50,16 +50,6 @@
             GenerationsToCome = generationsToCome;
             CrossoverProbability = crossoverProbability;
             MutationProbability = mutationProbability;
-        }
-
-        /// <summary>
-        /// Decides if state of object is valid.
-        /// </summary>
-        public bool IsValid()
-        {
-            return PopulationSize > 1 && GenerationsToCome > 0
-                && CrossoverProbability > 0 && CrossoverProbability <= 1
-                && MutationProbability > 0 && MutationProbability <= 1;
         }
     }
 }

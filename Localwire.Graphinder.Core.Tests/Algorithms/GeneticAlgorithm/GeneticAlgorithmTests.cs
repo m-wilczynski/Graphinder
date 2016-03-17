@@ -47,7 +47,7 @@
         [Fact]
         public void GeneticAlgorithm_ctor_ThrowsOnInvalidGraph()
         {
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.Throws<ArgumentException>(() =>
             {
                 new GeneticAlgorithm(new Graph(), _problemProvider.ProvideSubstitute(),
                     _operatorsProvider.ProvideSubstitute(), _settingsProvider.ProvideValid());
@@ -91,16 +91,6 @@
             {
                 new GeneticAlgorithm(_graphFactory.ProvideValid(), _problemProvider.ProvideSubstitute(),
                     _operatorsProvider.ProvideSubstitute(), null);
-            });
-        }
-
-        [Fact]
-        public void GeneticAlgorithm_ctor_ThrowsOnInvalidAlgorithmSettings()
-        {
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                new GeneticAlgorithm(_graphFactory.ProvideValid(), _problemProvider.ProvideSubstitute(),
-                    _operatorsProvider.ProvideSubstitute(), new GeneticAlgorithmSettings(0, 0, 0, 0));
             });
         }
 

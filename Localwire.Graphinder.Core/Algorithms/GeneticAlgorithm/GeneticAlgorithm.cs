@@ -1,6 +1,8 @@
 ﻿namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
 {
+    using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using Graph;
     using Problems;
     using Setup;
@@ -30,7 +32,14 @@
         public GeneticAlgorithm(Graph graph, IProblem problem, 
             GeneticOperators geneticOperators, GeneticAlgorithmSettings settings) : base(graph, problem)
         {
-            throw new System.NotImplementedException();
+            if (geneticOperators == null)
+                throw new ArgumentNullException(nameof(geneticOperators));
+            if (!geneticOperators.IsValid())
+                throw new ArgumentException("Genetic operators are not valid", nameof(geneticOperators));
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+            GeneticOperators = geneticOperators;
+            Settings = settings;
         }
 
         /// <summary>
