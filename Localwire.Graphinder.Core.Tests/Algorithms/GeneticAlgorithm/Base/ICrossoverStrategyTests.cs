@@ -71,5 +71,17 @@
             });
         }
 
+        [Fact]
+        public void ICrossoverStrategy_PerformCrossover_ThrowOnLengthMismatch()
+        {
+            var parent1 = new Individual(ValidGraph, ValidProblem);
+            ValidGraph.AddNode("Yet another node");
+            var parent2 = new Individual(ValidGraph, ValidProblem);
+            Assert.Throws<AlgorithmException>(() =>
+            {
+                Strategy.PerformCrossover(parent1, parent2);
+            });
+        }
+
     }
 }

@@ -42,6 +42,7 @@
         /// </summary>
         public void LaunchAlgorithm()
         {
+            Graph.LockGraph();
             SearchForSolution();
         }
 

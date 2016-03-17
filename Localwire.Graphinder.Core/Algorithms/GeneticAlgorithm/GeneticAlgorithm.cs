@@ -12,6 +12,8 @@
     /// </summary>
     public class GeneticAlgorithm : Algorithm
     {
+        private long _processorTimeCost = long.MaxValue;
+
         /// <summary>
         /// Operators used for breeding new generation of individuals
         /// </summary>
@@ -45,7 +47,7 @@
         /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
         /// </summary>
-        public override long ProcessorTimeCost { get; }
+        public override long ProcessorTimeCost { get { return _processorTimeCost; } }
 
         /// <summary>
         /// Current generation that algorithm bred.

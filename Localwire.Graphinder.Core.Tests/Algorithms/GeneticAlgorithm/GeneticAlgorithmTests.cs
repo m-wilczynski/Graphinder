@@ -20,7 +20,7 @@
 
         public GeneticAlgorithmTests()
         {
-            _algorithm = new GeneticAlgorithm(_graphFactory.ProvideValid(), 
+            Algorithm = new GeneticAlgorithm(_graphFactory.ProvideValid(), 
                 _problemProvider.ProvideSubstitute(), 
                 _operatorsProvider.ProvideSubstitute(), 
                 _settingsProvider.ProvideValid());
@@ -97,7 +97,7 @@
         [Fact]
         public void GeneticAlgorithm_LaunchAlgorithm_ResetsSelectionStrategyPopulation()
         {
-            var algorithm = _algorithm as GeneticAlgorithm;
+            var algorithm = Algorithm as GeneticAlgorithm;
             if (algorithm == null)
                 throw new InvalidCastException("GeneticAlgorithm");
             algorithm.LaunchAlgorithm();
@@ -107,7 +107,7 @@
         [Fact]
         public void GeneticAlgorithm_LaunchAlgorithm_UsesSelectionStrategyForChoosing()
         {
-            var algorithm = _algorithm as GeneticAlgorithm;
+            var algorithm = Algorithm as GeneticAlgorithm;
             if (algorithm == null)
                 throw new InvalidCastException("GeneticAlgorithm");
             algorithm.LaunchAlgorithm();
@@ -141,9 +141,9 @@
         [Fact]
         public void GeneticAlgorith_LaunchAlgorithm_SolutionChangesDuringSearch()
         {
-            var currentSolution = _algorithm.Problem.CurrentSolution;
-            _algorithm.LaunchAlgorithm();
-            Assert.NotEqual(currentSolution, _algorithm.Problem.CurrentSolution);
+            var currentSolution = Algorithm.Problem.CurrentSolution;
+            Algorithm.LaunchAlgorithm();
+            Assert.NotEqual(currentSolution, Algorithm.Problem.CurrentSolution);
         }
     }
 }

@@ -11,7 +11,7 @@
 
     public abstract class AlgorithmTests
     {
-        protected Algorithm _algorithm;
+        protected Algorithm Algorithm;
         protected readonly ISubstituteProvider<IProblem> _problemProvider = new ProblemSubstituteProvider();
         protected readonly ITestDataProvider<Graph> _graphFactory = new TestGraphProvider();
 
@@ -23,8 +23,15 @@
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                _algorithm.CanAcceptAnswer(null);
+                Algorithm.CanAcceptAnswer(null);
             });
+        }
+
+        [Fact]
+        public void Algorithm_LaunchSolution_LocksGraph()
+        {
+            Algorithm.LaunchAlgorithm();
+            Assert.False(Algorithm.Graph.CanAdd());
         }
     }
 }

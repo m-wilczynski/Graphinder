@@ -19,7 +19,7 @@
 
         public SimulatedAnnealingTests()
         {
-            _algorithm =
+            Algorithm =
                 new SimulatedAnnealing(
                     _graphFactory.ProvideValid(),
                     _problemProvider.ProvideSubstitute(),
@@ -74,23 +74,23 @@
         [Fact]
         public void SimulatedAnnealing_LaunchAlgorithm_UsesCoolingStrategy_Cool()
         {
-            _algorithm.LaunchAlgorithm();
-            ((SimulatedAnnealing)_algorithm).CoolingSetup.CoolingStrategy.Received().Cool(_algorithm, Arg.Any<Action>());
+            Algorithm.LaunchAlgorithm();
+            ((SimulatedAnnealing)Algorithm).CoolingSetup.CoolingStrategy.Received().Cool(Algorithm, Arg.Any<Action>());
         }
 
         [Fact]
         public void SimulatedAnnealing_LaunchAlgorithm_RestartsProblem()
         {
-            _algorithm.LaunchAlgorithm();
-            _algorithm.Problem.Received().RestartProblemState();
+            Algorithm.LaunchAlgorithm();
+            Algorithm.Problem.Received().RestartProblemState();
         }
 
         [Fact]
         public void SimulatedAnnealing_CanAcceptAnswer_ChecksAgainstProblem()
         {
             var solution = new List<Node>();
-            _algorithm.CanAcceptAnswer(solution);
-            _algorithm.Problem.Received().SolutionOutcome(solution);
+            Algorithm.CanAcceptAnswer(solution);
+            Algorithm.Problem.Received().SolutionOutcome(solution);
         }
     }
 }
