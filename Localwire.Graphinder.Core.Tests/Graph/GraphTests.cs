@@ -193,5 +193,12 @@
             var binaryEncoded = new[] {true, false, false, false};
             Assert.Throws<InvalidOperationException>(() => _validGraph.BinarySolutionAsNodes(binaryEncoded));
         }
+
+        [Fact]
+        public void Graph_BinarySolutionAsNodes_ThrowOnNullSolutionToMap()
+        {
+            bool[] nullArray = null;
+            Assert.Throws<ArgumentNullException>(() => _validGraph.BinarySolutionAsNodes(nullArray));
+        }
     }
 }

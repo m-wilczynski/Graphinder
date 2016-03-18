@@ -57,7 +57,7 @@
         /// <returns>Decision if algorithm should accept answer.</returns>
         public override bool CanAcceptAnswer(ICollection<Node> proposedSolution)
         {
-            if (proposedSolution == null) throw new ArgumentException(nameof(proposedSolution));
+            if (proposedSolution == null) throw new ArgumentNullException(nameof(proposedSolution));
             int solutionOutcome = Problem.SolutionOutcome(proposedSolution);
             return AcceptanceProbability(Problem.CurrentOutcome, solutionOutcome) > _random.NextDouble();
         }
@@ -114,6 +114,7 @@
             }
         }
 
+        //TODO: Go up right to the IAlgorithm?
         /// <summary>
         /// Restarts system to initial state.
         /// </summary>

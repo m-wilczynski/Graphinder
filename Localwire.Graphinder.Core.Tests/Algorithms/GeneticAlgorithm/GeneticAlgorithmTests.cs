@@ -31,7 +31,7 @@
             _geneticAlgorithmThatHasLotsOfGenerations = new GeneticAlgorithm(_graphFactory.ProvideValid(),
                 _problemProvider.ProvideSubstitute(),
                 _operatorsProvider.ProvideSubstitute(),
-                new GeneticAlgorithmSettings(generationsToCome: 20, populationSize: 4));
+                new GeneticAlgorithmSettings(generationsToCome: 20, initialPopulationSize: 4));
         }
 
         [Fact]

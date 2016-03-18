@@ -20,12 +20,12 @@
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                new GeneticAlgorithmSettings(populationSize: 0);
+                new GeneticAlgorithmSettings(initialPopulationSize: 0);
             });
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                new GeneticAlgorithmSettings(populationSize: 1);
+                new GeneticAlgorithmSettings(initialPopulationSize: 1);
             });
         }
 

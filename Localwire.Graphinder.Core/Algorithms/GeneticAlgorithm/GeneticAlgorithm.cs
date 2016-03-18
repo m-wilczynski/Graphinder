@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
     using Graph;
     using Problems;
@@ -12,6 +13,8 @@
     /// </summary>
     public class GeneticAlgorithm : Algorithm
     {
+        private bool _isInitialized;
+        private readonly Random _random = new Random();
         private long _processorTimeCost = long.MaxValue;
 
         /// <summary>
@@ -42,6 +45,7 @@
                 throw new ArgumentNullException(nameof(settings));
             GeneticOperators = geneticOperators;
             Settings = settings;
+            GenerateInitialPopulation();
         }
 
         /// <summary>
@@ -50,9 +54,14 @@
         public override long ProcessorTimeCost { get { return _processorTimeCost; } }
 
         /// <summary>
-        /// Current generation that algorithm bred.
+        /// Current generation number that algorithm bred.
         /// </summary>
         public uint CurrentGeneration { get; private set; }
+
+        /// <summary>
+        /// Current population of individuals that algorithm bred.
+        /// </summary>
+        public HashSet<Individual> CurrentPopulation { get; private set; } 
 
         /// <summary>
         /// Decides whether algorithm should accept new solution.
@@ -61,7 +70,10 @@
         /// <returns>Decision if algorithm should accept answer.</returns>
         public override bool CanAcceptAnswer(ICollection<Node> proposedSolution)
         {
-            throw new System.NotImplementedException();
+            if (proposedSolution == null)
+                throw new ArgumentNullException(nameof(proposedSolution));
+            //Always accept in basic implementation
+            return true;
         }
 
         /// <summary>
@@ -70,7 +82,7 @@
         /// <returns>Decision if algorithm can proceed.</returns>
         public override bool CanContinueSearching()
         {
-            throw new System.NotImplementedException();
+            return CurrentGeneration < Settings.GenerationsToCome;
         }
 
         /// <summary>
@@ -78,7 +90,80 @@
         /// </summary>
         protected override void SearchForSolution()
         {
-            throw new System.NotImplementedException();
+            RestartSystem();
+
+            var startTime = DateTime.Now.Ticks;
+
+            //Look for solution until it reaches last generation
+            while (CanContinueSearching())
+            {
+                HashSet<Individual> newGeneration = new HashSet<Individual>();
+
+                var populationToMutate = new HashSet<Individual>(CurrentPopulation);
+
+                //Build new generation of size of previous one
+                while (newGeneration.Count < CurrentPopulation.Count)
+                {
+                    //Refresh generation in selection strategy with actual one
+                    GeneticOperators.SelectionStrategy.Set(CurrentPopulation);
+
+                    //Choose couple for crossover
+                    var couple = GeneticOperators.SelectionStrategy.NextCouple();
+
+                    //Should crossover?
+                    Individual newIndividual = null;
+                    if (_random.NextDouble() < Settings.CrossoverProbability)
+                        //Crossover!
+                        newIndividual = GeneticOperators.CrossoverStrategy.PerformCrossover(couple.Item1, couple.Item2);
+
+                    //Should mutate?
+                    if (_random.NextDouble() < Settings.MutationProbability)
+                        //Mutate!
+                        GeneticOperators.MutationStrategy.Mutate(newIndividual);
+
+                    if (newIndividual != null)
+                        newGeneration.Add(newIndividual);
+                }
+
+                CurrentGeneration++;
+                CurrentPopulation = newGeneration;
+                var bestIndividual = CurrentPopulation.OrderByDescending(i => i.SolutionFitness).First();
+                var solutionAsNodes = Graph.BinarySolutionAsNodes(bestIndividual.CurrentSolution);
+                if (CanAcceptAnswer(Graph.BinarySolutionAsNodes(bestIndividual.CurrentSolution)))
+                    Problem.SetNewSolution(solutionAsNodes);
+
+            }
+            //TODO: Rename as total time and report on inter-generation execute times
+            _processorTimeCost = DateTime.Now.Ticks - startTime;
+        }
+
+        //TODO: Go up right to the IAlgorithm?
+        /// <summary>
+        /// Restarts system to initial state.
+        /// </summary>
+        private void RestartSystem()
+        {
+            GenerateInitialPopulation();
+            Problem.RestartProblemState();
+            _processorTimeCost = long.MaxValue;
+            GeneticOperators.SelectionStrategy.Set(CurrentPopulation);
+
+        }
+
+        /// <summary>
+        /// Generate initial, fully random population
+        /// </summary>
+        private void GenerateInitialPopulation()
+        {
+            if (_isInitialized) return;
+            CurrentPopulation = new HashSet<Individual>();
+            var counter = Settings.InitialPopulationSize;
+            while (counter > 0)
+            {
+                CurrentPopulation.Add(new Individual(Graph, Problem));
+                counter--;
+            }
+            _isInitialized = true;
         }
     }
 }

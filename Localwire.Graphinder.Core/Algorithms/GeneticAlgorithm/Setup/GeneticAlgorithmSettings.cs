@@ -11,7 +11,7 @@
         /// <summary>
         /// Defines how big will each population for each generation be
         /// </summary>
-        public readonly uint PopulationSize;
+        public readonly uint InitialPopulationSize;
 
         /// <summary>
         /// Defines how many generations will algorithm breed before it stops
@@ -32,13 +32,13 @@
         /// Creats settings for <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/> solution finding. 
         /// </summary>
         /// <param name="generationsToCome">How many generations will algorithm breed before it stops</param>
-        /// <param name="populationSize">How big should each population for each generation be</param>
+        /// <param name="initialPopulationSize">How big should each population for each generation be</param>
         /// <param name="crossoverProbability">How likely chosen couple will crossover and breed new individual</param>
         /// <param name="mutationProbability">How likely newly bred individual will mutate</param>
-        public GeneticAlgorithmSettings(uint generationsToCome = 1, uint populationSize = 50, double crossoverProbability = 0.5f, double mutationProbability = 0.1f)
+        public GeneticAlgorithmSettings(uint generationsToCome = 1, uint initialPopulationSize = 50, double crossoverProbability = 0.5f, double mutationProbability = 0.1f)
         {
-            if (populationSize <= 1)
-                throw new ArgumentOutOfRangeException(nameof(populationSize), populationSize, "Population size is too small");
+            if (initialPopulationSize <= 1)
+                throw new ArgumentOutOfRangeException(nameof(initialPopulationSize), initialPopulationSize, "Population size is too small");
             if (generationsToCome == 0)
                 throw new ArgumentOutOfRangeException(nameof(generationsToCome), generationsToCome, "Generations to come cannot be 0");
             if (crossoverProbability <= 0 || crossoverProbability > 1)
@@ -46,7 +46,7 @@
             if (mutationProbability <= 0 || mutationProbability > 1)
                 throw new ArgumentOutOfRangeException(nameof(mutationProbability), mutationProbability, "Mutation probability should be more than 0, yet no more than 1");
 
-            PopulationSize = populationSize;
+            InitialPopulationSize = initialPopulationSize;
             GenerationsToCome = generationsToCome;
             CrossoverProbability = crossoverProbability;
             MutationProbability = mutationProbability;

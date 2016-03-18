@@ -21,7 +21,7 @@
         [Fact]
         public void Algorithm_CanAcceptAnswer_ThrowsOnNullAnswer()
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 Algorithm.CanAcceptAnswer(null);
             });
