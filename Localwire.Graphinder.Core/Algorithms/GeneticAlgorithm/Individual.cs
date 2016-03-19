@@ -11,6 +11,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
     /// </summary>
     public class Individual : IComparable<Individual>
     {
+        public readonly Guid Id;
         public readonly Graph Graph;
         private readonly Random _random = new Random();
         private readonly IProblem _problem;
@@ -36,6 +37,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
                 _currentSolution = solution;
             }
             EnsureCorectness();
+            Id = Guid.NewGuid();
         }
         
         //TODO: Are those three accessors needed anyway? 
@@ -53,7 +55,10 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
         public int CompareTo(Individual other)
         {
             if (other == null) return 1;
-            return SolutionFitness.CompareTo(other.SolutionFitness);
+            var fitnessComparison = SolutionFitness.CompareTo(other.SolutionFitness);
+            if (fitnessComparison != 0)
+                return fitnessComparison;
+            return Id.CompareTo(other.Id);
         }
 
         /// <summary>

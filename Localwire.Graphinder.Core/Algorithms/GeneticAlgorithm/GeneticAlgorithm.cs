@@ -62,7 +62,7 @@
         /// <summary>
         /// Current population of individuals that algorithm bred.
         /// </summary>
-        public HashSet<Individual> CurrentPopulation { get; private set; } 
+        public SortedSet<Individual> CurrentPopulation { get; private set; } 
 
         /// <summary>
         /// Decides whether algorithm should accept new solution.
@@ -98,9 +98,19 @@
             //Look for solution until it reaches last generation
             while (CanContinueSearching())
             {
-                HashSet<Individual> newGeneration = new HashSet<Individual>();
+                SortedSet<Individual> newGeneration = new SortedSet<Individual>();
+                SortedSet<Individual> populationToMutate = new SortedSet<Individual>(CurrentPopulation);
 
-                var populationToMutate = new HashSet<Individual>(CurrentPopulation);
+                //Elitist selection
+                var elite = ElitistSelection();
+                if (elite != null)
+                {
+                    foreach (var element in elite)
+                    {
+                        newGeneration.Add(element);
+                        populationToMutate.Remove(element);
+                    }
+                }
 
                 //Build new generation of size of previous one
                 while (newGeneration.Count < CurrentPopulation.Count)
@@ -141,9 +151,14 @@
 
         private ICollection<Node> BestIndividualSolution()
         {
-            var bestIndividual = CurrentPopulation.OrderByDescending(i => i.SolutionFitness).First();
-            var solutionAsNodes = Graph.BinarySolutionAsNodes(bestIndividual.CurrentSolution);
-            return solutionAsNodes;
+            return Graph.BinarySolutionAsNodes(CurrentPopulation.Last().CurrentSolution);
+        }
+
+        private ICollection<Individual> ElitistSelection()
+        {
+            if (!Settings.WithElitistSelection) return null;
+            if (Settings.EliteSurvivors > int.MaxValue) return null;
+            return CurrentPopulation.Reverse().Take((int)Settings.EliteSurvivors).ToList();
         }
 
         //TODO: Go up right to the IAlgorithm?
@@ -156,7 +171,6 @@
             Problem.RestartProblemState();
             _processorTimeCost = long.MaxValue;
             GeneticOperators.SelectionStrategy.Set(CurrentPopulation);
-            Problem.SetNewSolution(BestIndividualSolution());
         }
 
         /// <summary>
@@ -165,7 +179,7 @@
         private void GenerateInitialPopulation()
         {
             if (_isInitialized) return;
-            CurrentPopulation = new HashSet<Individual>();
+            CurrentPopulation = new SortedSet<Individual>();
             var counter = Settings.InitialPopulationSize;
             while (counter > 0)
             {
