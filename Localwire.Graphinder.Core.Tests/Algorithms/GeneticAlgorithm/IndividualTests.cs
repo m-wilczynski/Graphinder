@@ -13,7 +13,7 @@
 
     public class IndividualTests
     {
-        private readonly ITestDataProvider<Graph> _structuresFactory = new TestGraphProvider();
+        private readonly ITestDataProvider<Graph> _structuresFactory = new GraphProvider();
         private readonly ISubstituteProvider<IProblem> _problemProvider = new ProblemSubstituteProvider(); 
 
         private IProblem Problem { get { return _problemProvider.ProvideSubstitute(); } }

@@ -9,7 +9,7 @@
 
     public class EdgeTests
     {
-        private readonly ITestDataProvider<Graph> _graphProvider = new TestGraphProvider();
+        private readonly ITestDataProvider<Graph> _graphProvider = new GraphProvider();
         private readonly Node _validNode1, _validNode2, _validNode3;
         private readonly Node _otherGraphNode;
         private readonly Node _notAddedNode;

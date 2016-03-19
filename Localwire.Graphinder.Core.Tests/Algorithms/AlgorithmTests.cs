@@ -13,7 +13,7 @@
     {
         protected Algorithm Algorithm;
         protected readonly ISubstituteProvider<IProblem> _problemProvider = new ProblemSubstituteProvider();
-        protected readonly ITestDataProvider<Graph> _graphFactory = new TestGraphProvider();
+        protected readonly ITestDataProvider<Graph> _graphFactory = new GraphProvider();
 
         protected AlgorithmTests()
         { }

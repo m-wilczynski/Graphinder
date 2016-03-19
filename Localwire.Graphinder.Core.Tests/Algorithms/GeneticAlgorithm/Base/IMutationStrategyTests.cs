@@ -16,7 +16,7 @@
 
         protected IMutationStrategyTests()
         {
-            IndividualProvider = new TestIndividualProvider();
+            IndividualProvider = new IndividualsProvider();
         }
 
         [Fact]

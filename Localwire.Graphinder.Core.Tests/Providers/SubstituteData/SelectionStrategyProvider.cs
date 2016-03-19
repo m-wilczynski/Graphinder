@@ -10,7 +10,7 @@
 
     public class SelectionStrategyProvider : ISubstituteProvider<ISelectionStrategy>
     {
-        public readonly ITestDataProvider<ICollection<Individual>> IndividualProvider = new TestIndividualProvider(); 
+        public readonly ITestDataProvider<ICollection<Individual>> IndividualProvider = new IndividualsProvider(); 
 
         /// <summary>
         /// Provides wired mocked instance of declared type.

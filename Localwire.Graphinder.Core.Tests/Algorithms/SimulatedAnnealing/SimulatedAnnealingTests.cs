@@ -15,7 +15,7 @@
 
     public class SimulatedAnnealingTests : AlgorithmTests
     {
-        private readonly ITestDataProvider<CoolingSetup> _coolingSetupFactory = new TestCoolingSetupProvider();
+        private readonly ITestDataProvider<CoolingSetup> _coolingSetupFactory = new CoolingSetupProvider();
 
         public SimulatedAnnealingTests()
         {

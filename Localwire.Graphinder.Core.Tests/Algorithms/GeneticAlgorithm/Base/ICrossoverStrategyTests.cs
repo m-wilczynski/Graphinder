@@ -14,8 +14,8 @@
     public abstract class ICrossoverStrategyTests
     {
         protected ICrossoverStrategy Strategy;
-        protected readonly ITestDataProvider<ICollection<Individual>> IndividualProvider = new TestIndividualProvider();
-        protected readonly ITestDataProvider<Graph> GraphProvider = new TestGraphProvider();
+        protected readonly ITestDataProvider<ICollection<Individual>> IndividualProvider = new IndividualsProvider();
+        protected readonly ITestDataProvider<Graph> GraphProvider = new GraphProvider();
         protected readonly ISubstituteProvider<IProblem> ProblemProvider = new ProblemSubstituteProvider(); 
         protected Graph ValidGraph;
         protected IProblem ValidProblem;

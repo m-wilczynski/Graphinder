@@ -6,7 +6,7 @@
 
     public class MinimumVertexCoverTests : IProblemTests
     {
-        private readonly TestGraphProvider _structuresFactory = new TestGraphProvider();
+        private readonly GraphProvider _structuresFactory = new GraphProvider();
         private Graph _validGraph;
 
         public MinimumVertexCoverTests()

@@ -11,7 +11,7 @@
     public class NodeGeneratorTests
     {
         private NodeGenerator _generator;
-        private readonly ITestDataProvider<Graph> _graphProvider = new TestGraphProvider();
+        private readonly ITestDataProvider<Graph> _graphProvider = new GraphProvider();
         private Graph _graph;
 
         public NodeGeneratorTests()

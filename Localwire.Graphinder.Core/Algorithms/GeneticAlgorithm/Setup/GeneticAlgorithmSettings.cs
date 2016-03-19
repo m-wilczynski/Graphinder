@@ -29,13 +29,18 @@
         public readonly double MutationProbability;
 
         /// <summary>
+        /// Defines if each generation should perform elitist selection, as if in 
+        /// </summary>
+        public readonly bool ElitistSelection;
+
+        /// <summary>
         /// Creats settings for <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/> solution finding. 
         /// </summary>
         /// <param name="generationsToCome">How many generations will algorithm breed before it stops</param>
         /// <param name="initialPopulationSize">How big should each population for each generation be</param>
         /// <param name="crossoverProbability">How likely chosen couple will crossover and breed new individual</param>
         /// <param name="mutationProbability">How likely newly bred individual will mutate</param>
-        public GeneticAlgorithmSettings(uint generationsToCome = 1, uint initialPopulationSize = 50, double crossoverProbability = 0.5f, double mutationProbability = 0.1f)
+        public GeneticAlgorithmSettings(uint generationsToCome = 1, uint initialPopulationSize = 50, double crossoverProbability = 0.5f, double mutationProbability = 0.1f, bool elitistSelection = false)
         {
             if (initialPopulationSize <= 1)
                 throw new ArgumentOutOfRangeException(nameof(initialPopulationSize), initialPopulationSize, "Population size is too small");
@@ -50,6 +55,7 @@
             GenerationsToCome = generationsToCome;
             CrossoverProbability = crossoverProbability;
             MutationProbability = mutationProbability;
+            ElitistSelection = elitistSelection;
         }
     }
 }

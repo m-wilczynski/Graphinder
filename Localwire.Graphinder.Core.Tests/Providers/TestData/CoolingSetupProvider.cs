@@ -4,7 +4,7 @@
     using Core.Algorithms.SimulatedAnnealing.Setup;
     using NSubstitute;
 
-    public class TestCoolingSetupProvider : ITestDataProvider<CoolingSetup>
+    public class CoolingSetupProvider : ITestDataProvider<CoolingSetup>
     {
         /// <summary>
         /// Provides valid instance of declared type.

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Core.Graph;
 
-    public class TestGraphProvider : ITestDataProvider<Graph>
+    public class GraphProvider : ITestDataProvider<Graph>
     {
         /// <summary>
         /// Provides valid instance of declared type.

@@ -8,7 +8,7 @@
 
     public class NodeTests
     {
-        private readonly ITestDataProvider<Graph> _graphProvider = new TestGraphProvider();
+        private readonly ITestDataProvider<Graph> _graphProvider = new GraphProvider();
         private readonly Graph _graph;
         private Node _validNode, _validNeighbour;
 

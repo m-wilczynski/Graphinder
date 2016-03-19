@@ -16,8 +16,8 @@
     public abstract class ISelectionStrategyTests
     {
         protected ISelectionStrategy Strategy;
-        protected readonly ITestDataProvider<ICollection<Individual>> IndividualProvider = new TestIndividualProvider();
-        protected readonly ITestDataProvider<Graph> GraphDataProvider = new TestGraphProvider();
+        protected readonly ITestDataProvider<ICollection<Individual>> IndividualProvider = new IndividualsProvider();
+        protected readonly ITestDataProvider<Graph> GraphDataProvider = new GraphProvider();
         protected readonly ISubstituteProvider<IProblem> ProblemProvider = new ProblemSubstituteProvider(); 
 
         protected ISelectionStrategyTests()

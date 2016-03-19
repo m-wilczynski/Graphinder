@@ -7,9 +7,9 @@
     using Core.Problems;
     using SubstituteData;
 
-    public class TestIndividualProvider : ITestDataProvider<ICollection<Individual>>
+    public class IndividualsProvider : ITestDataProvider<ICollection<Individual>>
     {
-        private readonly ITestDataProvider<Graph> _graphProvider = new TestGraphProvider();
+        private readonly ITestDataProvider<Graph> _graphProvider = new GraphProvider();
         private readonly ISubstituteProvider<IProblem> _problemProvider = new ProblemSubstituteProvider();
 
         /// <summary>
