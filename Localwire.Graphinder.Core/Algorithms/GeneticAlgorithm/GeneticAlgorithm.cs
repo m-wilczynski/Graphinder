@@ -58,6 +58,7 @@
         /// </summary>
         public uint CurrentGeneration { get; private set; }
 
+        //TODO: Perhaps a SortedSet instead?
         /// <summary>
         /// Current population of individuals that algorithm bred.
         /// </summary>
@@ -115,6 +116,8 @@
                     if (_random.NextDouble() < Settings.CrossoverProbability)
                         //Crossover!
                         newIndividual = GeneticOperators.CrossoverStrategy.PerformCrossover(couple.Item1, couple.Item2);
+                    else
+                        continue;
 
                     //Should mutate?
                     if (_random.NextDouble() < Settings.MutationProbability)
@@ -127,14 +130,20 @@
 
                 CurrentGeneration++;
                 CurrentPopulation = newGeneration;
-                var bestIndividual = CurrentPopulation.OrderByDescending(i => i.SolutionFitness).First();
-                var solutionAsNodes = Graph.BinarySolutionAsNodes(bestIndividual.CurrentSolution);
-                if (CanAcceptAnswer(Graph.BinarySolutionAsNodes(bestIndividual.CurrentSolution)))
+                var solutionAsNodes = BestIndividualSolution();
+                if (CanAcceptAnswer(solutionAsNodes))
                     Problem.SetNewSolution(solutionAsNodes);
 
             }
             //TODO: Rename as total time and report on inter-generation execute times
             _processorTimeCost = DateTime.Now.Ticks - startTime;
+        }
+
+        private ICollection<Node> BestIndividualSolution()
+        {
+            var bestIndividual = CurrentPopulation.OrderByDescending(i => i.SolutionFitness).First();
+            var solutionAsNodes = Graph.BinarySolutionAsNodes(bestIndividual.CurrentSolution);
+            return solutionAsNodes;
         }
 
         //TODO: Go up right to the IAlgorithm?
@@ -147,7 +156,7 @@
             Problem.RestartProblemState();
             _processorTimeCost = long.MaxValue;
             GeneticOperators.SelectionStrategy.Set(CurrentPopulation);
-
+            Problem.SetNewSolution(BestIndividualSolution());
         }
 
         /// <summary>

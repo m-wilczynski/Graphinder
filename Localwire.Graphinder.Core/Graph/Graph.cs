@@ -201,6 +201,8 @@
         /// <returns>Decoded nodes.</returns>
         public ICollection<Node> BinarySolutionAsNodes(bool[] binaryEncodedSolution)
         {
+            if (binaryEncodedSolution == null)
+                throw new ArgumentNullException(nameof(binaryEncodedSolution));
             if (binaryEncodedSolution.Length != TotalNodes)
                 throw new InvalidOperationException("Binary encoded solution doesn't match total graph nodes!");
             HashSet<Node> output = new HashSet<Node>();

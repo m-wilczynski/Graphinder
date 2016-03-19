@@ -137,13 +137,5 @@
             _geneticAlgorithmThatHasLotsOfGenerations.LaunchAlgorithm();
             Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, _geneticAlgorithmThatHasLotsOfGenerations.Settings.GenerationsToCome);
         }
-
-        [Fact]
-        public void GeneticAlgorith_LaunchAlgorithm_SolutionChangesDuringSearch()
-        {
-            var currentSolution = Algorithm.Problem.CurrentSolution;
-            Algorithm.LaunchAlgorithm();
-            Assert.NotEqual(currentSolution, Algorithm.Problem.CurrentSolution);
-        }
     }
 }
