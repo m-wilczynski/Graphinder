@@ -18,6 +18,7 @@
         private readonly ITestDataProvider<GeneticAlgorithmSettings> _settingsProvider = new GeneticAlgorithmSettingsProvider();
         private GeneticAlgorithm _geneticAlgorithmThatAlwaysCrossoversAndMutates;
         private GeneticAlgorithm _geneticAlgorithmThatHasLotsOfGenerations;
+        private GeneticAlgorithm _geneticAlgorithmThatAlwaysCrossoversAndMutatesAndPerformsElitism;
 
         public GeneticAlgorithmTests()
         {
@@ -28,11 +29,15 @@
             _geneticAlgorithmThatAlwaysCrossoversAndMutates = new GeneticAlgorithm(_graphFactory.ProvideValid(),
                 _problemProvider.ProvideSubstitute(),
                 _operatorsProvider.ProvideSubstitute(),
-                new GeneticAlgorithmSettings(crossoverProbability: 1d, mutationProbability: 1d));
+                new GeneticAlgorithmSettings(generationsToCome: 1, crossoverProbability: 1d, mutationProbability: 1d));
             _geneticAlgorithmThatHasLotsOfGenerations = new GeneticAlgorithm(_graphFactory.ProvideValid(),
                 _problemProvider.ProvideSubstitute(),
                 _operatorsProvider.ProvideSubstitute(),
                 new GeneticAlgorithmSettings(generationsToCome: 20, initialPopulationSize: 4));
+            _geneticAlgorithmThatAlwaysCrossoversAndMutatesAndPerformsElitism = new GeneticAlgorithm(_graphFactory.ProvideValid(),
+                _problemProvider.ProvideSubstitute(),
+                _operatorsProvider.ProvideSubstitute(),
+                new GeneticAlgorithmSettings(generationsToCome: 1, crossoverProbability: 1d, mutationProbability: 1d, withElitistSelection: true));
         }
 
         [Fact]
@@ -142,10 +147,10 @@
         [Fact]
         public void GeneticAlgorithm_ElitistSelection_PreservesProperNumberOfIndividuals()
         {
-            var individuals = _geneticAlgorithmThatAlwaysCrossoversAndMutates.CurrentPopulation;
+            var individuals = _geneticAlgorithmThatAlwaysCrossoversAndMutatesAndPerformsElitism.CurrentPopulation;
             var elite = individuals.LastOrDefault();
-            _geneticAlgorithmThatAlwaysCrossoversAndMutates.LaunchAlgorithm();
-            Assert.True(_geneticAlgorithmThatAlwaysCrossoversAndMutates.CurrentPopulation.Any(i => i.Equals(elite)));
+            _geneticAlgorithmThatAlwaysCrossoversAndMutatesAndPerformsElitism.LaunchAlgorithm();
+            Assert.True(_geneticAlgorithmThatAlwaysCrossoversAndMutatesAndPerformsElitism.CurrentPopulation.Any(i => i.Equals(elite)));
         }
     }
 }

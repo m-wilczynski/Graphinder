@@ -20,7 +20,7 @@
         public static void Main()
         {
             var graph = new Graph();
-            graph.FillGraphRandomly(50, 5);
+            graph.FillGraphRandomly(100, 5);
 
             var alghs = new List<IAlgorithm>
             {
@@ -32,7 +32,10 @@
                     new CoolingSetup(4000, 0.03, new AllRandomCooling())),
                 new GeneticAlgorithm(graph, new MinimumVertexCover(),
                     new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph), new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
-                    new GeneticAlgorithmSettings(40, 50, 0.5f, 0.3f))
+                    new GeneticAlgorithmSettings(40, 50, 0.5f, 0.3f)),
+                new GeneticAlgorithm(graph, new MinimumVertexCover(),
+                    new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph), new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
+                    new GeneticAlgorithmSettings(40, 50, 0.5f, 0.3f, true))
             };
             foreach (var algh in alghs)
             {
