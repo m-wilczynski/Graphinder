@@ -7,9 +7,9 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
     using Problems;
 
     /// <summary>
-    /// Individual (atomic element of a population) holding solution to given problem.
+    /// Represents single individual (atomic element of a population) holding solution to given problem.
     /// </summary>
-    public class Individual
+    public class Individual : IComparable<Individual>
     {
         public readonly Graph Graph;
         private readonly Random _random = new Random();
@@ -49,6 +49,12 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
 
         //TODO: Should be dependent on IProblem's criterias!
         public uint SolutionFitness { get { return Convert.ToUInt32(Graph.TotalNodes - SolutionOutcome) + 1; } }
+
+        public int CompareTo(Individual other)
+        {
+            if (other == null) return 1;
+            return SolutionFitness.CompareTo(other.SolutionFitness);
+        }
 
         /// <summary>
         /// Ensure correctness of solution that individual holds

@@ -35,8 +35,8 @@
 
             //Only reference check can be performaed here as parents having same genotype
             // will end up having exactly same offspring, thus comparison would eventually fail
-            Assert.NotEqual(offspring, parent1);
-            Assert.NotEqual(offspring, parent2);
+            Assert.False(offspring.Equals(parent1));
+            Assert.False(offspring.Equals(parent2));
         }
 
         [Fact]

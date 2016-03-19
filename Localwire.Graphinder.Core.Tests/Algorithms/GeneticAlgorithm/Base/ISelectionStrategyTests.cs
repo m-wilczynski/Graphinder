@@ -93,7 +93,7 @@
             var couple = Strategy.NextCouple();
             Assert.Contains(individuals, i => i.Equals(couple.Item1));
             Assert.Contains(individuals, i => i.Equals(couple.Item2));
-            Assert.NotEqual(couple.Item1, couple.Item2);
+            Assert.False(couple.Item1.Equals(couple.Item2));
         }
 
         [Fact]

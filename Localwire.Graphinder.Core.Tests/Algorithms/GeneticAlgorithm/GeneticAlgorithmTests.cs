@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Core.Algorithms.GeneticAlgorithm.Setup;
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Graph;
@@ -136,6 +137,15 @@
             Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, (uint)0);
             _geneticAlgorithmThatHasLotsOfGenerations.LaunchAlgorithm();
             Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, _geneticAlgorithmThatHasLotsOfGenerations.Settings.GenerationsToCome);
+        }
+
+        [Fact]
+        public void GeneticAlgorithm_ElitistSelection_PreservesProperNumberOfIndividuals()
+        {
+            var individuals = _geneticAlgorithmThatAlwaysCrossoversAndMutates.CurrentPopulation;
+            var elite = individuals.LastOrDefault();
+            _geneticAlgorithmThatAlwaysCrossoversAndMutates.LaunchAlgorithm();
+            Assert.True(_geneticAlgorithmThatAlwaysCrossoversAndMutates.CurrentPopulation.Any(i => i.Equals(elite)));
         }
     }
 }

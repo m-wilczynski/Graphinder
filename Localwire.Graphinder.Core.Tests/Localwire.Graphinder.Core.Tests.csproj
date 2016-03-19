@@ -91,12 +91,12 @@
     <Compile Include="Providers\SubstituteData\ProblemSubstituteProvider.cs" />
     <Compile Include="Providers\SubstituteData\SelectionStrategyProvider.cs" />
     <Compile Include="Providers\TestData\GeneticAlgorithmSettingsProvider.cs" />
-    <Compile Include="Providers\TestData\TestGraphProvider.cs" />
+    <Compile Include="Providers\TestData\GraphProvider.cs" />
     <Compile Include="Providers\ITestDataProvider.cs" />
-    <Compile Include="Providers\TestData\TestIndividualProvider.cs" />
+    <Compile Include="Providers\TestData\IndividualsProvider.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\AllRandomCoolingTests.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingSetupTests.cs" />
-    <Compile Include="Providers\TestData\TestCoolingSetupProvider.cs" />
+    <Compile Include="Providers\TestData\CoolingSetupProvider.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingTests.cs" />
     <Compile Include="Problems\IProblemTests.cs" />
     <Compile Include="Problems\MinimumVertexCover\MinimumVertexCoverTests.cs" />
