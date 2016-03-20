@@ -55,7 +55,7 @@
             foreach (var element in _individualsWeight)
             {
                 if (element.Value > randomWeight)
-                    return previous ?? element.Key;
+                    return element.Key;
                 previous = element.Key;
             }
             return previous;
