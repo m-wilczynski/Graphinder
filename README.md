@@ -22,8 +22,11 @@ http://localwire.pl/category/dajsiepoznac/
 - [x] Implementing missing unit tests for part of the code.
 - [ ] Reporting problem solving progress once upon a time.
 - [ ] Parallelizing problem solving.
+- [ ] WebAPI microservices for each domain (Problem solving, User management etc.)
 - [ ] ASP.NET MVC base implementation for algorithms and problems.
 - [ ] Task queue implementation.
 - [ ] SignalR basic reporting back on progress on searching solution.
 - [ ] Front-end sugar.
+
+### Backlog:
 - [ ] Other problems and algorithms (perhaps)?
