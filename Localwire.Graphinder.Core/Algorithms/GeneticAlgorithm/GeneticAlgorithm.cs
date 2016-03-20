@@ -112,12 +112,13 @@
                     }
                 }
 
+
+                //Refresh generation in selection strategy with actual one
+                GeneticOperators.SelectionStrategy.Set(populationToMutate);
+
                 //Build new generation of size of previous one
                 while (newGeneration.Count < CurrentPopulation.Count)
                 {
-                    //Refresh generation in selection strategy with actual one
-                    GeneticOperators.SelectionStrategy.Set(CurrentPopulation);
-
                     //Choose couple for crossover
                     var couple = GeneticOperators.SelectionStrategy.NextCouple();
 
