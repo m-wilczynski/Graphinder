@@ -36,7 +36,9 @@
             if (newPopulation.Any(i => i.Graph != graph || i.Problem != problem))
                 throw new AlgorithmException("Setting up new population", "Individuals in population represent either different graphs or different problems");
             _population = newPopulation;
-            _population = _population.OrderBy(p => p.SolutionFitness).ToList();
+            //In case is not SortedSet<T>
+            if (!(_population is SortedSet<Individual>))
+                _population = _population.OrderBy(p => p.SolutionFitness).ToList();
             InitializeRoulette();
         }
 
