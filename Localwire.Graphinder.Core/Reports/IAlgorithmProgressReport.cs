@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Report
+﻿namespace Localwire.Graphinder.Core.Reports
 {
     using System;
     using System.Collections.Generic;

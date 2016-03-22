@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Report.AlgorithmReports.SimulatedAnnealing
+﻿namespace Localwire.Graphinder.Core.Reports.AlgorithmReports.SimulatedAnnealing
 {
     public interface ISimulatedAnnealingProgressReport : IAlgorithmProgressReport
     {

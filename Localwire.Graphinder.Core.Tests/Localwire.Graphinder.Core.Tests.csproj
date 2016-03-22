@@ -101,6 +101,9 @@
     <Compile Include="Problems\IProblemTests.cs" />
     <Compile Include="Problems\MinimumVertexCover\MinimumVertexCoverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\GeneticAlgorithmProgressReportTests.cs" />
+    <Compile Include="Reports\IAlgorithmProgressReportTests.cs" />
+    <Compile Include="Reports\SimulatedAnnealingProgressReportTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

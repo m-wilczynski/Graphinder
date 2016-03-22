@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Report.AlgorithmReports.GeneticAlgorithm
+﻿namespace Localwire.Graphinder.Core.Reports.AlgorithmReports.GeneticAlgorithm
 {
     public interface IGeneticAlgorithmProgressReport : IAlgorithmProgressReport
     {
