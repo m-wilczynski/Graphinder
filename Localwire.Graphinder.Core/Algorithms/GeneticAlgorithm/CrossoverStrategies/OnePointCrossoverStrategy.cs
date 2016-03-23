@@ -73,7 +73,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
         {
             //Pick random crossover point between allowed boundries
             double randomized = 0;
-            while (randomized > CrossoverPointMin && randomized < CrossoverPointMax)
+            while (randomized < CrossoverPointMin || randomized > CrossoverPointMax)
                 randomized = _random.NextDouble();
 
             var randomIndex = (int)(randomized * _graph.TotalNodes);
