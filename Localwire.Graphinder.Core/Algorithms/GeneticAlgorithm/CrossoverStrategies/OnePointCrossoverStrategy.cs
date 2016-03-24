@@ -46,14 +46,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
         /// <returns>Result of crossing over - new offspring.</returns>
         public Individual PerformCrossover(Individual leftParent, Individual rightParent)
         {
-            if (leftParent.Equals(rightParent))
-                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals are the same");
-            if (leftParent.Graph != rightParent.Graph)
-                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals represent solutions for different graph");
-            if (leftParent.Problem != rightParent.Problem)
-                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals represent solutions for different problem");
-            if (leftParent.CurrentSolution.Length != rightParent.CurrentSolution.Length)
-                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals' solutions have different lenghts");
+            CanPerform(leftParent, rightParent);
             var length = leftParent.CurrentSolution.Length;
             var outputSolution = new bool[length];
 
@@ -65,6 +58,22 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
                     outputSolution[i] = rightParent.CurrentSolution[i];
             }
             return new Individual(_graph, leftParent.Problem, outputSolution);
+        }
+
+        private void CanPerform(Individual leftParent, Individual rightParent)
+        {
+            if (leftParent == null)
+                throw new ArgumentNullException(nameof(leftParent));
+            if (rightParent == null)
+                throw new ArgumentNullException(nameof(rightParent));
+            if (leftParent.Equals(rightParent))
+                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals are the same");
+            if (leftParent.Graph != rightParent.Graph)
+                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals represent solutions for different graph");
+            if (leftParent.Problem != rightParent.Problem)
+                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals represent solutions for different problem");
+            if (leftParent.CurrentSolution.Length != rightParent.CurrentSolution.Length)
+                throw new AlgorithmException("Performing genetic crossover", "Crossover individuals' solutions have different lenghts");
         }
 
         private void RandomizeCrossoverPoint()

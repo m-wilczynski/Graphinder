@@ -1,5 +1,6 @@
 ﻿namespace Localwire.Graphinder.Core.Tests.Algorithms.GeneticAlgorithm.Base
 {
+    using System;
     using System.Collections.Generic;
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Algorithms.GeneticAlgorithm.CrossoverStrategies;
@@ -80,6 +81,20 @@
             Assert.Throws<AlgorithmException>(() =>
             {
                 Strategy.PerformCrossover(parent1, parent2);
+            });
+        }
+
+        [Fact]
+        public void ICrossoverStrategy_PerformCrossover_ThrowOnEitherNullParent()
+        {
+            var parent1 = new Individual(ValidGraph, ValidProblem);
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                Strategy.PerformCrossover(parent1, null);
+            });
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                Strategy.PerformCrossover(null, parent1);
             });
         }
 
