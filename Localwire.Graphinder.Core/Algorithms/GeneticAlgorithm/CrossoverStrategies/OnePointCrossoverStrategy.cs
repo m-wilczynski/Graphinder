@@ -59,12 +59,10 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
 
             for (int i = 0; i < length; i++)
             {
-                var el1 = i < leftParent.CurrentSolution.Length ? leftParent.CurrentSolution[i] : false;
-                var el2 = i < rightParent.CurrentSolution.Length ? rightParent.CurrentSolution[i] : false;
                 if (i < CrossoverPointIndex)
-                    outputSolution[i] = el1;
+                    outputSolution[i] = leftParent.CurrentSolution[i];
                 else
-                    outputSolution[i] = el2;
+                    outputSolution[i] = rightParent.CurrentSolution[i];
             }
             return new Individual(_graph, leftParent.Problem, outputSolution);
         }
