@@ -5,6 +5,8 @@
     using CoolingStrategies;
     using Graph;
     using Problems;
+    using Reports;
+    using Reports.AlgorithmReports.SimulatedAnnealing;
     using Setup;
 
     /// <summary>
@@ -74,18 +76,18 @@
         /// <summary>
         /// Searches for solution for chosen problem.
         /// </summary>
-        protected override void SearchForSolution()
+        protected override IEnumerable<IAlgorithmProgressReport> SearchForSolution()
         {
             RestartSystem();
-            CoolSystem();
+            return CoolSystem();
         }
 
         /// <summary>
         /// Cools system until cooling strategy minimal temperature is met.
         /// </summary>
-        private void CoolSystem()
+        private IEnumerable<IAlgorithmProgressReport> CoolSystem()
         {
-            _processorTimeCost = CoolingSetup.CoolingStrategy.Cool(this, CoolOnce);
+            return CoolingSetup.CoolingStrategy.Cool(this, CoolOnce);
         }
 
         /// <summary>

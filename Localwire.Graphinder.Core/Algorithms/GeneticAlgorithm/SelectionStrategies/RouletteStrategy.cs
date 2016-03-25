@@ -52,11 +52,14 @@
                 throw new InvalidOperationException("Selection strategy needs to have population set first!");
             var randomWeight = _random.NextDouble();
             Individual previous = null;
-            foreach (var element in _individualsWeight)
+            lock (_individualsWeight)
             {
-                if (element.Value >= randomWeight)
-                    return element.Key;
-                previous = element.Key;
+                foreach (var element in _individualsWeight)
+                {
+                    if (element.Value >= randomWeight)
+                        return element.Key;
+                    previous = element.Key;
+                }
             }
             return previous;
         }
@@ -81,14 +84,17 @@
 
         private void InitializeRoulette()
         {
-            _individualsWeight.Clear();
-            var populationSum = _population.Sum(p => p.SolutionFitness);
-            var probabilitiesSum = 0d;
-            foreach (var element in _population)
+            lock (_individualsWeight)
             {
-                var probability = (double) element.SolutionFitness/populationSum;
-                _individualsWeight.Add(element, probabilitiesSum + probability);
-                probabilitiesSum += probability;
+                _individualsWeight.Clear();
+                var populationSum = _population.Sum(p => p.SolutionFitness);
+                var probabilitiesSum = 0d;
+                foreach (var element in _population)
+                {
+                    var probability = (double) element.SolutionFitness/populationSum;
+                    _individualsWeight.Add(element, probabilitiesSum + probability);
+                    probabilitiesSum += probability;
+                }
             }
         }
     }

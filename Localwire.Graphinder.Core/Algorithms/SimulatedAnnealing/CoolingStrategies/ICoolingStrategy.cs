@@ -1,6 +1,9 @@
 ﻿namespace Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.CoolingStrategies
 {
     using System;
+    using System.Collections.Generic;
+    using Reports;
+    using Reports.AlgorithmReports.SimulatedAnnealing;
 
     /// <summary>
     /// Interface representing behaviour of cooling strategy.
@@ -13,6 +16,6 @@
         /// <param name="algorithm">Simulated annealing algorithm being cooled.</param>
         /// <param name="coolingAction">Delegate of action to cool system by one step of cooling ratio.</param>
         /// <returns>Processor time cost</returns>
-        long Cool(IAlgorithm algorithm, Action coolingAction);
+        IEnumerable<IAlgorithmProgressReport> Cool(IAlgorithm algorithm, Action coolingAction);
     }
 }

@@ -1,8 +1,10 @@
 ﻿namespace Localwire.Graphinder.Core.Algorithms
 {
+    using System;
     using System.Collections.Generic;
     using Graph;
     using Problems;
+    using Reports;
 
     public interface IAlgorithm
     {
@@ -39,5 +41,8 @@
         /// </summary>
         /// <returns>Decision if algorithm can proceed.</returns>
         bool CanContinueSearching();
+
+        IObservable<IAlgorithmProgressReport> ProgressReportChanged { get; }
+        
     }
 }

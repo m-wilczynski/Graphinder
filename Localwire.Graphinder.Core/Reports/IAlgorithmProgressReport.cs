@@ -24,6 +24,11 @@
         /// <summary>
         /// Fitness of current solution
         /// </summary>
-        uint CurrentFitness { get; } 
+        uint CurrentFitness { get; }
+        
+        /// <summary>
+        /// Was solution accepted?
+        /// </summary>
+        bool Accepted { get; } 
     }
 }

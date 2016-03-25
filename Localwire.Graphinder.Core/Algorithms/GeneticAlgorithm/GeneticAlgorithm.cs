@@ -6,6 +6,8 @@
     using System.Reflection;
     using Graph;
     using Problems;
+    using Reports;
+    using Reports.AlgorithmReports.GeneticAlgorithm;
     using Setup;
 
     /// <summary>
@@ -89,7 +91,7 @@
         /// <summary>
         /// Searches for solution for chosen problem.
         /// </summary>
-        protected override void SearchForSolution()
+        protected override IEnumerable<IAlgorithmProgressReport> SearchForSolution()
         {
             RestartSystem();
 
@@ -142,8 +144,13 @@
                 CurrentGeneration++;
                 CurrentPopulation = newGeneration;
                 var solutionAsNodes = BestIndividualSolution();
+                bool wasAccepted = false;
                 if (CanAcceptAnswer(solutionAsNodes))
+                {
                     Problem.SetNewSolution(solutionAsNodes);
+                    wasAccepted = true;
+                }
+                yield return new GeneticAlgorithmProgressReport(DateTime.Now.Ticks - startTime, Problem.CurrentSolution, 0, CurrentGeneration, wasAccepted);
 
             }
             //TODO: Rename as total time and report on inter-generation execute times

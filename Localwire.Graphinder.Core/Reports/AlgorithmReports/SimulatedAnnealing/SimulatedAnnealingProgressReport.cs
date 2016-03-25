@@ -27,12 +27,17 @@
         public uint CurrentFitness { get; }
 
         /// <summary>
+        /// Was solution accepted?
+        /// </summary>
+        public bool Accepted { get; }
+
+        /// <summary>
         /// Current temperature of <see cref="T:Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing"/> algorithm
         /// </summary>
         public double CurrentTemperature { get; }
 
         public SimulatedAnnealingProgressReport(long processorTime, ICollection<Node> currentSolution,
-            uint currentFitness, uint currentTemperature)
+            uint currentFitness, uint currentTemperature, bool accepted = false)
         {
             if (processorTime < 0)
                 throw new ArgumentOutOfRangeException(nameof(processorTime), processorTime, "Processor time is lower than 0");
@@ -43,6 +48,7 @@
             CurrentSolution = currentSolution;
             CurrentFitness = currentFitness;
             CurrentTemperature = currentTemperature;
+            Accepted = accepted;
         }
     }
 }

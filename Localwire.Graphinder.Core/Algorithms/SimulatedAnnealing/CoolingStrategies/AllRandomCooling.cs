@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using Graph;
+    using Reports;
+    using Reports.AlgorithmReports.SimulatedAnnealing;
 
     /// <summary>
     /// Represents all random cooling strategy.
@@ -24,7 +26,7 @@
         /// <param name="algorithm">Simulated annealing algorithm being cooled.</param>
         /// <param name="coolingAction">Delegate of action to cool system by one step of cooling ratio.</param>
         /// <returns>Processor time cost</returns>
-        public long Cool(IAlgorithm algorithm, Action coolingAction)
+        public IEnumerable<IAlgorithmProgressReport> Cool(IAlgorithm algorithm, Action coolingAction)
         {
             if (algorithm == null) throw new ArgumentException(nameof(algorithm));
             if (coolingAction == null) throw new ArgumentException(nameof(coolingAction));
@@ -41,12 +43,15 @@
 
                 //Accept the answer if algorithm allows
                 if (algorithm.CanAcceptAnswer(proposedSolution))
+                {
                     algorithm.Problem.SetNewSolution(proposedSolution);
+                    yield return new SimulatedAnnealingProgressReport(DateTime.Now.Ticks - startTime, algorithm.Problem.CurrentSolution, 0, 0);
+                }
 
                 //Cool system
                 coolingAction.Invoke();
             }
-            return DateTime.Now.Ticks - startTime;
+            
         }
     }
 }

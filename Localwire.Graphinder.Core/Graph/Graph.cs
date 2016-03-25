@@ -63,9 +63,12 @@
         public Node GetRandomNode()
         {
             //If sequence of available, preselected, random nodes is empty, refill it
-            if (_randomNodeIndexes.Count == 0)
-                _randomNodeIndexes = new Stack<int>(Enumerable.Range(0, _nodes.Count).OrderBy(r => _random.Next()));
-            return _nodes[_randomNodeIndexes.Pop()];
+            lock (_randomNodeIndexes)
+            {
+                if (_randomNodeIndexes.Count <= 0)
+                    _randomNodeIndexes = new Stack<int>(Enumerable.Range(0, _nodes.Count).OrderBy(r => _random.Next()));
+                return _nodes[_randomNodeIndexes.Pop()];
+            }
         }
 
         /// <summary>

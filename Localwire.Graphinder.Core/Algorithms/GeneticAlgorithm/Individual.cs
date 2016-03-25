@@ -61,6 +61,19 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
             return Id.CompareTo(other.Id);
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            var casted = obj as Individual;
+            if (casted == null) return false;
+            return casted.Id.Equals(Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
         /// <summary>
         /// Ensure correctness of solution that individual holds
         /// </summary>

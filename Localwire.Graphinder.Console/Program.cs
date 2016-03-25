@@ -32,18 +32,19 @@
                     new CoolingSetup(4000, 0.03, new AllRandomCooling())),
                 new GeneticAlgorithm(graph, new MinimumVertexCover(),
                     new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph), new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
-                    new GeneticAlgorithmSettings(40, 50, 0.5f, 0.3f)),
+                    new GeneticAlgorithmSettings(400, 50, 0.5f, 0.3f)),
                 new GeneticAlgorithm(graph, new MinimumVertexCover(),
                     new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph), new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
-                    new GeneticAlgorithmSettings(40, 50, 0.5f, 0.3f, true))
+                    new GeneticAlgorithmSettings(400, 50, 0.5f, 0.3f, true))
             };
             foreach (var algh in alghs)
             {
-                System.Console.WriteLine(algh.Problem.CurrentOutcome);
+                algh.LaunchAlgorithm();
+                algh.ProgressReportChanged.Subscribe(
+                    report =>
+                        Console.WriteLine("[ALGH[{0}]]Current: {1} @ cost of {2} was accepted: {3}", (algh as Algorithm).Id.ToString().Substring(0, 5), report.CurrentSolution.Count, report.ProcessorTime, report.Accepted));
             }
 
-            foreach (var algh in alghs)
-                algh.LaunchAlgorithm();
 
             foreach (var algh in alghs)
             {

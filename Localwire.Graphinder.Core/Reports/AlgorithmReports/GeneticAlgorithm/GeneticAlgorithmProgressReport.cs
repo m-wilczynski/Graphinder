@@ -27,12 +27,17 @@
         public uint CurrentFitness { get; }
 
         /// <summary>
+        /// Was solution accepted?
+        /// </summary>
+        public bool Accepted { get; }
+
+        /// <summary>
         /// Current generation of <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/>
         /// </summary>
         public uint CurrentGeneration { get; }
 
         public GeneticAlgorithmProgressReport(long processorTime, ICollection<Node> currentSolution,
-            uint currentFitness, uint currentGeneration)
+            uint currentFitness, uint currentGeneration, bool accepted = false)
         {
             if (processorTime < 0)
                 throw new ArgumentOutOfRangeException(nameof(processorTime), processorTime, "Processor time is lower than 0");
@@ -43,6 +48,7 @@
             CurrentSolution = currentSolution;
             CurrentFitness = currentFitness;
             CurrentGeneration = currentGeneration;
+            Accepted = accepted;
         }
     }
 }
