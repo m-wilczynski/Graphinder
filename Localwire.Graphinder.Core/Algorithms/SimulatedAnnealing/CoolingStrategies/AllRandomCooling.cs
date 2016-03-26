@@ -38,6 +38,8 @@
                 HashSet<Node> proposedSolution = new HashSet<Node>();
                 while (!algorithm.Problem.IsSolutionCorrect(proposedSolution))
                 {
+                    //TODO: Highly ineffective in concurrent environment when one Graph is shared among many algorithms
+                    //SOLUTION: Create shuffled range of indexes here, then request Node of rolled index
                     proposedSolution.Add(algorithm.Graph.GetRandomNode());
                 }
 

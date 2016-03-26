@@ -178,7 +178,6 @@
             GenerateInitialPopulation();
             Problem.RestartProblemState();
             _processorTimeCost = long.MaxValue;
-            GeneticOperators.SelectionStrategy.Set(CurrentPopulation);
         }
 
         /// <summary>

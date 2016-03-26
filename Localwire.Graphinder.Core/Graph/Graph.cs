@@ -57,7 +57,7 @@
         }
 
         /// <summary>
-        /// Returns random node from graph
+        /// Returns random node from graph. Can end up in returning same Node in a row!
         /// </summary>
         /// <returns>Random node</returns>
         public Node GetRandomNode()

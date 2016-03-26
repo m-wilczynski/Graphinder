@@ -141,6 +141,8 @@
         {
             Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, (uint)0);
             _geneticAlgorithmThatHasLotsOfGenerations.LaunchAlgorithm();
+            while (_geneticAlgorithmThatHasLotsOfGenerations.CanContinueSearching())
+            { }
             Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, _geneticAlgorithmThatHasLotsOfGenerations.Settings.GenerationsToCome);
         }
 
