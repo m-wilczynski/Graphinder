@@ -33,5 +33,11 @@
             Algorithm.LaunchAlgorithm();
             Assert.False(Algorithm.Graph.CanAdd());
         }
+
+        protected void BlockTestExecutionUntilLaunchAlgorithmFinishes(IAlgorithm algorithm)
+        {
+            while (algorithm.CanContinueSearching())
+            { }
+        }
     }
 }

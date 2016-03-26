@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Core.Algorithms;
     using Core.Algorithms.GeneticAlgorithm.Setup;
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Graph;
@@ -107,6 +108,7 @@
             if (algorithm == null)
                 throw new InvalidCastException("GeneticAlgorithm");
             algorithm.LaunchAlgorithm();
+            BlockTestExecutionUntilLaunchAlgorithmFinishes(algorithm);
             algorithm.GeneticOperators.SelectionStrategy.Received().Set(Arg.Any<ICollection<Individual>>());        
         }
 
@@ -132,6 +134,7 @@
         public void GeneticAlgorithm_LaunchAlgorithm_UsesMutationStrategyIfRolled()
         {
             _geneticAlgorithmThatAlwaysCrossoversAndMutates.LaunchAlgorithm();
+            BlockTestExecutionUntilLaunchAlgorithmFinishes(_geneticAlgorithmThatAlwaysCrossoversAndMutates);
             _geneticAlgorithmThatAlwaysCrossoversAndMutates.GeneticOperators.MutationStrategy.Received()
                 .Mutate(Arg.Any<Individual>());
         }
@@ -141,8 +144,7 @@
         {
             Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, (uint)0);
             _geneticAlgorithmThatHasLotsOfGenerations.LaunchAlgorithm();
-            while (_geneticAlgorithmThatHasLotsOfGenerations.CanContinueSearching())
-            { }
+            BlockTestExecutionUntilLaunchAlgorithmFinishes(_geneticAlgorithmThatHasLotsOfGenerations);
             Assert.Equal(_geneticAlgorithmThatHasLotsOfGenerations.CurrentGeneration, _geneticAlgorithmThatHasLotsOfGenerations.Settings.GenerationsToCome);
         }
 

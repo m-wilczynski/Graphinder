@@ -20,13 +20,23 @@
         [Fact]
         public void AllRandomCooling_Cool_ThrowOnNoAlgorithm()
         {
-            Assert.Throws<ArgumentException>(() => _strategy.Cool(null, () => { }));
+            Assert.Throws<ArgumentException>(() =>
+            {
+                //Force yield
+                foreach (var element in _strategy.Cool(null, () => { }))
+                    ;
+            });
         }
 
         [Fact]
         public void AllRandomCooling_Cool_ThrowOnNoCoolAction()
         {
-            Assert.Throws<ArgumentException>(() => _strategy.Cool(_algorithm, null));
+            Assert.Throws<ArgumentException>(() =>
+            {
+                //Force yield
+                foreach (var element in _strategy.Cool(_algorithm, null))
+                    ;
+            });
         }
 
         [Fact]
