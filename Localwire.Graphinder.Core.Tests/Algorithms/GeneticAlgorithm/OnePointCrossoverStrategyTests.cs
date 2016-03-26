@@ -28,5 +28,7 @@
             Assert.Throws<ArgumentException>(
                 () => new OnePointCrossoverStrategy(new Graph()));
         }
+
+
     }
 }

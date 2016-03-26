@@ -46,6 +46,26 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
         /// <returns>Result of crossing over - new offspring.</returns>
         public Individual PerformCrossover(Individual leftParent, Individual rightParent)
         {
+            CanPerform(leftParent, rightParent);
+            var length = leftParent.CurrentSolution.Length;
+            var outputSolution = new bool[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                if (i < CrossoverPointIndex)
+                    outputSolution[i] = leftParent.CurrentSolution[i];
+                else
+                    outputSolution[i] = rightParent.CurrentSolution[i];
+            }
+            return new Individual(_graph, leftParent.Problem, outputSolution);
+        }
+
+        private void CanPerform(Individual leftParent, Individual rightParent)
+        {
+            if (leftParent == null)
+                throw new ArgumentNullException(nameof(leftParent));
+            if (rightParent == null)
+                throw new ArgumentNullException(nameof(rightParent));
             if (leftParent.Equals(rightParent))
                 throw new AlgorithmException("Performing genetic crossover", "Crossover individuals are the same");
             if (leftParent.Graph != rightParent.Graph)
@@ -54,19 +74,6 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.CrossoverStrateg
                 throw new AlgorithmException("Performing genetic crossover", "Crossover individuals represent solutions for different problem");
             if (leftParent.CurrentSolution.Length != rightParent.CurrentSolution.Length)
                 throw new AlgorithmException("Performing genetic crossover", "Crossover individuals' solutions have different lenghts");
-            var length = leftParent.CurrentSolution.Length;
-            var outputSolution = new bool[length];
-
-            for (int i = 0; i < length; i++)
-            {
-                var el1 = i < leftParent.CurrentSolution.Length ? leftParent.CurrentSolution[i] : false;
-                var el2 = i < rightParent.CurrentSolution.Length ? rightParent.CurrentSolution[i] : false;
-                if (i < CrossoverPointIndex)
-                    outputSolution[i] = el1;
-                else
-                    outputSolution[i] = el2;
-            }
-            return new Individual(_graph, leftParent.Problem, outputSolution);
         }
 
         private void RandomizeCrossoverPoint()
