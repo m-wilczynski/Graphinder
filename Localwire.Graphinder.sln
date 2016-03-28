@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Consol
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithms", "Algorithms", "{F9935BF0-508D-4162-9114-FA96B6E537DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.DataAccess", "Localwire.Graphinder.Algorithms.DataAccess\Localwire.Graphinder.Algorithms.DataAccess.csproj", "{B3E0699B-DCC8-4176-A512-AE397EA69912}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{22E8BACD-E2B1-497D-A24C-4D57B237EC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22E8BACD-E2B1-497D-A24C-4D57B237EC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22E8BACD-E2B1-497D-A24C-4D57B237EC60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3E0699B-DCC8-4176-A512-AE397EA69912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3E0699B-DCC8-4176-A512-AE397EA69912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3E0699B-DCC8-4176-A512-AE397EA69912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3E0699B-DCC8-4176-A512-AE397EA69912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9BE00B94-B116-4387-9ACD-7902BC0B5E37} = {F9935BF0-508D-4162-9114-FA96B6E537DF}
 		{496204F1-CAA1-45B0-8DDF-937A26C9A125} = {F9935BF0-508D-4162-9114-FA96B6E537DF}
+		{B3E0699B-DCC8-4176-A512-AE397EA69912} = {F9935BF0-508D-4162-9114-FA96B6E537DF}
 	EndGlobalSection
 EndGlobal
