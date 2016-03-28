@@ -43,12 +43,16 @@
                     proposedSolution.Add(algorithm.Graph.GetRandomNode());
                 }
 
+                bool wasAccepted = false;
+
                 //Accept the answer if algorithm allows
                 if (algorithm.CanAcceptAnswer(proposedSolution))
                 {
                     algorithm.Problem.SetNewSolution(proposedSolution);
-                    yield return new SimulatedAnnealingProgressReport(DateTime.Now.Ticks - startTime, algorithm.Problem.CurrentSolution, 0, 0);
+                    wasAccepted = true;
                 }
+
+                yield return new SimulatedAnnealingProgressReport(DateTime.Now.Ticks - startTime, algorithm.Problem.CurrentSolution, 0, 0, wasAccepted);
 
                 //Cool system
                 coolingAction.Invoke();
