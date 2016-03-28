@@ -52,7 +52,11 @@
         /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
         /// </summary>
-        public override long ProcessorTimeCost { get { return _processorTimeCost; } }
+        public override long ProcessorTimeCost
+        {
+            get { return _processorTimeCost; }
+            protected set { _processorTimeCost = value; }
+        }
 
         /// <summary>
         /// Current generation number that algorithm bred.

@@ -38,7 +38,7 @@
         /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
         /// </summary>
-        public abstract long ProcessorTimeCost { get; }
+        public abstract long ProcessorTimeCost { get; protected set; }
 
         /// <summary>
         /// Graph on which algorithm operate.
@@ -97,6 +97,7 @@
         protected virtual void OnProgressChanged(IAlgorithmProgressReport algorithmProgress)
         {
             CurrentProgressReport = algorithmProgress;
+            ProcessorTimeCost = algorithmProgress.ProcessorTime;
         }
     }
 }
