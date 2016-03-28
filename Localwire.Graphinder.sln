@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Consol
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithms", "Algorithms", "{F9935BF0-508D-4162-9114-FA96B6E537DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.Data", "Localwire.Graphinder.Algorithms.DataAccess\Localwire.Graphinder.Algorithms.Data.csproj", "{B3E0699B-DCC8-4176-A512-AE397EA69912}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.Data", "Localwire.Graphinder.Algorithms.Data\Localwire.Graphinder.Algorithms.Data.csproj", "{B3E0699B-DCC8-4176-A512-AE397EA69912}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{52D44C06-DC0E-40AC-8104-033681D68762}"
 EndProject
