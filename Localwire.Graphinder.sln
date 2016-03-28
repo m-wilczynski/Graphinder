@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.Core", "Localwire.Graphinder.Core\Localwire.Graphinder.Algorithms.Core.csproj", "{9BE00B94-B116-4387-9ACD-7902BC0B5E37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.Core", "Localwire.Graphinder.Algorithms.Core\Localwire.Graphinder.Algorithms.Core.csproj", "{9BE00B94-B116-4387-9ACD-7902BC0B5E37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms..Core.Tests", "Localwire.Graphinder.Core.Tests\Localwire.Graphinder.Algorithms..Core.Tests.csproj", "{496204F1-CAA1-45B0-8DDF-937A26C9A125}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms..Core.Tests", "Localwire.Graphinder.Algorithms.Core.Tests\Localwire.Graphinder.Algorithms..Core.Tests.csproj", "{496204F1-CAA1-45B0-8DDF-937A26C9A125}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.ConsoleApp", "Localwire.Graphinder.Console\Localwire.Graphinder.ConsoleApp.csproj", "{22E8BACD-E2B1-497D-A24C-4D57B237EC60}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithms", "Algorithms", "{F9935BF0-508D-4162-9114-FA96B6E537DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.DataAccess", "Localwire.Graphinder.Algorithms.DataAccess\Localwire.Graphinder.Algorithms.DataAccess.csproj", "{B3E0699B-DCC8-4176-A512-AE397EA69912}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.Data", "Localwire.Graphinder.Algorithms.DataAccess\Localwire.Graphinder.Algorithms.Data.csproj", "{B3E0699B-DCC8-4176-A512-AE397EA69912}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{52D44C06-DC0E-40AC-8104-033681D68762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Users.Core", "Localwire.Graphinder.Users.Core\Localwire.Graphinder.Users.Core.csproj", "{50EF2635-1C2C-4309-95A1-302A04FA7D6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Users.Data", "Localwire.Graphinder.Users.Data\Localwire.Graphinder.Users.Data.csproj", "{21FDAA86-75B6-444C-8B22-599C41BA0E4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +41,14 @@ Global
 		{B3E0699B-DCC8-4176-A512-AE397EA69912}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3E0699B-DCC8-4176-A512-AE397EA69912}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3E0699B-DCC8-4176-A512-AE397EA69912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50EF2635-1C2C-4309-95A1-302A04FA7D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50EF2635-1C2C-4309-95A1-302A04FA7D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50EF2635-1C2C-4309-95A1-302A04FA7D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50EF2635-1C2C-4309-95A1-302A04FA7D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FDAA86-75B6-444C-8B22-599C41BA0E4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FDAA86-75B6-444C-8B22-599C41BA0E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FDAA86-75B6-444C-8B22-599C41BA0E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FDAA86-75B6-444C-8B22-599C41BA0E4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,5 +57,7 @@ Global
 		{9BE00B94-B116-4387-9ACD-7902BC0B5E37} = {F9935BF0-508D-4162-9114-FA96B6E537DF}
 		{496204F1-CAA1-45B0-8DDF-937A26C9A125} = {F9935BF0-508D-4162-9114-FA96B6E537DF}
 		{B3E0699B-DCC8-4176-A512-AE397EA69912} = {F9935BF0-508D-4162-9114-FA96B6E537DF}
+		{50EF2635-1C2C-4309-95A1-302A04FA7D6E} = {52D44C06-DC0E-40AC-8104-033681D68762}
+		{21FDAA86-75B6-444C-8B22-599C41BA0E4C} = {52D44C06-DC0E-40AC-8104-033681D68762}
 	EndGlobalSection
 EndGlobal
