@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Core", "Localwire.Graphinder.Core\Localwire.Graphinder.Core.csproj", "{9BE00B94-B116-4387-9ACD-7902BC0B5E37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.Core", "Localwire.Graphinder.Core\Localwire.Graphinder.Algorithms.Core.csproj", "{9BE00B94-B116-4387-9ACD-7902BC0B5E37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Core.Tests", "Localwire.Graphinder.Core.Tests\Localwire.Graphinder.Core.Tests.csproj", "{496204F1-CAA1-45B0-8DDF-937A26C9A125}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms..Core.Tests", "Localwire.Graphinder.Core.Tests\Localwire.Graphinder.Algorithms..Core.Tests.csproj", "{496204F1-CAA1-45B0-8DDF-937A26C9A125}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.ConsoleApp", "Localwire.Graphinder.Console\Localwire.Graphinder.ConsoleApp.csproj", "{22E8BACD-E2B1-497D-A24C-4D57B237EC60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithms", "Algorithms", "{F9935BF0-508D-4162-9114-FA96B6E537DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +32,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9BE00B94-B116-4387-9ACD-7902BC0B5E37} = {F9935BF0-508D-4162-9114-FA96B6E537DF}
+		{496204F1-CAA1-45B0-8DDF-937A26C9A125} = {F9935BF0-508D-4162-9114-FA96B6E537DF}
 	EndGlobalSection
 EndGlobal

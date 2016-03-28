@@ -110,9 +110,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Localwire.Graphinder.Core\Localwire.Graphinder.Core.csproj">
+    <ProjectReference Include="..\Localwire.Graphinder.Core\Localwire.Graphinder.Algorithms.Core.csproj">
       <Project>{9be00b94-b116-4387-9acd-7902bc0b5e37}</Project>
-      <Name>Localwire.Graphinder.Core</Name>
+      <Name>Localwire.Graphinder.Algorithms.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
