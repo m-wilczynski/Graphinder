@@ -16,15 +16,7 @@
         public void RandomBitFlip(bool[] array)
         {
             var randomIndex = _random.Next(array.Length);
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (i == randomIndex)
-                {
-                    array[i] = !array[i];
-                    return;
-                }
-            }
+            array[randomIndex] = !array[randomIndex];
         }
 
         /// <summary>
