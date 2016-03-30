@@ -20,7 +20,7 @@ http://localwire.pl/category/dajsiepoznac/
 - [x] Porting current solution with Simulated Annealing and Genetic alghoritms working on Minimal Vertex Cover problem from initial, console application to library.
 - [x] Further decoupling for future IoC in ASP.NET MVC project.
 - [x] Implementing missing unit tests for part of the code.
-- [ ] Reporting problem solving progress once upon a time.
+- [x] Reporting problem solving progress once upon a time.
 - [ ] Parallelizing problem solving.
 - [ ] WebAPI microservices for each domain (Problem solving, User management etc.)
 - [ ] ASP.NET MVC base implementation for algorithms and problems.
