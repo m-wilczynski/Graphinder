@@ -38,7 +38,7 @@
         /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
         /// </summary>
-        public abstract long ProcessorTimeCost { get; protected set; }
+        public abstract long TotalProcessorTimeCost { get; protected set; }
 
         /// <summary>
         /// Graph on which algorithm operate.
@@ -91,13 +91,18 @@
         protected abstract IEnumerable<IAlgorithmProgressReport> SearchForSolution();
 
         /// <summary>
+        /// Resets algorithm to its initial state.
+        /// </summary>
+        protected abstract void ResetToInitialState();
+
+        /// <summary>
         /// Action performed on solution finding progress change
         /// </summary>
         /// <param name="algorithmProgress"></param>
         protected virtual void OnProgressChanged(IAlgorithmProgressReport algorithmProgress)
         {
             CurrentProgressReport = algorithmProgress;
-            ProcessorTimeCost = algorithmProgress.ProcessorTime;
+            TotalProcessorTimeCost = algorithmProgress.ProcessorTime;
         }
     }
 }

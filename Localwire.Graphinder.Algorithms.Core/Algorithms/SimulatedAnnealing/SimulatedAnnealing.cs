@@ -13,7 +13,7 @@
     public class SimulatedAnnealing : Algorithm
     {
         private readonly Random _random = new Random();
-        private long _processorTimeCost = long.MaxValue;
+        private long _totalProcessorTimeCost = long.MaxValue;
         
         /// <summary>
         /// Creates SimulatedAnnealing algorithm instance
@@ -43,10 +43,10 @@
         /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
         /// </summary>
-        public override long ProcessorTimeCost
+        public override long TotalProcessorTimeCost
         {
-            get { return _processorTimeCost; }
-            protected set { _processorTimeCost = value; }
+            get { return _totalProcessorTimeCost; }
+            protected set { _totalProcessorTimeCost = value; }
         }
 
         /// <summary>
@@ -80,7 +80,7 @@
         /// </summary>
         protected override IEnumerable<IAlgorithmProgressReport> SearchForSolution()
         {
-            RestartSystem();
+            ResetToInitialState();
             return CoolSystem();
         }
 
@@ -118,15 +118,14 @@
             }
         }
 
-        //TODO: Go up right to the IAlgorithm?
         /// <summary>
         /// Restarts system to initial state.
         /// </summary>
-        private void RestartSystem()
+        protected override void ResetToInitialState()
         {
             CurrentTemperature = CoolingSetup.InitialTemperature;
             Problem.RestartProblemState();
-            _processorTimeCost = long.MaxValue;
+            _totalProcessorTimeCost = long.MaxValue;
         }
 
         /// <summary>

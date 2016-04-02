@@ -12,9 +12,11 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
     public class Individual : IComparable<Individual>
     {
         public readonly Guid Id;
+        //Needed for crossover and passing Graph to offspring
         public readonly Graph Graph;
+        public readonly IProblem Problem;
+
         private readonly Random _random = new Random();
-        private readonly IProblem _problem;
         private readonly bool[] _currentSolution;
         private readonly uint _totalSize;
         private int _currentOutcome;
@@ -23,9 +25,8 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
         {
             if (graph == null || problem == null) throw new ArgumentNullException("Neither graph nor problem can be null!");
             if (!graph.IsValid()) throw new ArgumentException("Graph is not valid!");
-            //TODO: No reason to assign graph here. Breaks individual role btw.
             Graph = graph;
-            _problem = problem;
+            Problem = problem;
             _totalSize = (uint)Graph.TotalNodes;
             if (solution == null || solution.Length < _totalSize)
             {
@@ -40,13 +41,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
             Id = Guid.NewGuid();
         }
         
-        //TODO: Are those three accessors needed anyway? 
-        //      3x public readonly would suffice,
-        //      yet it would be quite inflexible.
-        public IProblem Problem { get { return _problem; } }
-
         public bool[] CurrentSolution { get { return _currentSolution; } }
-
         public int SolutionOutcome { get { return _currentOutcome; } }
 
         //TODO: Should be dependent on IProblem's criterias!

@@ -16,7 +16,7 @@
     {
         private bool _isInitialized;
         private readonly Random _random = new Random();
-        private long _processorTimeCost = long.MaxValue;
+        private long _totalProcessorTimeCost = long.MaxValue;
 
         /// <summary>
         /// Operators used for breeding new generation of individuals
@@ -52,10 +52,10 @@
         /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
         /// </summary>
-        public override long ProcessorTimeCost
+        public override long TotalProcessorTimeCost
         {
-            get { return _processorTimeCost; }
-            protected set { _processorTimeCost = value; }
+            get { return _totalProcessorTimeCost; }
+            protected set { _totalProcessorTimeCost = value; }
         }
 
         /// <summary>
@@ -63,7 +63,6 @@
         /// </summary>
         public uint CurrentGeneration { get; private set; }
 
-        //TODO: Perhaps a SortedSet instead?
         /// <summary>
         /// Current population of individuals that algorithm bred.
         /// </summary>
@@ -96,7 +95,7 @@
         /// </summary>
         protected override IEnumerable<IAlgorithmProgressReport> SearchForSolution()
         {
-            RestartSystem();
+            ResetToInitialState();
 
             var startTime = DateTime.Now.Ticks;
 
@@ -156,8 +155,7 @@
                 yield return new GeneticAlgorithmProgressReport(DateTime.Now.Ticks - startTime, Problem.CurrentSolution, 0, CurrentGeneration, wasAccepted);
 
             }
-            //TODO: Rename as total time and report on inter-generation execute times
-            _processorTimeCost = DateTime.Now.Ticks - startTime;
+            _totalProcessorTimeCost = DateTime.Now.Ticks - startTime;
         }
 
         private ICollection<Node> BestIndividualSolution()
@@ -172,15 +170,14 @@
             return CurrentPopulation.Reverse().Take((int)Settings.EliteSurvivors).ToList();
         }
 
-        //TODO: Go up right to the IAlgorithm?
         /// <summary>
         /// Restarts system to initial state.
         /// </summary>
-        private void RestartSystem()
+        protected override void ResetToInitialState()
         {
             GenerateInitialPopulation();
             Problem.RestartProblemState();
-            _processorTimeCost = long.MaxValue;
+            _totalProcessorTimeCost = long.MaxValue;
         }
 
         /// <summary>

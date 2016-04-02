@@ -16,7 +16,7 @@
         /// <summary>
         /// Processor time cost in ticks (1 tick = 100 ns).
         /// </summary>
-        long ProcessorTimeCost { get; }
+        long TotalProcessorTimeCost { get; }
 
         /// <summary>
         /// Graph on which algorithm operate.
