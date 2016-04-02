@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Graph;
     using Reports;
     using Reports.AlgorithmReports.SimulatedAnnealing;
@@ -36,11 +37,11 @@
             {
                 //Pick random node from graph and keep on adding them to solution until correctness criteria is met
                 HashSet<Node> proposedSolution = new HashSet<Node>();
+                List<Node> nodesCopy = algorithm.Graph.Nodes;
+                Stack<int> randomIndexes = new Stack<int>(Enumerable.Range(0, nodesCopy.Count).OrderBy(r => _random.Next()));
                 while (!algorithm.Problem.IsSolutionCorrect(proposedSolution))
                 {
-                    //TODO: Highly ineffective in concurrent environment when one Graph is shared among many algorithms
-                    //SOLUTION: Create shuffled range of indexes here, then request Node of rolled index
-                    proposedSolution.Add(algorithm.Graph.GetRandomNode());
+                    proposedSolution.Add(nodesCopy[randomIndexes.Pop()]);
                 }
 
                 bool wasAccepted = false;
