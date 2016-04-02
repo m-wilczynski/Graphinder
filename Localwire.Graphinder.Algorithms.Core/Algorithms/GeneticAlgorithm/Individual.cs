@@ -74,10 +74,10 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
         /// </summary>
         private void EnsureCorectness()
         {
-            if (_problem == null) throw new ArgumentException("Problem for individual has not been set");
+            if (Problem == null) throw new ArgumentException("Problem for individual has not been set");
 
             //Keep rolling until solution is correct
-            while (!_problem.IsSolutionCorrect(_currentSolution))
+            while (!Problem.IsSolutionCorrect(_currentSolution))
             {
                 for (int i = 0; i < _currentSolution.Length; i++)
                 {
