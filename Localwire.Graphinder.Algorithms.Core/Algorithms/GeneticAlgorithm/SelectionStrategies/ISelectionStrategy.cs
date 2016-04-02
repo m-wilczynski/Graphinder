@@ -5,7 +5,6 @@
 
     public interface ISelectionStrategy
     {
-        //TODO: Should I be visible at all?
         /// <summary>
         /// Returns randomly chosen individual.
         /// </summary>

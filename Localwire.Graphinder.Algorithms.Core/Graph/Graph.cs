@@ -13,9 +13,8 @@
     public class Graph : ISelfValidable
     {
         private bool _isLocked;
-        private List<Node> _nodes;
-        //TODO: Redundancy vs performance, eh?
-        private readonly HashSet<string> _nodeKeys;
+        private Dictionary<string, Node> _nodes;
+        private List<Node> _nodesList; 
         private readonly HashSet<Edge> _edges; 
         private readonly Random _random = new Random();
         private readonly NodeGenerator _nodeGenerator = new NodeGenerator();
@@ -26,8 +25,8 @@
         /// </summary>
         public Graph()
         {
-            _nodes = new List<Node>();
-            _nodeKeys = new HashSet<string>();
+            _nodes = new Dictionary<string, Node>();
+            _nodesList = new List<Node>();
             _edges = new HashSet<Edge>();
         }
 
@@ -39,7 +38,7 @@
         {
             if (nodes == null)
                 throw new ArgumentNullException(nameof(nodes));
-            foreach (var element in nodes.Where(n => n != null && _nodes.All(node => node.Key != n)))
+            foreach (var element in nodes.Where(n => n != null && !_nodes.ContainsKey(n)))
                 AddNode(element);
         }
 
@@ -66,8 +65,8 @@
             lock (_randomNodeIndexes)
             {
                 if (_randomNodeIndexes.Count <= 0)
-                    _randomNodeIndexes = new Stack<int>(Enumerable.Range(0, _nodes.Count).OrderBy(r => _random.Next()));
-                return _nodes[_randomNodeIndexes.Pop()];
+                    _randomNodeIndexes = new Stack<int>(Enumerable.Range(0, _nodesList.Count).OrderBy(r => _random.Next()));
+                return _nodesList[_randomNodeIndexes.Pop()];
             }
         }
 
@@ -76,7 +75,7 @@
         /// </summary>
         public List<Node> Nodes
         {
-            get { return new List<Node>(_nodes); }
+            get { return new List<Node>(_nodesList); }
         }
 
         /// <summary>
@@ -84,7 +83,7 @@
         /// </summary>
         public int TotalNodes
         {
-            get { return _nodes.Count; }
+            get { return _nodesList.Count; }
         }
 
         /// <summary>
@@ -121,12 +120,11 @@
             if (ContainsNode(key))
                 throw new InvalidOperationException("Attempt to add duplicate node!");
             var node = new Node(key, this);
-            _nodes.Add(node);
-            _nodeKeys.Add(key);
+            _nodes.Add(node.Key, node);
+            _nodesList.Add(node);
             return node;
         }
 
-        //TODO: Expensive unless Dictionary of nodes is introduced
         /// <summary>
         /// Removes node from the graph.
         /// </summary>
@@ -135,8 +133,8 @@
         {
             if (!CanAdd()) 
                 throw new DataStructureLockedException("Removing node from graph", GetType());
-            //TODO: Find index of match for O(1) access, instead of iterating over twice
-            var match = _nodes.SingleOrDefault(n => n.Key == key);
+            Node match;
+            _nodes.TryGetValue(key, out match);
             if (match == null) 
                 throw new InvalidOperationException("Attempt to remove nonexistent node!");
             //Remove relations with other nodes
@@ -146,11 +144,10 @@
                 match.RemoveNeighbour(ngh);
             }
             //Remove node
-            _nodes.Remove(match);
-            _nodeKeys.Remove(key);
+            _nodes.Remove(match.Key);
+            _nodesList.Remove(match);
         }
 
-        //TODO: Expensive unless Dictionary of nodes is introduced
         /// <summary>
         /// Adds edge to the graph.
         /// </summary>
@@ -160,14 +157,19 @@
         {
             if (!CanAdd())
                 throw new DataStructureLockedException("Adding edge to graph", GetType());
-            var matchFrom = _nodes.SingleOrDefault(n => n.Key == from);
-            var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
+
+            Node matchFrom;
+            Node matchTo;
+            _nodes.TryGetValue(from, out matchFrom);
+            _nodes.TryGetValue(to, out matchTo);
+
             if (matchFrom == null || matchTo == null)
                 throw new InvalidOperationException("Attempt to connect nonexistent node(-s)!");
             var edge = new Edge(matchFrom, matchTo);
             if (_edges.Contains(edge))
                 throw new InvalidOperationException("Attempt to add duplicate edge!");
             _edges.Add(edge);
+
             try
             {
                 matchFrom.AddNeighbour(matchTo);
@@ -189,8 +191,11 @@
         {
             if (!CanAdd())
                 throw new DataStructureLockedException("Removing edge from graph", GetType());
-            var matchFrom = _nodes.SingleOrDefault(n => n.Key == from);
-            var matchTo = _nodes.SingleOrDefault(n => n.Key == to);
+            Node matchFrom;
+            Node matchTo;
+            _nodes.TryGetValue(from, out matchFrom);
+            _nodes.TryGetValue(to, out matchTo);
+
             if (matchFrom == null || matchTo == null)
                 throw new InvalidOperationException("Attempt to disconnect nonexistent nodes!");
             _edges.Remove(new Edge(matchFrom, matchTo));
@@ -212,7 +217,7 @@
             for (int i = 0; i < binaryEncodedSolution.Length; i++)
             {
                 if (binaryEncodedSolution[i])
-                    output.Add(_nodes[i]);
+                    output.Add(_nodesList[i]);
             }
             return output;
         }
@@ -233,7 +238,7 @@
         /// <returns></returns>
         public bool ContainsNode(string key)
         {
-            return _nodeKeys.Contains(key);
+            return _nodes.ContainsKey(key);
         }
 
         /// <summary>
