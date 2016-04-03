@@ -21,7 +21,7 @@ http://localwire.pl/category/dajsiepoznac/
 - [x] Further decoupling for future IoC in ASP.NET MVC project.
 - [x] Implementing missing unit tests for part of the code.
 - [x] Reporting problem solving progress once upon a time.
-- [ ] Parallelizing problem solving.
+- [x] Parallelizing problem solving.
 - [ ] WebAPI microservices for each domain (Problem solving, User management etc.)
 - [ ] ASP.NET MVC base implementation for algorithms and problems.
 - [ ] Task queue implementation.
