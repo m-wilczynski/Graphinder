@@ -36,7 +36,7 @@
         /// <param name="geneticOperators">Genetic operators used for breeding new generations</param>
         /// <param name="settings">General settings for solution finding process</param>
         public GeneticAlgorithm(Graph graph, IProblem problem, 
-            GeneticOperators geneticOperators, GeneticAlgorithmSettings settings) : base(graph, problem)
+            GeneticOperators geneticOperators, GeneticAlgorithmSettings settings, Guid? id = null) : base(graph, problem, id)
         {
             if (geneticOperators == null)
                 throw new ArgumentNullException(nameof(geneticOperators));

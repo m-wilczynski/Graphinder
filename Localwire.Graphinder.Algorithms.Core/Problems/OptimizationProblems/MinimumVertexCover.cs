@@ -9,7 +9,7 @@
     /// <summary>
     /// Represents minimal vertex cover problem and its current solution
     /// </summary>
-    public class MinimumVertexCover : IProblem
+    public class MinimumVertexCover : BaseEntity, IProblem
     {
         private bool _isInitialized;
         private Graph _graph;
@@ -19,7 +19,7 @@
         /// <summary>
         /// Instantiates minimum vertex cover problem.
         /// </summary>
-        public MinimumVertexCover()
+        public MinimumVertexCover(Guid? id = null) : base(id)
         { }
 
         /// <summary>

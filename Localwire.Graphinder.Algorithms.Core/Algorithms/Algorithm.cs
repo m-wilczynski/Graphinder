@@ -8,15 +8,12 @@
     using Problems;
     using Reports;
 
-    public abstract class Algorithm : IAlgorithm
+    public abstract class Algorithm : BaseEntity, IAlgorithm
     {
-        //TODO: Move up as prop
-        public Guid Id;
-
         private IAlgorithmProgressReport _currentProgressReport;
         private IObservable<IAlgorithmProgressReport> _progressReportObservable; 
         
-        protected Algorithm(Graph graph, IProblem problem)
+        protected Algorithm(Graph graph, IProblem problem, Guid? id) : base(id)
         {
             if (problem == null)
                 throw new ArgumentNullException(nameof(problem));
@@ -24,7 +21,6 @@
                 throw new ArgumentNullException(nameof(graph));
             if (!graph.IsValid())
                 throw new ArgumentException("Graph is invalid", nameof(graph));
-            Id = Guid.NewGuid();
             Graph = graph;
             Problem = problem;
             problem.Initialize(graph);

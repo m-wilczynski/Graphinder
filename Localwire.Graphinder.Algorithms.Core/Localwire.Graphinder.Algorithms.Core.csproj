@@ -70,6 +70,7 @@
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\ICoolingStrategy.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\CoolingSetup.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealing.cs" />
+    <Compile Include="BaseEntity.cs" />
     <Compile Include="Exceptions\AlgorithmException.cs" />
     <Compile Include="Exceptions\DataStructureLockedException.cs" />
     <Compile Include="Graph\Edge.cs" />

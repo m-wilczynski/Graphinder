@@ -125,6 +125,7 @@
         public void GeneticAlgorithm_LaunchAlgorithm_UsesCrossoverStrategyIfRolled()
         {
             _geneticAlgorithmThatAlwaysCrossoversAndMutates.LaunchAlgorithm();
+            BlockTestExecutionUntilLaunchAlgorithmFinishes(_geneticAlgorithmThatAlwaysCrossoversAndMutates);
             _geneticAlgorithmThatAlwaysCrossoversAndMutates.GeneticOperators.CrossoverStrategy.Received()
                 .PerformCrossover(Arg.Any<Individual>(), Arg.Any<Individual>());
         }

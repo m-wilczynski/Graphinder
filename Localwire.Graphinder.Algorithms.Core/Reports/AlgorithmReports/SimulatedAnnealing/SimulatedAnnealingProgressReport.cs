@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Graph;
 
-    public class SimulatedAnnealingProgressReport : ISimulatedAnnealingProgressReport
+    public class SimulatedAnnealingProgressReport : BaseEntity, ISimulatedAnnealingProgressReport
     {
         /// <summary>
         /// Date on which report was generated
@@ -36,8 +36,9 @@
         /// </summary>
         public double CurrentTemperature { get; }
 
+        //TODO: Could use SimulatedAnnealing instance instead of lots of params
         public SimulatedAnnealingProgressReport(long processorTime, ICollection<Node> currentSolution,
-            uint currentFitness, uint currentTemperature, bool accepted = false)
+            uint currentFitness, uint currentTemperature, bool accepted = false, Guid? id = null) : base(id)
         {
             if (processorTime < 0)
                 throw new ArgumentOutOfRangeException(nameof(processorTime), processorTime, "Processor time is lower than 0");

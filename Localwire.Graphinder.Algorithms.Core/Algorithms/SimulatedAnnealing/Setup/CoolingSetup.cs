@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents initial setup for simulated annealing cooling
     /// </summary>
-    public class CoolingSetup : ISelfValidable
+    public class CoolingSetup : BaseEntity, ISelfValidable
     {
         /// <summary>
         /// Creates setup for cooling of simulated annealing
@@ -15,7 +15,7 @@
         /// <param name="initTemp">Initial temperature for system</param>
         /// <param name="coolingRate">Cooling rate of the system</param>
         /// <param name="coolingStrategy">Strategy for cooling the system</param>
-        public CoolingSetup(double initTemp, double coolingRate, ICoolingStrategy coolingStrategy)
+        public CoolingSetup(double initTemp, double coolingRate, ICoolingStrategy coolingStrategy, Guid? id = null) : base(id)
         {
             if (coolingRate <= 0)
                 throw new ArgumentOutOfRangeException(nameof(coolingRate));

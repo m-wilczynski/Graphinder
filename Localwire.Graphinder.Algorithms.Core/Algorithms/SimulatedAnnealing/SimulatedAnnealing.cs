@@ -21,7 +21,7 @@
         /// <param name="graph">Graph on which algorithm will operate</param>
         /// <param name="problem">Problem for which algorithm will attempt to find solution</param>
         /// <param name="setup">Setup for algorithm's cooling process</param>
-        public SimulatedAnnealing(Graph graph, IProblem problem, CoolingSetup setup) : base(graph, problem)
+        public SimulatedAnnealing(Graph graph, IProblem problem, CoolingSetup setup, Guid? id = null) : base(graph, problem, id)
         {
             if (setup == null)
                 throw new ArgumentNullException(nameof(setup));

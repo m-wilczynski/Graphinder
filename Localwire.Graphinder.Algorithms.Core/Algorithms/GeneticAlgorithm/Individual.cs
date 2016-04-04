@@ -9,9 +9,8 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
     /// <summary>
     /// Represents single individual (atomic element of a population) holding solution to given problem.
     /// </summary>
-    public class Individual : IComparable<Individual>
+    public class Individual : BaseEntity, IComparable<Individual>
     {
-        public readonly Guid Id;
         //Needed for crossover and passing Graph to offspring
         public readonly Graph Graph;
         public readonly IProblem Problem;
@@ -21,7 +20,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
         private readonly uint _totalSize;
         private int _currentOutcome;
 
-        public Individual(Graph graph, IProblem problem, bool[] solution = null)
+        public Individual(Graph graph, IProblem problem, bool[] solution = null, Guid? id = null) : base(id)
         {
             if (graph == null || problem == null) throw new ArgumentNullException("Neither graph nor problem can be null!");
             if (!graph.IsValid()) throw new ArgumentException("Graph is not valid!");

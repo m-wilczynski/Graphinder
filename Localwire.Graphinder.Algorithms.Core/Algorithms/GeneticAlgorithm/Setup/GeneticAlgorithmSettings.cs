@@ -5,7 +5,7 @@
     /// <summary>
     /// Represents settings for <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/> solution finding. 
     /// </summary>
-    public class GeneticAlgorithmSettings
+    public class GeneticAlgorithmSettings : BaseEntity
     {
         /// <summary>
         /// Defines how big will each population for each generation be
@@ -45,7 +45,8 @@
         /// <param name="initialPopulationSize">How big should each population for each generation be</param>
         /// <param name="crossoverProbability">How likely chosen couple will crossover and breed new individual</param>
         /// <param name="mutationProbability">How likely newly bred individual will mutate</param>
-        public GeneticAlgorithmSettings(uint generationsToCome = 1, uint initialPopulationSize = 20, double crossoverProbability = 0.5f, double mutationProbability = 0.1f, bool withElitistSelection = false)
+        public GeneticAlgorithmSettings(uint generationsToCome = 1, uint initialPopulationSize = 20, 
+            double crossoverProbability = 0.5f, double mutationProbability = 0.1f, bool withElitistSelection = false, Guid? id = null) : base(id)
         {
             if (initialPopulationSize <= 1)
                 throw new ArgumentOutOfRangeException(nameof(initialPopulationSize), initialPopulationSize, "Population size is too small");

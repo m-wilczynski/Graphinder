@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Graph;
 
-    public class GeneticAlgorithmProgressReport : IGeneticAlgorithmProgressReport
+    public class GeneticAlgorithmProgressReport : BaseEntity, IGeneticAlgorithmProgressReport
     {
         /// <summary>
         /// Date on which report was generated
@@ -36,8 +36,9 @@
         /// </summary>
         public uint CurrentGeneration { get; }
 
+        //TODO: Could use GeneticAlgorithm instance instead of lots of params
         public GeneticAlgorithmProgressReport(long processorTime, ICollection<Node> currentSolution,
-            uint currentFitness, uint currentGeneration, bool accepted = false)
+            uint currentFitness, uint currentGeneration, bool accepted = false, Guid? id = null) : base(id)
         {
             if (processorTime < 0)
                 throw new ArgumentOutOfRangeException(nameof(processorTime), processorTime, "Processor time is lower than 0");

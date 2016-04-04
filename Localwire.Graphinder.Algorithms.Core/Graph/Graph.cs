@@ -10,7 +10,7 @@
     /// <summary>
     /// Represents undirected graph data struture.
     /// </summary>
-    public class Graph : ISelfValidable
+    public class Graph : BaseEntity, ISelfValidable
     {
         private bool _isLocked;
         private Dictionary<string, Node> _nodes;
@@ -23,7 +23,7 @@
         /// <summary>
         /// Instantiates undirected graph.
         /// </summary>
-        public Graph()
+        public Graph(Guid? id = null) : base(id)
         {
             _nodes = new Dictionary<string, Node>();
             _nodesList = new List<Node>();
@@ -34,7 +34,7 @@
         /// Instantiates undirected graph based on key collection.
         /// </summary>
         /// <param name="nodes">Collection of nodes' keys.</param>
-        public Graph(IEnumerable<string> nodes) : this()
+        public Graph(IEnumerable<string> nodes, Guid? id = null) : this(id)
         {
             if (nodes == null)
                 throw new ArgumentNullException(nameof(nodes));
