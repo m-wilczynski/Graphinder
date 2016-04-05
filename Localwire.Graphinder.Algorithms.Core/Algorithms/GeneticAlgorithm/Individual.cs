@@ -37,7 +37,6 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
                 _currentSolution = solution;
             }
             EnsureCorectness();
-            Id = Guid.NewGuid();
         }
         
         public bool[] CurrentSolution { get { return _currentSolution; } }
