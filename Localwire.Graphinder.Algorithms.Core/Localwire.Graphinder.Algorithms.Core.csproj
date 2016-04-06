@@ -75,8 +75,12 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Exceptions\AlgorithmException.cs" />
     <Compile Include="Exceptions\DataStructureLockedException.cs" />
+    <Compile Include="Factories\GeneticAlgorithm\CrossoverStrategyFactory.cs" />
     <Compile Include="Factories\GeneticAlgorithm\ICrossoverStrategyFactory.cs" />
     <Compile Include="Factories\GeneticAlgorithm\IMutationStrategyFactory.cs" />
+    <Compile Include="Factories\GeneticAlgorithm\MutationStrategyFactory.cs" />
+    <Compile Include="Factories\GeneticAlgorithm\SelectionStrategyFactory.cs" />
+    <Compile Include="Factories\SimulatedAnnealing\CoolingStrategyFactory.cs" />
     <Compile Include="Factories\SimulatedAnnealing\ICoolingStrategyFactory.cs" />
     <Compile Include="Factories\GeneticAlgorithm\ISelectionStrategyFactory.cs" />
     <Compile Include="Graph\Edge.cs" />

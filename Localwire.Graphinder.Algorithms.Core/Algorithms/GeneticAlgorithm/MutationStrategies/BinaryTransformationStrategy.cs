@@ -15,7 +15,7 @@
         /// Instantiates binary transformation strategy used by <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/> mutation.
         /// </summary>
         /// <param name="transformationType"></param>
-        public BinaryTransformationStrategy(BinaryTransformationType transformationType)
+        public BinaryTransformationStrategy(BinaryTransformationType transformationType = BinaryTransformationType.RandomBitFlip)
         {
             TransformationType = transformationType;
             //Enforce setting transformation action in case of transformationType = 0;
