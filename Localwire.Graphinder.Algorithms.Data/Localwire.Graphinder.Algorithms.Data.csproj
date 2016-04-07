@@ -50,11 +50,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\GeneticAlgorithm\CrossoverStrategyFactory.cs" />
+    <Compile Include="Factories\GeneticAlgorithm\ICrossoverStrategyFactory.cs" />
+    <Compile Include="Factories\GeneticAlgorithm\IMutationStrategyFactory.cs" />
+    <Compile Include="Factories\GeneticAlgorithm\ISelectionStrategyFactory.cs" />
+    <Compile Include="Factories\GeneticAlgorithm\MutationStrategyFactory.cs" />
+    <Compile Include="Factories\GeneticAlgorithm\SelectionStrategyFactory.cs" />
+    <Compile Include="Factories\SimulatedAnnealing\CoolingStrategyFactory.cs" />
+    <Compile Include="Factories\SimulatedAnnealing\ICoolingStrategyFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Localwire.Graphinder.Algorithms.Core\Localwire.Graphinder.Algorithms.Core.csproj">
+      <Project>{9be00b94-b116-4387-9acd-7902bc0b5e37}</Project>
+      <Name>Localwire.Graphinder.Algorithms.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
