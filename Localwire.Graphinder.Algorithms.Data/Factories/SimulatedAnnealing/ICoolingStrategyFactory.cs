@@ -2,6 +2,7 @@
 {
     using Core.Algorithms.SimulatedAnnealing.CoolingStrategies;
     using Core.Algorithms.SimulatedAnnealing.Setup;
+    using StrategyTypes;
 
     public interface ICoolingStrategyFactory
     {

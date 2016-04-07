@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Core.Algorithms.SimulatedAnnealing.Setup
+﻿namespace Localwire.Graphinder.Algorithms.DataAccess.StrategyTypes
 {
     public enum CoolingStrategyType
     {

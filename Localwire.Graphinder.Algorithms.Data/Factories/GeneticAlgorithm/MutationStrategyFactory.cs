@@ -2,6 +2,7 @@
 {
     using Core.Algorithms.GeneticAlgorithm.MutationStrategies;
     using Core.Algorithms.GeneticAlgorithm.Setup;
+    using StrategyTypes;
 
     class MutationStrategyFactory : IMutationStrategyFactory
     {

@@ -62,7 +62,6 @@
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\BinaryTransformationStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\MutationStrategies\IMutationStrategy.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\Setup\GeneticAlgorithmSettings.cs" />
-    <Compile Include="Algorithms\GeneticAlgorithm\Setup\GeneticAlgorithmStrategyTypes.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\Setup\GeneticOperators.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\SelectionStrategies\ISelectionStrategy.cs" />
@@ -70,7 +69,6 @@
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\AllRandomCooling.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\CoolingStrategies\ICoolingStrategy.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\Setup\CoolingSetup.cs" />
-    <Compile Include="Algorithms\SimulatedAnnealing\Setup\SimulatedAnnealingStrategyTypes.cs" />
     <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealing.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Exceptions\AlgorithmException.cs" />

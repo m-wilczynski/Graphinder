@@ -59,6 +59,8 @@
     <Compile Include="Factories\SimulatedAnnealing\CoolingStrategyFactory.cs" />
     <Compile Include="Factories\SimulatedAnnealing\ICoolingStrategyFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StrategyTypes\GeneticAlgorithmStrategyTypes.cs" />
+    <Compile Include="StrategyTypes\SimulatedAnnealingStrategyTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

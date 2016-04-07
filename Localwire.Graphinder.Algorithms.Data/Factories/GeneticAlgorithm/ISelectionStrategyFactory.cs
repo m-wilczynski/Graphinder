@@ -2,6 +2,7 @@
 {
     using Core.Algorithms.GeneticAlgorithm.SelectionStrategies;
     using Core.Algorithms.GeneticAlgorithm.Setup;
+    using StrategyTypes;
 
     public interface ISelectionStrategyFactory
     {
