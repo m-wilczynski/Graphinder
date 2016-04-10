@@ -65,7 +65,10 @@
             if (!IsInitialized) return;
             if (nodes.All(n => _graph.ContainsNode(n.Key) && _graph == n.Parent))
             {
-                _currentCover = new HashSet<Node>(nodes);
+                lock (_currentCover)
+                {
+                    _currentCover = new HashSet<Node>(nodes);
+                }
             }
             else
             {

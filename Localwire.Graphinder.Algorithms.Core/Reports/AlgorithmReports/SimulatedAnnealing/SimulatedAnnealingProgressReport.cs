@@ -38,7 +38,7 @@
 
         //TODO: Could use SimulatedAnnealing instance instead of lots of params
         public SimulatedAnnealingProgressReport(long processorTime, ICollection<Node> currentSolution,
-            uint currentFitness, uint currentTemperature, bool accepted = false, Guid? id = null) : base(id)
+            uint currentFitness, double currentTemperature, bool accepted = false, Guid? id = null) : base(id)
         {
             if (processorTime < 0)
                 throw new ArgumentOutOfRangeException(nameof(processorTime), processorTime, "Processor time is lower than 0");

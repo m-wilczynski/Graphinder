@@ -27,6 +27,7 @@
         /// <param name="algorithm">Simulated annealing algorithm being cooled.</param>
         /// <param name="coolingAction">Delegate of action to cool system by one step of cooling ratio.</param>
         /// <returns>Processor time cost</returns>
+        //TODO: Possibly a more narrow dependency do something like ISimulatedAnnealing to not force cast for CurrentTemperature access?
         public IEnumerable<IAlgorithmProgressReport> Cool(IAlgorithm algorithm, Action coolingAction)
         {
             if (algorithm == null) throw new ArgumentException(nameof(algorithm));
@@ -53,7 +54,10 @@
                     wasAccepted = true;
                 }
 
-                yield return new SimulatedAnnealingProgressReport(DateTime.Now.Ticks - startTime, algorithm.Problem.CurrentSolution, 0, 0, wasAccepted);
+                var casted = algorithm as SimulatedAnnealing;
+                var currentTemp = casted == null ? 0 : casted.CurrentTemperature;
+
+                yield return new SimulatedAnnealingProgressReport(DateTime.Now.Ticks - startTime, algorithm.Problem.CurrentSolution, (uint)(algorithm.Graph.TotalNodes - algorithm.Problem.CurrentSolution.Count + 1), currentTemp, wasAccepted);
 
                 //Cool system
                 coolingAction.Invoke();
