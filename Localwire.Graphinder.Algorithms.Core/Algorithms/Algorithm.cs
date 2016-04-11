@@ -8,7 +8,7 @@
     using Problems;
     using Reports;
 
-    public abstract class Algorithm : BaseEntity, IAlgorithm
+    public abstract class Algorithm : BaseModel, IAlgorithm
     {
         private IAlgorithmProgressReport _currentProgressReport;
         private IObservable<IAlgorithmProgressReport> _progressReportObservable; 

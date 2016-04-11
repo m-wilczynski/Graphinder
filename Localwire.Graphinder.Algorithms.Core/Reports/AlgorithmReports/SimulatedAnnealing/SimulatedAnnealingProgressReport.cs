@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Graph;
 
-    public class SimulatedAnnealingProgressReport : BaseEntity, ISimulatedAnnealingProgressReport
+    public class SimulatedAnnealingProgressReport : BaseModel, ISimulatedAnnealingProgressReport
     {
         /// <summary>
         /// Date on which report was generated

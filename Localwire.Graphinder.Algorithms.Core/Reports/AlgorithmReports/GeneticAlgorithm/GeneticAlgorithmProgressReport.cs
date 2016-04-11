@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Graph;
 
-    public class GeneticAlgorithmProgressReport : BaseEntity, IGeneticAlgorithmProgressReport
+    public class GeneticAlgorithmProgressReport : BaseModel, IGeneticAlgorithmProgressReport
     {
         /// <summary>
         /// Date on which report was generated

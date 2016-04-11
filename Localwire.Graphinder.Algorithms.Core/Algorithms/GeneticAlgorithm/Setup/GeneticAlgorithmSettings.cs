@@ -5,7 +5,7 @@
     /// <summary>
     /// Represents settings for <see cref="T:Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm"/> solution finding. 
     /// </summary>
-    public class GeneticAlgorithmSettings : BaseEntity
+    public class GeneticAlgorithmSettings : BaseModel
     {
         /// <summary>
         /// Defines how big will each population for each generation be

@@ -9,7 +9,7 @@
     /// <summary>
     /// Represents minimal vertex cover problem and its current solution
     /// </summary>
-    public class MinimumVertexCover : BaseEntity, IProblem
+    public class MinimumVertexCover : BaseModel, IProblem
     {
         private bool _isInitialized;
         private Graph _graph;

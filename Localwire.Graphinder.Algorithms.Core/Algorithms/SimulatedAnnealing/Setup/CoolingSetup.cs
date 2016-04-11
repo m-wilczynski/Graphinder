@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents initial setup for simulated annealing cooling
     /// </summary>
-    public class CoolingSetup : BaseEntity, ISelfValidable
+    public class CoolingSetup : BaseModel, ISelfValidable
     {
         /// <summary>
         /// Creates setup for cooling of simulated annealing

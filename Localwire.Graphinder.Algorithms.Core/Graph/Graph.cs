@@ -10,7 +10,7 @@
     /// <summary>
     /// Represents undirected graph data struture.
     /// </summary>
-    public class Graph : BaseEntity, ISelfValidable
+    public class Graph : BaseModel, ISelfValidable
     {
         private bool _isLocked;
         private Dictionary<string, Node> _nodes;

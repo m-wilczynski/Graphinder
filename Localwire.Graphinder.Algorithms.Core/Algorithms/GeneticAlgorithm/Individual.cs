@@ -9,7 +9,7 @@ namespace Localwire.Graphinder.Core.Algorithms.GeneticAlgorithm
     /// <summary>
     /// Represents single individual (atomic element of a population) holding solution to given problem.
     /// </summary>
-    public class Individual : BaseEntity, IComparable<Individual>
+    public class Individual : BaseModel, IComparable<Individual>
     {
         //Needed for crossover and passing Graph to offspring
         public readonly Graph Graph;
