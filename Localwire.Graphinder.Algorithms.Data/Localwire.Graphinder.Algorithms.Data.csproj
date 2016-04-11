@@ -53,6 +53,7 @@
     <Compile Include="Algorithms\AlgorithmEntity.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\GeneticAlgorithmEntity.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\IndividualEntity.cs" />
+    <Compile Include="Algorithms\SimulatedAnnealing\SimulatedAnnealingEntity.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="EnumMappings\ProblemTypes\ProblemType.cs" />
     <Compile Include="Factories\GeneticAlgorithm\CrossoverStrategyFactory.cs" />
