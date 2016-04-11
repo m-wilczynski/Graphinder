@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Algorithms.DataAccess.StrategyTypes
+﻿namespace Localwire.Graphinder.Algorithms.DataAccess.EnumMappings.StrategyTypes
 {
     public enum CrossoverStrategyType
     {

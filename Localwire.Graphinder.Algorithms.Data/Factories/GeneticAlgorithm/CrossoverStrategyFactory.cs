@@ -2,9 +2,8 @@
 {
     using System;
     using Core.Algorithms.GeneticAlgorithm.CrossoverStrategies;
-    using Core.Algorithms.GeneticAlgorithm.Setup;
     using Core.Graph;
-    using StrategyTypes;
+    using EnumMappings.StrategyTypes;
 
     class CrossoverStrategyFactory : ICrossoverStrategyFactory
     {

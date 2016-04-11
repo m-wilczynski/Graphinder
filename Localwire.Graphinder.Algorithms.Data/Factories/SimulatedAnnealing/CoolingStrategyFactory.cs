@@ -1,8 +1,7 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Factories.SimulatedAnnealing
 {
     using Core.Algorithms.SimulatedAnnealing.CoolingStrategies;
-    using Core.Algorithms.SimulatedAnnealing.Setup;
-    using StrategyTypes;
+    using EnumMappings.StrategyTypes;
 
     public class CoolingStrategyFactory : ICoolingStrategyFactory
     {
