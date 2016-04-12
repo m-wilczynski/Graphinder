@@ -108,7 +108,6 @@
             LockGraph();
         }
 
-        //TODO: Expensive unless Dictionary of nodes is introduced
         /// <summary>
         /// Adds node to the graph.
         /// </summary>
@@ -181,7 +180,6 @@
             }
         }
 
-        //TODO: Expensive unless Dictionary of nodes is introduced
         /// <summary>
         /// Removes edge from the graph.
         /// </summary>
