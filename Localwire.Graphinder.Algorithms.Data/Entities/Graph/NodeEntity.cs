@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Graph
+﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Entities.Graph
 {
     using System.Collections.Generic;
 

@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Algorithms.SimulatedAnnealing
+﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Entities.Algorithms.SimulatedAnnealing
 {
     using EnumMappings.StrategyTypes;
 

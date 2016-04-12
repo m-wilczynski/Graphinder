@@ -2,7 +2,7 @@
 {
     using Core.Problems;
     using Core.Problems.OptimizationProblems;
-    using DataAccess.Problems;
+    using Entities.Problems;
     using EnumMappings.ProblemTypes;
 
     public class ProblemFactory : IProblemFactory

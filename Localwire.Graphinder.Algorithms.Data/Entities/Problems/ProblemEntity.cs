@@ -1,7 +1,6 @@
-﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Problems
+﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Entities.Problems
 {
     using System.Collections.Generic;
-    using Core.Graph;
     using EnumMappings.ProblemTypes;
     using Graph;
 

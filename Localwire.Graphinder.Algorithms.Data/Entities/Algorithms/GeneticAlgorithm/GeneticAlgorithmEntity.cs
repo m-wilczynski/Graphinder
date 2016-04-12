@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Algorithms.GeneticAlgorithm
+﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Entities.Algorithms.GeneticAlgorithm
 {
     using System.Collections.Generic;
     using EnumMappings.StrategyTypes;
