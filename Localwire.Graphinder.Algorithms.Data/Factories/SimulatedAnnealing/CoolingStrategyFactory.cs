@@ -3,7 +3,7 @@
     using Core.Algorithms.SimulatedAnnealing.CoolingStrategies;
     using EnumMappings.StrategyTypes;
 
-    public class CoolingStrategyFactory : ICoolingStrategyFactory
+    internal class CoolingStrategyFactory : ICoolingStrategyFactory
     {
         public ICoolingStrategy ProvideOfType(CoolingStrategyType strategyType)
         {

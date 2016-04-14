@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using EnumMappings.StrategyTypes;
 
-    public class GeneticAlgorithmEntity : AlgorithmEntity
+    internal class GeneticAlgorithmEntity : AlgorithmEntity
     {
         public SelectionStrategyType SelectionStrategy { get; set; }
         public CrossoverStrategyType CrossoverStrategy { get; set; }

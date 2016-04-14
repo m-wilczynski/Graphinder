@@ -3,7 +3,7 @@
     using Graph;
     using Problems;
 
-    public abstract class AlgorithmEntity : BaseEntity
+    internal abstract class AlgorithmEntity : BaseEntity
     {
         public GraphEntity Graph { get; set; }
         public ProblemEntity Problem { get; set; }

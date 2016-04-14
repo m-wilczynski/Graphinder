@@ -2,7 +2,7 @@
 {
     using EnumMappings.StrategyTypes;
 
-    public class SimulatedAnnealingEntity : AlgorithmEntity
+    internal class SimulatedAnnealingEntity : AlgorithmEntity
     {
         public double InitialTemperature { get; set; }
         public double CoolingRate { get; set; }

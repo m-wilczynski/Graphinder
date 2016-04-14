@@ -5,7 +5,7 @@
     using Entities.Problems;
     using EnumMappings.ProblemTypes;
 
-    public class ProblemFactory : IProblemFactory
+    internal class ProblemFactory : IProblemFactory
     {
         public IProblem ProvideOfType(ProblemEntity entity)
         {

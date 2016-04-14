@@ -4,7 +4,7 @@
     using EnumMappings.ProblemTypes;
     using Graph;
 
-    public class ProblemEntity : BaseEntity
+    internal class ProblemEntity : BaseEntity
     {
         public ProblemType ProblemType { get; set; }
         public ICollection<NodeEntity> CurrentSolution { get; set; }  

@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class GraphEntity : BaseEntity
+    internal class GraphEntity : BaseEntity
     {
         public ICollection<NodeEntity> Nodes { get; set; }
     }

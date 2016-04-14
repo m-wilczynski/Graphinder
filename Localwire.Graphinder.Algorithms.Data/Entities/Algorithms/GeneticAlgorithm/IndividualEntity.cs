@@ -3,7 +3,7 @@
     using Graph;
     using Problems;
 
-    public class IndividualEntity : BaseEntity
+    internal class IndividualEntity : BaseEntity
     {
         public GraphEntity Graph { get; set; }
         public ProblemEntity Problem { get; set; }

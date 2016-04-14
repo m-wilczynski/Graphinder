@@ -3,7 +3,7 @@
     using Core.Algorithms.GeneticAlgorithm.SelectionStrategies;
     using EnumMappings.StrategyTypes;
 
-    public class SelectionStrategyFactory : ISelectionStrategyFactory
+    internal class SelectionStrategyFactory : ISelectionStrategyFactory
     {
         public ISelectionStrategy ProvideOfType(SelectionStrategyType strategyType)
         {
