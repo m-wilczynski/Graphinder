@@ -3,14 +3,14 @@
     using Core.Algorithms.GeneticAlgorithm;
     using Entities.Algorithms.GeneticAlgorithm;
 
-    internal static class GeneticAlgorithmMapper
+    internal static class IndividualMapper
     {
-        public static GeneticAlgorithm ToDomainModel(this GeneticAlgorithmEntity entity)
+        public static Individual ToDomainModel(this IndividualEntity entity)
         {
             return null;
         }
 
-        public static GeneticAlgorithmEntity ToEntityModel(this GeneticAlgorithm model)
+        public static IndividualEntity ToEntityModel(this Individual model)
         {
             return null;
         }

@@ -75,6 +75,10 @@
       <Project>{9be00b94-b116-4387-9acd-7902bc0b5e37}</Project>
       <Name>Localwire.Graphinder.Algorithms.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Localwire.Graphinder.Algorithms.Data\Localwire.Graphinder.Algorithms.Data.csproj">
+      <Project>{b3e0699b-dcc8-4176-a512-ae397ea69912}</Project>
+      <Name>Localwire.Graphinder.Algorithms.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
