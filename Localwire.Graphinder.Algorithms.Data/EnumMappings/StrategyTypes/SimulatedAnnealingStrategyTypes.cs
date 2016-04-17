@@ -2,7 +2,7 @@
 {
     public enum CoolingStrategyType
     {
-        None,
-        AllRandomCooling
+        None = 0,
+        AllRandomCooling = 1
     }
 }

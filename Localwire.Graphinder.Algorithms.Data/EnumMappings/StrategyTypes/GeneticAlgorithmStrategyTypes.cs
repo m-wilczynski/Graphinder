@@ -2,19 +2,19 @@
 {
     public enum CrossoverStrategyType
     {
-        None,
-        OnePointCrossoverStrategy
+        None = 0,
+        OnePointCrossoverStrategy = 1
     }
 
     public enum MutationStrategyType
     {
-        None,
-        BinaryTransformationStrategy
+        None = 0,
+        BinaryTransformationStrategy = 1
     }
 
     public enum SelectionStrategyType
     {
-        None,
-        RouletteStrategy
+        None = 0,
+        RouletteStrategy = 1
     }
 }
