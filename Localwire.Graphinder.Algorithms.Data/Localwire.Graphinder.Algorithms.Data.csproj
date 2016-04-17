@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Commands\UpdateProblem.cs" />
     <Compile Include="Entities\Algorithms\AlgorithmEntity.cs" />
     <Compile Include="Entities\Algorithms\GeneticAlgorithm\GeneticAlgorithmEntity.cs" />
     <Compile Include="Entities\Algorithms\GeneticAlgorithm\IndividualEntity.cs" />
@@ -72,7 +73,9 @@
     <Compile Include="Mappers\Algorithms\SimulatedAnnealing\SimulatedAnnealingMapper.cs" />
     <Compile Include="Mappers\Graph\GraphMapper.cs" />
     <Compile Include="Mappers\Graph\NodeMapper.cs" />
-    <Compile Include="Mappers\Problems\ProblemMapper.cs" />
+    <Compile Include="Mappers\Problems\Base\IProblemMapper.cs" />
+    <Compile Include="Mappers\Problems\Base\IProblemMapperFor.cs" />
+    <Compile Include="Mappers\Problems\MinimumVertexCoverMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnumMappings\StrategyTypes\GeneticAlgorithmStrategyTypes.cs" />
     <Compile Include="EnumMappings\StrategyTypes\SimulatedAnnealingStrategyTypes.cs" />

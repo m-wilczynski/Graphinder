@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using Graph;
 
-    internal abstract class ProblemEntity : BaseEntity
+    public abstract class ProblemEntity : BaseEntity
     {
-        public ICollection<NodeEntity> CurrentSolution { get; set; }  
+        internal ICollection<NodeEntity> CurrentSolution { get; set; }  
     }
 }
