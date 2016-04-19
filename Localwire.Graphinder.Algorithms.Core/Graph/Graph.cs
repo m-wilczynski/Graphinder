@@ -43,14 +43,6 @@
                 AddNode(element);
         }
 
-        public Graph(IEnumerable<Node> nodes, Guid? id = null) : this(id)
-        {
-            if (nodes == null)
-                throw new ArgumentNullException(nameof(nodes));
-            foreach (var element in nodes.Where(n => n != null && !_nodes.ContainsKey(n.Key)))
-                AddNode(element.Key, element.Id);
-        }
-
         /// <summary>
         /// Maximum neighbours per node. Zero if graph wasn't filled with NodeGenerator utility.
         /// </summary>
@@ -78,21 +70,6 @@
         }
 
         /// <summary>
-        /// Returns random node from graph. Can end up in returning same Node in a row!
-        /// </summary>
-        /// <returns>Random node</returns>
-        public Node GetRandomNode()
-        {
-            //If sequence of available, preselected, random nodes is empty, refill it
-            lock (_randomNodeIndexes)
-            {
-                if (_randomNodeIndexes.Count <= 0)
-                    _randomNodeIndexes = new Stack<int>(Enumerable.Range(0, _nodesList.Count).OrderBy(r => _random.Next()));
-                return _nodesList[_randomNodeIndexes.Pop()];
-            }
-        }
-
-        /// <summary>
         /// Copy of all graph's elements.
         /// </summary>
         public List<Node> Nodes
@@ -115,7 +92,34 @@
         {
             get { return _edges.Count; }
         }
-        
+
+        /// <summary>
+        /// Returns random node from graph. Can end up in returning same Node in a row!
+        /// </summary>
+        /// <returns>Random node</returns>
+        public Node GetRandomNode()
+        {
+            //If sequence of available, preselected, random nodes is empty, refill it
+            lock (_randomNodeIndexes)
+            {
+                if (_randomNodeIndexes.Count <= 0)
+                    _randomNodeIndexes = new Stack<int>(Enumerable.Range(0, _nodesList.Count).OrderBy(r => _random.Next()));
+                return _nodesList[_randomNodeIndexes.Pop()];
+            }
+        }
+
+        /// <summary>
+        /// Return node of given key
+        /// </summary>
+        /// <param name="key">Searched node key</param>
+        /// <returns>Matching node; null if not found</returns>
+        public Node GetNodeOfKey(string key)
+        {
+            Node match;
+            _nodes.TryGetValue(key, out match);
+            return match;
+        }
+
         /// <summary>
         /// Fills graph with randomly generated data based on seleceted parameters.
         /// </summary>
@@ -270,6 +274,20 @@
         public bool ContainsEdge(Node from, Node to)
         {
             return _edges.Contains(new Edge(from, to));
+        }
+
+        /// <summary>
+        /// Checks if graph contains edge connecting given nodes.
+        /// </summary>
+        /// <param name="from">First vertex of an edge.</param>
+        /// <param name="to">Second vertex of an edge.</param>
+        /// <returns></returns>
+        public bool ContainsEdge(string from, string to)
+        {
+            var matchFrom = GetNodeOfKey(from);
+            var matchTo = GetNodeOfKey(to);
+            if (matchFrom == null || matchTo == null) return false;
+            return ContainsEdge(matchFrom, matchTo);
         }
 
         /// <summary>

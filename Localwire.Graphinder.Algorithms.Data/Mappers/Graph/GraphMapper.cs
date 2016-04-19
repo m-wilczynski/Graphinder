@@ -9,30 +9,35 @@
     {
         public static Graph AsDomainModel(this GraphEntity entity)
         {
-            var graph = new Graph(entity.Nodes.AsDomainModel(), entity.Id);
-            graph.RebuildNeighbourhood();
+            List<EdgeMapping> edgesToAdd = new List<EdgeMapping>();
+
+            var graph = new Graph(entity.Id);
+            foreach (var node in entity.Nodes)
+            {
+                graph.AddNode(node.Key, node.Id);
+                edgesToAdd.AddRange(node.Neighbours
+                    .Where(ngh => ngh != null)
+                    .Select(ngh => new EdgeMapping { FromKey = node.Key, ToKey = ngh.Key }));
+            }
+            foreach (var edge in edgesToAdd.Where(edge => !graph.ContainsEdge(edge.FromKey, edge.ToKey)))
+            {
+                graph.AddEdge(edge.FromKey, edge.ToKey);
+            }
+
             return graph;
         }
 
         public static GraphEntity AsEntityModel(this Graph model)
         {
-            return new GraphEntity
-            {
-                Id = model.Id,
-                Nodes = model.Nodes.AsEntityModel().ToList()
-            };
+            var graph = new GraphEntity { Id = model.Id };
+            graph.Nodes = model.Nodes.AsEntityModel(graph).ToList();
+            return graph;
         }
 
-        private static void RebuildNeighbourhood(this Graph model)
+        private class EdgeMapping
         {
-            foreach (var node in model.Nodes)
-            {
-                foreach (var ngh in node.Neighbours)
-                {
-                    if (model.ContainsEdge(node, ngh)) continue;
-                    model.AddEdge(node.Key, ngh.Key);
-                }
-            }
+            public string FromKey { get; set; }
+            public string ToKey { get; set; }
         }
     }
 }

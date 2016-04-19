@@ -17,27 +17,30 @@
         public static GeneticAlgorithm AsDomainModel(this GeneticAlgorithmEntity entity)
         {
             var graph = entity.Graph.AsDomainModel();
+            var problem = entity.Problem.AsDomainModelResolved();
             return new GeneticAlgorithm(
                 graph, 
-                entity.Problem.AsDomainModelResolved(),
+                problem,
                 new GeneticOperators(
                     SelectionFactory.ProvideOfType(entity.SelectionStrategy),
                     CrossoverFactory.ProvideOfType(entity.CrossoverStrategy, graph),
                     MutationFactory.ProvideOfType(entity.MutationStrategy)),
                 new GeneticAlgorithmSettings(entity.GenerationsToCome, entity.InitialPopulationSize,
                     entity.CrossoverProbability, entity.MutationProbability, entity.WithElitistSelection),
-                entity.CurrentPopulation.AsDomainModel().ToList(),
+                entity.CurrentPopulation.AsDomainModel(graph, problem).ToList(),
                 entity.CurrentGeneration,
                 entity.Id);
         }
 
         public static GeneticAlgorithmEntity AsEntityModel(this GeneticAlgorithm model)
         {
+            var graph = model.Graph.AsEntityModel();
+            var problem = model.Problem.AsEntityModelResolved();
             return new GeneticAlgorithmEntity
             {
                 Id = model.Id,
-                Graph = model.Graph.AsEntityModel(),
-                Problem = model.Problem.AsEntityModelResolved(),
+                Graph = graph,
+                Problem = problem,
                 SelectionStrategy = SelectionFactory.ProvideMappingType(model.GeneticOperators.SelectionStrategy),
                 CrossoverStrategy = CrossoverFactory.ProvideMappingType(model.GeneticOperators.CrossoverStrategy),
                 MutationStrategy = MutationFactory.ProvideMappingType(model.GeneticOperators.MutationStrategy),
@@ -46,7 +49,7 @@
                 CrossoverProbability = model.Settings.CrossoverProbability,
                 MutationProbability = model.Settings.MutationProbability,
                 WithElitistSelection = model.Settings.WithElitistSelection,
-                CurrentPopulation = model.CurrentPopulation.AsEntityModel().ToList(),
+                CurrentPopulation = model.CurrentPopulation.AsEntityModel(graph, problem).ToList(),
                 CurrentGeneration = model.CurrentGeneration
             };
         }

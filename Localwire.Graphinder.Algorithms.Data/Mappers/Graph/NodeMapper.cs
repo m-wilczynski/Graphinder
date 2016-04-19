@@ -7,24 +7,34 @@
 
     internal static class NodeMapper
     {
-        public static Node AsDomainModel(this NodeEntity entity)
+        public static IEnumerable<Node> AsDomainModel(this IEnumerable<NodeEntity> entities, Graph graph)
         {
-            return null;
+            if (entities == null || graph == null) return new List<Node>();
+
+            var output = new List<Node>();
+
+            foreach (var entity in entities.Where(e => e != null))
+            {
+                var match = graph.GetNodeOfKey(entity.Key);
+                if (match == null)
+                    throw new KeyNotFoundException("Node not found in parent graph");
+                output.Add(match);
+            }
+            return output;
         }
 
-        public static IEnumerable<Node> AsDomainModel(this IEnumerable<NodeEntity> entities)
+        public static IEnumerable<NodeEntity> AsEntityModel(this IEnumerable<Node> models, GraphEntity graph)
         {
-            return entities.Where(e => e != null).Select(AsDomainModel);
-        } 
-
-        public static NodeEntity AsEntityModel(this Node model)
-        {
-            return null;
+            if (models == null || graph == null) return new List<NodeEntity>();
+            return models.Where(m => m != null)
+                .Select(m =>
+                    new NodeEntity
+                    {
+                        Graph = graph,
+                        Id = m.Id,
+                        Key = m.Key,
+                        Neighbours = m.Neighbours.AsEntityModel(graph).ToList()
+                    });
         }
-
-        public static IEnumerable<NodeEntity> AsEntityModel(this IEnumerable<Node> models)
-        {
-            return models.Where(m => m != null).Select(AsEntityModel);
-        } 
     }
 }

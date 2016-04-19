@@ -17,7 +17,7 @@
         [Fact]
         public void Graph_ctor_ThrowOnNullCollection()
         {
-            Assert.Throws<ArgumentNullException>(() => new Graph(nodes: null));
+            Assert.Throws<ArgumentNullException>(() => new Graph(keys: null));
         }
 
         [Fact]

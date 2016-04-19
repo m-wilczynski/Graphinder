@@ -13,17 +13,18 @@
         {
             var problem = new MinimumVertexCover(entity.Id);
             problem.Initialize(graph ?? entity.Graph.AsDomainModel());
-            problem.SetNewSolution(entity.CurrentSolution.AsDomainModel().ToList());
+            problem.SetNewSolution(entity.CurrentSolution.AsDomainModel(problem.Graph).ToList());
             return problem;
         }
 
         public static MinimumVertexCoverEntity AsEntityModel(this MinimumVertexCover model, GraphEntity graph = null)
         {
-            return new MinimumVertexCoverEntity()
+            var outputGraph = graph ?? model.Graph.AsEntityModel();
+            return new MinimumVertexCoverEntity
             {
                 Id = model.Id,
-                Graph = graph ?? model.Graph.AsEntityModel(),
-                CurrentSolution = model.CurrentSolution.AsEntityModel().ToList()
+                Graph = outputGraph,
+                CurrentSolution = model.CurrentSolution.AsEntityModel(outputGraph).ToList()
             };
         }
     }

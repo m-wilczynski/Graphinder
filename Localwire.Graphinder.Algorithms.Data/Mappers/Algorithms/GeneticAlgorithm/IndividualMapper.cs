@@ -3,40 +3,42 @@
     using System.Collections.Generic;
     using System.Linq;
     using Core.Algorithms.GeneticAlgorithm;
+    using Core.Graph;
+    using Core.Problems;
     using Entities.Algorithms.GeneticAlgorithm;
+    using Entities.Graph;
+    using Entities.Problems;
     using Graph;
     using Problems;
 
     internal static class IndividualMapper
     {
-        public static Individual AsDomainModel(this IndividualEntity entity, GeneticAlgorithm parent = null)
+        private static Individual AsDomainModel(this IndividualEntity entity, Graph graph, IProblem problem)
         {
-            return new Individual(
-                parent == null ? entity.Graph.AsDomainModel() : parent.Graph,
-                parent == null ? entity.Problem.AsDomainModelResolved() : parent.Problem,
-                entity.CurrentSolution,
-                entity.Id); 
+            return new Individual(graph, problem, entity.CurrentSolution, entity.Id); 
         }
 
-        public static IndividualEntity AsEntityModel(this Individual model, GeneticAlgorithmEntity parent = null)
+        private static IndividualEntity AsEntityModel(this Individual model, GraphEntity graph, ProblemEntity problem)
         {
             return new IndividualEntity
             {
                 Id = model.Id,
-                Graph = parent == null ? model.Graph.AsEntityModel() : parent.Graph,
-                Problem = parent == null ? model.Problem.AsEntityModelResolved() : parent.Problem,
+                Graph = graph,
+                Problem = problem,
                 CurrentSolution = model.CurrentSolution
             };
         }
 
-        public static IEnumerable<Individual> AsDomainModel(this IEnumerable<IndividualEntity> entities)
+        public static IEnumerable<Individual> AsDomainModel(this IEnumerable<IndividualEntity> entities, Graph graph, IProblem problem)
         {
-            return entities.Where(e => e != null).Select(e => e.AsDomainModel());
+            if (entities == null) return new List<Individual>();
+            return entities.Where(e => e != null).Select(e => e.AsDomainModel(graph, problem));
         }
 
-        public static IEnumerable<IndividualEntity> AsEntityModel(this IEnumerable<Individual> models)
+        public static IEnumerable<IndividualEntity> AsEntityModel(this IEnumerable<Individual> models, GraphEntity graph, ProblemEntity problem)
         {
-            return models.Where(m => m != null).Select(m => m.AsEntityModel());
+            if (models == null) return new List<IndividualEntity>();
+            return models.Where(m => m != null).Select(m => m.AsEntityModel(graph, problem));
         }
     }
 }
