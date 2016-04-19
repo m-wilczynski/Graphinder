@@ -1,26 +1,28 @@
 namespace Localwire.Graphinder.Algorithms.DataAccess.Mappers.Problems
 {
     using System;
+    using Core;
     using Core.Problems;
     using Core.Problems.OptimizationProblems;
     using Entities.Problems;
+    using Exceptions;
 
-    public static class GenericProblemMappingResolver
+    internal static class GenericProblemMappingResolver
     {
         public static IProblem AsDomainModelResolved(this ProblemEntity entity)
         {
             if (entity is MinimumVertexCoverEntity)
-                return ((MinimumVertexCoverEntity) entity).AsDomainModelResolved();
+                return ((MinimumVertexCoverEntity) entity).AsDomainModel();
 
-            throw new NotImplementedException("Mapper for provided entity of type" + entity.GetType() +" not found");
+            throw new MappingNotImplementedException(entity);
         }
 
         public static ProblemEntity AsEntityModelResolved(this IProblem model)
         {
             if (model is MinimumVertexCover)
-                return ((MinimumVertexCover) model).AsEntityModelResolved();
+                return ((MinimumVertexCover) model).AsEntityModel();
 
-            throw new NotImplementedException("Mapper for provided model of type" + model.GetType() +" not found");
+            throw new MappingNotImplementedException(model as BaseModel);
         }
     }
 }

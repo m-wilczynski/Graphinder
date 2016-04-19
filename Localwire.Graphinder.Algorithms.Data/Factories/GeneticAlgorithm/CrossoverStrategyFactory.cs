@@ -5,7 +5,7 @@
     using Core.Graph;
     using Mappers.EnumMappings.StrategyTypes;
 
-    class CrossoverStrategyFactory : ICrossoverStrategyFactory
+    internal class CrossoverStrategyFactory : ICrossoverStrategyFactory
     {
         public ICrossoverStrategy ProvideOfType(CrossoverStrategyType strategyType, Graph graph)
         {
@@ -20,6 +20,13 @@
                 default:
                     return null;
             }
+        }
+
+        public CrossoverStrategyType ProvideMappingType(ICrossoverStrategy strategy)
+        {
+            if (strategy is OnePointCrossoverStrategy)
+                return CrossoverStrategyType.OnePointCrossoverStrategy;
+            return CrossoverStrategyType.None;
         }
     }
 }

@@ -35,8 +35,11 @@
         /// <param name="problem">Problem for which algorithm will attempt to find solution</param>
         /// <param name="geneticOperators">Genetic operators used for breeding new generations</param>
         /// <param name="settings">General settings for solution finding process</param>
-        public GeneticAlgorithm(Graph graph, IProblem problem, 
-            GeneticOperators geneticOperators, GeneticAlgorithmSettings settings, Guid? id = null) : base(graph, problem, id)
+        /// <param name="startingPopulation">Starting population for algorithm</param>
+        public GeneticAlgorithm(Graph graph, IProblem problem, GeneticOperators geneticOperators, 
+            GeneticAlgorithmSettings settings, ICollection<Individual> startingPopulation = null, 
+            uint currentGeneration = 0, Guid? id = null)
+            : base(graph, problem, id)
         {
             if (geneticOperators == null)
                 throw new ArgumentNullException(nameof(geneticOperators));
@@ -46,7 +49,16 @@
                 throw new ArgumentNullException(nameof(settings));
             GeneticOperators = geneticOperators;
             Settings = settings;
-            GenerateInitialPopulation();
+            if (startingPopulation == null || startingPopulation.Count == 0 || !startingPopulation.All(IsIndividualValid))
+                GenerateInitialPopulation();
+            else
+            {
+                CurrentPopulation = new SortedSet<Individual>();
+                foreach (var element in startingPopulation)
+                    CurrentPopulation.Add(element);
+            }
+
+            CurrentGeneration = currentGeneration;
         }
 
         /// <summary>
@@ -66,6 +78,7 @@
         /// <summary>
         /// Current population of individuals that algorithm bred.
         /// </summary>
+        //TODO: Return copy instead?
         public SortedSet<Individual> CurrentPopulation { get; private set; } 
 
         /// <summary>
@@ -194,6 +207,11 @@
                 counter--;
             }
             _isInitialized = true;
+        }
+
+        private bool IsIndividualValid(Individual individual)
+        {
+            return individual.Graph.Equals(Graph) && individual.Problem.Equals(Problem);
         }
     }
 }

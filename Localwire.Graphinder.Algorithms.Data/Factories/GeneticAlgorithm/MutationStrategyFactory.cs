@@ -3,7 +3,7 @@
     using Core.Algorithms.GeneticAlgorithm.MutationStrategies;
     using Mappers.EnumMappings.StrategyTypes;
 
-    class MutationStrategyFactory : IMutationStrategyFactory
+    internal class MutationStrategyFactory : IMutationStrategyFactory
     {
         public IMutationStrategy ProvideOfType(MutationStrategyType strategyType)
         {
@@ -16,6 +16,13 @@
                 default:
                     return null;
             }
+        }
+
+        public MutationStrategyType ProvideMappingType(IMutationStrategy strategy)
+        {
+            if(strategy is BinaryTransformationStrategy)
+                return MutationStrategyType.BinaryTransformationStrategy;
+            return MutationStrategyType.None;
         }
     }
 }

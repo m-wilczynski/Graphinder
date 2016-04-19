@@ -11,7 +11,8 @@
         public uint InitialPopulationSize { get; set; }
         public uint GenerationsToCome { get; set; }
         public double CrossoverProbability { get; set; }
-        public double WithElitistSelection { get; set; }
+        public double MutationProbability { get; set; }
+        public bool WithElitistSelection { get; set; }
         public uint EliteSurvivors { get; set; }
         public uint CurrentGeneration { get; set; }
         public ICollection<IndividualEntity> CurrentPopulation { get; set; }

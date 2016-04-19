@@ -6,5 +6,6 @@
     public interface IMutationStrategyFactory
     {
         IMutationStrategy ProvideOfType(MutationStrategyType strategyType);
+        MutationStrategyType ProvideMappingType(IMutationStrategy strategy);
     }
 }

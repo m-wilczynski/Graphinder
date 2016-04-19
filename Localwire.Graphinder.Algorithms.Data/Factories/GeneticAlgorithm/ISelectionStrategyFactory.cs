@@ -6,5 +6,6 @@
     public interface ISelectionStrategyFactory
     {
         ISelectionStrategy ProvideOfType(SelectionStrategyType strategyType);
+        SelectionStrategyType ProvideMappingType(ISelectionStrategy strategy);
     }
 }

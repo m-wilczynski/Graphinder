@@ -1,5 +1,7 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Mappers.Algorithms.GeneticAlgorithm
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Core.Algorithms.GeneticAlgorithm;
     using Entities.Algorithms.GeneticAlgorithm;
     using Graph;
@@ -25,6 +27,16 @@
                 Problem = parent == null ? model.Problem.AsEntityModelResolved() : parent.Problem,
                 CurrentSolution = model.CurrentSolution
             };
+        }
+
+        public static IEnumerable<Individual> AsDomainModel(this IEnumerable<IndividualEntity> entities)
+        {
+            return entities.Where(e => e != null).Select(e => e.AsDomainModel());
+        }
+
+        public static IEnumerable<IndividualEntity> AsEntityModel(this IEnumerable<Individual> models)
+        {
+            return models.Where(m => m != null).Select(m => m.AsEntityModel());
         }
     }
 }

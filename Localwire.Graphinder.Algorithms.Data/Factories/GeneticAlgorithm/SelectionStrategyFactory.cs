@@ -17,5 +17,12 @@
                     return null;
             }
         }
+
+        public SelectionStrategyType ProvideMappingType(ISelectionStrategy strategy)
+        {
+            if (strategy is RouletteStrategy)
+                return SelectionStrategyType.RouletteStrategy;
+            return SelectionStrategyType.None;
+        }
     }
 }

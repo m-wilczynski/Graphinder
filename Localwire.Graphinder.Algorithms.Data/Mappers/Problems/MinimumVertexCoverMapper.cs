@@ -7,9 +7,9 @@
     using Entities.Problems;
     using Graph;
 
-    internal class MinimumVertexCoverMapper
+    internal static class MinimumVertexCoverMapper
     {
-        public MinimumVertexCover AsDomainModel(MinimumVertexCoverEntity entity, Graph graph = null)
+        public static MinimumVertexCover AsDomainModel(this MinimumVertexCoverEntity entity, Graph graph = null)
         {
             var problem = new MinimumVertexCover(entity.Id);
             problem.Initialize(graph ?? entity.Graph.AsDomainModel());
@@ -17,7 +17,7 @@
             return problem;
         }
 
-        public MinimumVertexCoverEntity AsEntityModel(MinimumVertexCover model, GraphEntity graph = null)
+        public static MinimumVertexCoverEntity AsEntityModel(this MinimumVertexCover model, GraphEntity graph = null)
         {
             return new MinimumVertexCoverEntity()
             {

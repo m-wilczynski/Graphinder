@@ -7,5 +7,6 @@
     public interface ICrossoverStrategyFactory
     {
         ICrossoverStrategy ProvideOfType(CrossoverStrategyType strategyType, Graph graph);
+        CrossoverStrategyType ProvideMappingType(ICrossoverStrategy strategy);
     }
 }
