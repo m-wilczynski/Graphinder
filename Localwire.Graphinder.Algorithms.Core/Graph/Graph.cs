@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using Core.Helpers;
     using Exceptions;
     using Helpers;
@@ -40,6 +41,14 @@
                 throw new ArgumentNullException(nameof(nodes));
             foreach (var element in nodes.Where(n => n != null && !_nodes.ContainsKey(n)))
                 AddNode(element);
+        }
+
+        public Graph(IEnumerable<Node> nodes, Guid? id = null) : this(id)
+        {
+            if (nodes == null)
+                throw new ArgumentNullException(nameof(nodes));
+            foreach (var element in nodes.Where(n => n != null && !_nodes.ContainsKey(n.Key)))
+                AddNode(element.Key, element.Id);
         }
 
         /// <summary>
@@ -112,7 +121,7 @@
         /// Adds node to the graph.
         /// </summary>
         /// <param name="key">Key representing node to be added</param>
-        public Node AddNode(string key)
+        public Node AddNode(string key, Guid? id = null)
         {
             if (!CanAdd())
                 throw new DataStructureLockedException("Adding node to graph", GetType()); 

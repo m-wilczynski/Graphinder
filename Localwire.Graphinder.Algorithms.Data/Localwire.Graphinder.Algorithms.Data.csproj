@@ -60,6 +60,7 @@
     <Compile Include="Entities\Graph\NodeEntity.cs" />
     <Compile Include="Entities\Problems\MinimumVertexCoverEntity.cs" />
     <Compile Include="Entities\Problems\ProblemEntity.cs" />
+    <Compile Include="Exceptions\InvalidMapperException.cs" />
     <Compile Include="Factories\GeneticAlgorithm\CrossoverStrategyFactory.cs" />
     <Compile Include="Factories\GeneticAlgorithm\ICrossoverStrategyFactory.cs" />
     <Compile Include="Factories\GeneticAlgorithm\IMutationStrategyFactory.cs" />

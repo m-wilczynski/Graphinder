@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents basic node of undirected graph
     /// </summary>
-    public class Node
+    public class Node : BaseModel
     {
         public readonly HashSet<Node> Neighbours;
         public readonly string Key;
@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="key">Key that ensures node uniqueness</param>
         /// <param name="parent">Graph of which node is part of.</param>
-        public Node(string key, Graph parent)
+        public Node(string key, Graph parent, Guid? id = null) : base(id)
         {
             if (string.IsNullOrEmpty(key)) throw new ArgumentException("Node needs valid key!");
             if (parent == null) throw new ArgumentNullException(nameof(parent));
