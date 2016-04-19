@@ -1,7 +1,7 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Factories.GeneticAlgorithm
 {
     using Core.Algorithms.GeneticAlgorithm.SelectionStrategies;
-    using EnumMappings.StrategyTypes;
+    using Mappers.EnumMappings.StrategyTypes;
 
     public interface ISelectionStrategyFactory
     {

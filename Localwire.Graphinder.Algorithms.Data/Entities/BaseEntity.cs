@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Algorithms.DataAccess
+﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Entities
 {
     using System;
 

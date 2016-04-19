@@ -3,7 +3,7 @@
     using System;
     using Core.Algorithms.GeneticAlgorithm.CrossoverStrategies;
     using Core.Graph;
-    using EnumMappings.StrategyTypes;
+    using Mappers.EnumMappings.StrategyTypes;
 
     class CrossoverStrategyFactory : ICrossoverStrategyFactory
     {

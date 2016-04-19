@@ -1,7 +1,7 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Factories.GeneticAlgorithm
 {
     using Core.Algorithms.GeneticAlgorithm.MutationStrategies;
-    using EnumMappings.StrategyTypes;
+    using Mappers.EnumMappings.StrategyTypes;
 
     class MutationStrategyFactory : IMutationStrategyFactory
     {

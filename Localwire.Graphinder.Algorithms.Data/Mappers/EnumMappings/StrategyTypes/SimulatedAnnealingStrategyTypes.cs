@@ -1,4 +1,4 @@
-﻿namespace Localwire.Graphinder.Algorithms.DataAccess.EnumMappings.StrategyTypes
+﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Mappers.EnumMappings.StrategyTypes
 {
     public enum CoolingStrategyType
     {

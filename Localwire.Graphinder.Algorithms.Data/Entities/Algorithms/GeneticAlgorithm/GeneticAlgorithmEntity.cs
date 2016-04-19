@@ -1,7 +1,7 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Entities.Algorithms.GeneticAlgorithm
 {
     using System.Collections.Generic;
-    using EnumMappings.StrategyTypes;
+    using Mappers.EnumMappings.StrategyTypes;
 
     internal class GeneticAlgorithmEntity : AlgorithmEntity
     {

@@ -50,12 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseEntity.cs" />
     <Compile Include="Commands\UpdateProblem.cs" />
     <Compile Include="Entities\Algorithms\AlgorithmEntity.cs" />
     <Compile Include="Entities\Algorithms\GeneticAlgorithm\GeneticAlgorithmEntity.cs" />
     <Compile Include="Entities\Algorithms\GeneticAlgorithm\IndividualEntity.cs" />
     <Compile Include="Entities\Algorithms\SimulatedAnnealing\SimulatedAnnealingEntity.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Graph\GraphEntity.cs" />
     <Compile Include="Entities\Graph\NodeEntity.cs" />
     <Compile Include="Entities\Problems\MinimumVertexCoverEntity.cs" />
@@ -72,12 +72,13 @@
     <Compile Include="Mappers\Algorithms\GeneticAlgorithm\GeneticAlgorithmMapper.cs" />
     <Compile Include="Mappers\Algorithms\GeneticAlgorithm\IndividualMapper.cs" />
     <Compile Include="Mappers\Algorithms\SimulatedAnnealing\SimulatedAnnealingMapper.cs" />
+    <Compile Include="Mappers\EnumMappings\StrategyTypes\GeneticAlgorithmStrategyTypes.cs" />
+    <Compile Include="Mappers\EnumMappings\StrategyTypes\SimulatedAnnealingStrategyTypes.cs" />
     <Compile Include="Mappers\Graph\GraphMapper.cs" />
     <Compile Include="Mappers\Graph\NodeMapper.cs" />
+    <Compile Include="Mappers\Problems\GenericProblemMappingResolver.cs" />
     <Compile Include="Mappers\Problems\MinimumVertexCoverMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EnumMappings\StrategyTypes\GeneticAlgorithmStrategyTypes.cs" />
-    <Compile Include="EnumMappings\StrategyTypes\SimulatedAnnealingStrategyTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

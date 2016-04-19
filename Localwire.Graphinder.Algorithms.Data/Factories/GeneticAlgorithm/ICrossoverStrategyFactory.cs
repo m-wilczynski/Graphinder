@@ -2,7 +2,7 @@
 {
     using Core.Algorithms.GeneticAlgorithm.CrossoverStrategies;
     using Core.Graph;
-    using EnumMappings.StrategyTypes;
+    using Mappers.EnumMappings.StrategyTypes;
 
     public interface ICrossoverStrategyFactory
     {

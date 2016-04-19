@@ -1,6 +1,6 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Entities.Algorithms.SimulatedAnnealing
 {
-    using EnumMappings.StrategyTypes;
+    using Mappers.EnumMappings.StrategyTypes;
 
     internal class SimulatedAnnealingEntity : AlgorithmEntity
     {
