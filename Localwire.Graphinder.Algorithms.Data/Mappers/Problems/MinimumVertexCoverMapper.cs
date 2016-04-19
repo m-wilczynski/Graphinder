@@ -1,26 +1,30 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Mappers.Problems
 {
-    using Core.Problems;
+    using System.Linq;
+    using Core.Graph;
     using Core.Problems.OptimizationProblems;
+    using Entities.Graph;
     using Entities.Problems;
-    using Exceptions;
+    using Graph;
 
     internal class MinimumVertexCoverMapper
     {
-        public IProblem AsDomainModel(ProblemEntity entity)
+        public MinimumVertexCover AsDomainModel(MinimumVertexCoverEntity entity, Graph graph = null)
         {
-            var casted = entity as MinimumVertexCoverEntity;
-            if (casted == null)
-                throw new InvalidMapperException(entity.GetType(), typeof(MinimumVertexCoverEntity), nameof(AsDomainModel));
-            return null;
+            var problem = new MinimumVertexCover(entity.Id);
+            problem.Initialize(graph ?? entity.Graph.AsDomainModel());
+            problem.SetNewSolution(entity.CurrentSolution.AsDomainModel().ToList());
+            return problem;
         }
 
-        public ProblemEntity AsEntityModel(IProblem model)
+        public MinimumVertexCoverEntity AsEntityModel(MinimumVertexCover model, GraphEntity graph = null)
         {
-            var casted = model as MinimumVertexCover;
-            if (casted == null)
-                throw new InvalidMapperException(model.GetType(), typeof(MinimumVertexCover), nameof(AsEntityModel));
-            return null;
+            return new MinimumVertexCoverEntity()
+            {
+                Id = model.Id,
+                Graph = graph ?? model.Graph.AsEntityModel(),
+                CurrentSolution = model.CurrentSolution.AsEntityModel().ToList()
+            };
         }
     }
 }

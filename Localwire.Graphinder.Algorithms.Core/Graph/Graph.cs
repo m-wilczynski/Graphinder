@@ -64,6 +64,19 @@
             return _nodes != null && _nodes.Count > 0;
         }
 
+        public override bool Equals(object o)
+        {
+            if (o == null) return false;
+            var casted = o as Graph;
+            if (casted == null) return false;
+            return casted.Id.Equals(Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
         /// <summary>
         /// Returns random node from graph. Can end up in returning same Node in a row!
         /// </summary>

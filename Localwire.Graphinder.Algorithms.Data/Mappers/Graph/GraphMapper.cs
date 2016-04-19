@@ -19,7 +19,6 @@
             return new GraphEntity
             {
                 Id = model.Id,
-                DateCreated = model.DateCreated,
                 Nodes = model.Nodes.AsEntityModel().ToList()
             };
         }

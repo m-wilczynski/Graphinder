@@ -26,6 +26,11 @@
         ICollection<Node> CurrentSolution { get; }
 
         /// <summary>
+        /// Graph representing problem.
+        /// </summary>
+        Graph Graph { get; }
+
+        /// <summary>
         /// Sets new solution of the problem.
         /// </summary>
         /// <param name="nodes">Collection of nodes representing new solution.</param>

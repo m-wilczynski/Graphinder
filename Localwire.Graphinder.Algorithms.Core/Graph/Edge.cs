@@ -43,7 +43,7 @@
         {
             if (from == null || to == null)
                 return false;
-            if (from.Parent != to.Parent)
+            if (!Equals(from.Parent, to.Parent))
                 return false;
             if (!from.Parent.ContainsNode(from.Key) || !to.Parent.ContainsNode(to.Key))
                 return false;

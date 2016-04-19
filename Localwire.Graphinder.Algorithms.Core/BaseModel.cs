@@ -4,8 +4,7 @@
 
     public abstract class BaseModel
     {
-        public Guid Id { get; private set; }
-        public DateTime DateCreated { get; private set; }
+        public readonly Guid Id;
 
         protected BaseModel(Guid? id)
         {
@@ -13,7 +12,6 @@
                 Id = id.Value;
             else
                 Id = Guid.NewGuid();
-            DateCreated = DateTime.Now;
         }
     }
 }

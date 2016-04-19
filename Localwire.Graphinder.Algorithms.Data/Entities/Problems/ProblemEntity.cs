@@ -5,6 +5,7 @@
 
     public abstract class ProblemEntity : BaseEntity
     {
-        internal ICollection<NodeEntity> CurrentSolution { get; set; }  
+        internal GraphEntity Graph { get; set; }
+        internal virtual ICollection<NodeEntity> CurrentSolution { get; set; }  
     }
 }

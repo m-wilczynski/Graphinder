@@ -12,7 +12,6 @@
     public class MinimumVertexCover : BaseModel, IProblem
     {
         private bool _isInitialized;
-        private Graph _graph;
         private HashSet<Node> _currentCover;
         private readonly ProblemCriteria _criteria = ProblemCriteria.SmallerIsBetter;
 
@@ -48,12 +47,17 @@
         /// <summary>
         /// Current solution value.
         /// </summary>
-        public int CurrentOutcome { get { return IsCurrentSolutionCorrect ? CoverSize : _graph.TotalNodes; } }
+        public int CurrentOutcome { get { return IsCurrentSolutionCorrect ? CoverSize : Graph.TotalNodes; } }
 
         /// <summary>
         /// Current solution of the problem.
         /// </summary>
         public ICollection<Node> CurrentSolution { get { return new HashSet<Node>(_currentCover); } }
+
+        /// <summary>
+        /// Graph representing problem.
+        /// </summary>
+        public Graph Graph { get; private set; }
 
         /// <summary>
         /// Sets new solution of the problem.
@@ -63,7 +67,7 @@
         {
             if (nodes == null) throw new ArgumentException(nameof(nodes));
             if (!IsInitialized) return;
-            if (nodes.All(n => _graph.ContainsNode(n.Key) && _graph == n.Parent))
+            if (nodes.All(n => Graph.ContainsNode(n.Key) && Graph.Equals(n.Parent)))
             {
                 lock (_currentCover)
                 {
@@ -86,7 +90,7 @@
             if (graph == null) throw new ArgumentException(nameof(graph));
             if (_isInitialized) return;
             _currentCover = new HashSet<Node>(graph.Nodes);
-            _graph = graph;
+            Graph = graph;
             _isInitialized = true;
         }
 
@@ -96,7 +100,7 @@
         public void RestartProblemState()
         {
             if (!IsInitialized) return;
-            _currentCover = new HashSet<Node>(_graph.Nodes);
+            _currentCover = new HashSet<Node>(Graph.Nodes);
         }
 
 
@@ -116,9 +120,9 @@
                 {
                     alreadyCovered.Add(new Edge(element, neighbour));
                 }
-                if (alreadyCovered.Count == _graph.TotalEdges) break;
+                if (alreadyCovered.Count == Graph.TotalEdges) break;
             }
-            return alreadyCovered.Count == _graph.TotalEdges;
+            return alreadyCovered.Count == Graph.TotalEdges;
         }
 
         /// <summary>
@@ -130,7 +134,7 @@
         {
             if (nodesEncodedBinary == null) throw new ArgumentException(nameof(nodesEncodedBinary));
             //TODO: Would be wiser to enumerate over everything only once and break DRY rule up here?
-            return IsSolutionCorrect(_graph.BinarySolutionAsNodes(nodesEncodedBinary));
+            return IsSolutionCorrect(Graph.BinarySolutionAsNodes(nodesEncodedBinary));
         }
 
         /// <summary>
@@ -141,7 +145,7 @@
         public int SolutionOutcome(ICollection<Node> nodes)
         {
             if (nodes == null) throw new ArgumentException(nameof(nodes));
-            return IsSolutionCorrect(nodes) ? nodes.Count : _graph.TotalNodes;
+            return IsSolutionCorrect(nodes) ? nodes.Count : Graph.TotalNodes;
         }
     }
 }
