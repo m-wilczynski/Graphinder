@@ -76,13 +76,6 @@
         }
 
         [Fact]
-        public void SimulatedAnnealing_LaunchAlgorithm_RestartsProblem()
-        {
-            Algorithm.LaunchAlgorithm();
-            Algorithm.Problem.Received().RestartProblemState();
-        }
-
-        [Fact]
         public void SimulatedAnnealing_CanAcceptAnswer_ChecksAgainstProblem()
         {
             var solution = new List<Node>();

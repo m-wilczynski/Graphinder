@@ -17,5 +17,12 @@
                     return null;
             }
         }
+
+        public CoolingStrategyType ProvideMappingType(ICoolingStrategy strategy)
+        {
+            if (strategy is AllRandomCooling)
+                return CoolingStrategyType.AllRandomCooling;
+            return CoolingStrategyType.None;
+        }
     }
 }

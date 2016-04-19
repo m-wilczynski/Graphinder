@@ -87,11 +87,6 @@
         protected abstract IEnumerable<IAlgorithmProgressReport> SearchForSolution();
 
         /// <summary>
-        /// Resets algorithm to its initial state.
-        /// </summary>
-        protected abstract void ResetToInitialState();
-
-        /// <summary>
         /// Action performed on solution finding progress change
         /// </summary>
         /// <param name="algorithmProgress"></param>

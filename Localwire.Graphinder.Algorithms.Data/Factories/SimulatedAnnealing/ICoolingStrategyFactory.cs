@@ -6,5 +6,6 @@
     public interface ICoolingStrategyFactory
     {
         ICoolingStrategy ProvideOfType(CoolingStrategyType strategyType);
+        CoolingStrategyType ProvideMappingType(ICoolingStrategy strategy);
     }
 }

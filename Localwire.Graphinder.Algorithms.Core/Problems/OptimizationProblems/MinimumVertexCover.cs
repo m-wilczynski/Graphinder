@@ -95,16 +95,6 @@
         }
 
         /// <summary>
-        /// Restart problem to initial state.
-        /// </summary>
-        public void RestartProblemState()
-        {
-            if (!IsInitialized) return;
-            _currentCover = new HashSet<Node>(Graph.Nodes);
-        }
-
-
-        /// <summary>
         /// Checks passed solution for correctness.
         /// </summary>
         /// <param name="nodes">Collection of nodes representing new solution.</param>

@@ -14,20 +14,23 @@
     {
         private readonly Random _random = new Random();
         private long _totalProcessorTimeCost = long.MaxValue;
-        
+
         /// <summary>
         /// Creates SimulatedAnnealing algorithm instance
         /// </summary>
         /// <param name="graph">Graph on which algorithm will operate</param>
         /// <param name="problem">Problem for which algorithm will attempt to find solution</param>
         /// <param name="setup">Setup for algorithm's cooling process</param>
-        public SimulatedAnnealing(Graph graph, IProblem problem, CoolingSetup setup, Guid? id = null) : base(graph, problem, id)
+        //TODO: Introduce SavedState complex type
+        public SimulatedAnnealing(Graph graph, IProblem problem, CoolingSetup setup, double? currentTemperature = null, Guid? id = null) : base(graph, problem, id)
         {
             if (setup == null)
                 throw new ArgumentNullException(nameof(setup));
             if (!setup.IsValid())
                 throw new ArgumentException("Setup is invalid", nameof(setup));
             CoolingSetup = setup;
+            if (currentTemperature.HasValue)
+                CurrentTemperature = currentTemperature.Value;
         }
 
         /// <summary>
@@ -80,7 +83,6 @@
         /// </summary>
         protected override IEnumerable<IAlgorithmProgressReport> SearchForSolution()
         {
-            ResetToInitialState();
             return CoolSystem();
         }
 
@@ -116,16 +118,6 @@
                 //Calculate probability otherwise
                 return Math.Exp((energy - newEnergy) / CurrentTemperature);
             }
-        }
-
-        /// <summary>
-        /// Restarts system to initial state.
-        /// </summary>
-        protected override void ResetToInitialState()
-        {
-            CurrentTemperature = CoolingSetup.InitialTemperature;
-            Problem.RestartProblemState();
-            _totalProcessorTimeCost = long.MaxValue;
         }
 
         /// <summary>

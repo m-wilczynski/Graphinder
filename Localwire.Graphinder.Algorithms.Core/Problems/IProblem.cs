@@ -37,11 +37,6 @@
         void SetNewSolution(ICollection<Node> nodes);
 
         /// <summary>
-        /// Restart problem to initial state.
-        /// </summary>
-        void RestartProblemState();
-
-        /// <summary>
         /// Checks passed solution for correctness.
         /// </summary>
         /// <param name="nodes">Collection of nodes representing new solution.</param>

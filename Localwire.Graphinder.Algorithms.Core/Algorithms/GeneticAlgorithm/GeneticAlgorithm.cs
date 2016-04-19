@@ -36,6 +36,7 @@
         /// <param name="geneticOperators">Genetic operators used for breeding new generations</param>
         /// <param name="settings">General settings for solution finding process</param>
         /// <param name="startingPopulation">Starting population for algorithm</param>
+        //TODO: Introduce SavedState complex type
         public GeneticAlgorithm(Graph graph, IProblem problem, GeneticOperators geneticOperators, 
             GeneticAlgorithmSettings settings, ICollection<Individual> startingPopulation = null, 
             uint currentGeneration = 0, Guid? id = null)
@@ -108,7 +109,7 @@
         /// </summary>
         protected override IEnumerable<IAlgorithmProgressReport> SearchForSolution()
         {
-            ResetToInitialState();
+            GenerateInitialPopulation();
 
             var startTime = DateTime.Now.Ticks;
 
@@ -181,16 +182,6 @@
             if (!Settings.WithElitistSelection) return null;
             if (Settings.EliteSurvivors > int.MaxValue) return null;
             return CurrentPopulation.Reverse().Take((int)Settings.EliteSurvivors).ToList();
-        }
-
-        /// <summary>
-        /// Restarts system to initial state.
-        /// </summary>
-        protected override void ResetToInitialState()
-        {
-            GenerateInitialPopulation();
-            Problem.RestartProblemState();
-            _totalProcessorTimeCost = long.MaxValue;
         }
 
         /// <summary>

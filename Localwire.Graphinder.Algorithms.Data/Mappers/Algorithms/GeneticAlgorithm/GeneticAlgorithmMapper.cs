@@ -14,6 +14,7 @@
         static readonly ICrossoverStrategyFactory CrossoverFactory = new CrossoverStrategyFactory();
         static readonly IMutationStrategyFactory MutationFactory = new MutationStrategyFactory();
 
+        //TODO: Missing current processor time from persistence
         public static GeneticAlgorithm AsDomainModel(this GeneticAlgorithmEntity entity)
         {
             var graph = entity.Graph.AsDomainModel();
@@ -50,7 +51,8 @@
                 MutationProbability = model.Settings.MutationProbability,
                 WithElitistSelection = model.Settings.WithElitistSelection,
                 CurrentPopulation = model.CurrentPopulation.AsEntityModel(graph, problem).ToList(),
-                CurrentGeneration = model.CurrentGeneration
+                CurrentGeneration = model.CurrentGeneration,
+                TotalProcessorTimeCost = model.TotalProcessorTimeCost
             };
         }
     }
