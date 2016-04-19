@@ -5,12 +5,12 @@
 
     internal static class IndividualMapper
     {
-        public static Individual ToDomainModel(this IndividualEntity entity)
+        public static Individual AsDomainModel(this IndividualEntity entity)
         {
             return null;
         }
 
-        public static IndividualEntity ToEntityModel(this Individual model)
+        public static IndividualEntity AsEntityModel(this Individual model)
         {
             return null;
         }

@@ -34,12 +34,12 @@
         /// <summary>
         /// Instantiates undirected graph based on key collection.
         /// </summary>
-        /// <param name="nodes">Collection of nodes' keys.</param>
-        public Graph(IEnumerable<string> nodes, Guid? id = null) : this(id)
+        /// <param name="keys">Collection of nodes' keys.</param>
+        public Graph(IEnumerable<string> keys, Guid? id = null) : this(id)
         {
-            if (nodes == null)
-                throw new ArgumentNullException(nameof(nodes));
-            foreach (var element in nodes.Where(n => n != null && !_nodes.ContainsKey(n)))
+            if (keys == null)
+                throw new ArgumentNullException(nameof(keys));
+            foreach (var element in keys.Where(n => !string.IsNullOrEmpty(n) && !_nodes.ContainsKey(n)))
                 AddNode(element);
         }
 

@@ -18,7 +18,7 @@
         public Type ExpectedType { get; }
 
         /// <summary>
-        /// Operation on which exception occured, ie. ToDomainModel or ToEntityModel
+        /// Operation on which exception occured, ie. AsDomainModel or AsEntityModel
         /// </summary>
         public string Operation { get; }
 

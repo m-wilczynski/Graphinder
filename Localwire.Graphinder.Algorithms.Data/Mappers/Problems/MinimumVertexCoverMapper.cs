@@ -1,12 +1,11 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Mappers.Problems
 {
-    using Base;
     using Core.Problems;
     using Core.Problems.OptimizationProblems;
     using Entities.Problems;
     using Exceptions;
 
-    internal class MinimumVertexCoverMapper : IProblemMapperFor<MinimumVertexCover, MinimumVertexCoverEntity>
+    internal class MinimumVertexCoverMapper
     {
         public IProblem AsDomainModel(ProblemEntity entity)
         {

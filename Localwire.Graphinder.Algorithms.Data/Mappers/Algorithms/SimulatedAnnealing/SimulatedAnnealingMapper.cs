@@ -5,12 +5,12 @@
 
     internal static class SimulatedAnnealingMapper
     {
-        public static SimulatedAnnealing ToDomainModel(this SimulatedAnnealingEntity entity)
+        public static SimulatedAnnealing AsDomainModel(this SimulatedAnnealingEntity entity)
         {
             return null;
         }
 
-        public static SimulatedAnnealingEntity ToEntityModel(this SimulatedAnnealing model)
+        public static SimulatedAnnealingEntity AsEntityModel(this SimulatedAnnealing model)
         {
             return null;
         }

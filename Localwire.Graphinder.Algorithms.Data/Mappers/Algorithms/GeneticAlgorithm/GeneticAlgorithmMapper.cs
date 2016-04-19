@@ -5,12 +5,12 @@
 
     internal static class GeneticAlgorithmMapper
     {
-        public static GeneticAlgorithm ToDomainModel(this GeneticAlgorithmEntity entity)
+        public static GeneticAlgorithm AsDomainModel(this GeneticAlgorithmEntity entity)
         {
             return null;
         }
 
-        public static GeneticAlgorithmEntity ToEntityModel(this GeneticAlgorithm model)
+        public static GeneticAlgorithmEntity AsEntityModel(this GeneticAlgorithm model)
         {
             return null;
         }
