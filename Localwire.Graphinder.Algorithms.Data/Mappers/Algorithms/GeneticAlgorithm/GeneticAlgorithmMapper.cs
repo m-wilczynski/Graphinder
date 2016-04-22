@@ -4,6 +4,7 @@
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Algorithms.GeneticAlgorithm.Setup;
     using Entities.Algorithms.GeneticAlgorithm;
+    using Entities.Graph;
     using Factories.GeneticAlgorithm;
     using Graph;
     using Problems;
@@ -18,7 +19,7 @@
         public static GeneticAlgorithm AsDomainModel(this GeneticAlgorithmEntity entity)
         {
             var graph = entity.Graph.AsDomainModel();
-            var problem = entity.Problem.AsDomainModelResolved();
+            var problem = entity.Problem.AsDomainModelResolved(graph);
             return new GeneticAlgorithm(
                 graph, 
                 problem,
@@ -33,10 +34,10 @@
                 entity.Id);
         }
 
-        public static GeneticAlgorithmEntity AsEntityModel(this GeneticAlgorithm model)
+        public static GeneticAlgorithmEntity AsEntityModel(this GeneticAlgorithm model, GraphEntity graph = null)
         {
-            var graph = model.Graph.AsEntityModel();
-            var problem = model.Problem.AsEntityModelResolved();
+            var usedGraph = graph ?? model.Graph.AsEntityModel();
+            var problem = model.Problem.AsEntityModelResolved(graph);
             return new GeneticAlgorithmEntity
             {
                 Id = model.Id,

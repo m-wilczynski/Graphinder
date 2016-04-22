@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Algorithms.DataAccess.EntityFramework;
     using Algorithms.DataAccess.Operations.Commands;
+    using Algorithms.DataAccess.Operations.Queries;
     using Core.Algorithms;
     using Core.Algorithms.GeneticAlgorithm;
     using Core.Algorithms.GeneticAlgorithm.CrossoverStrategies;
@@ -26,14 +27,16 @@
             //var graph = new Graph();
             //graph.FillGraphRandomly(400, 5);
 
+            //new AddGraph(graph).Execute();
+
             //var alghs = new List<Algorithm>
             //{
-            //    //new SimulatedAnnealing(graph, new MinimumVertexCover(),
-            //    //    new CoolingSetup(1000, 0.03, new AllRandomCooling())),
-            //    //new SimulatedAnnealing(graph, new MinimumVertexCover(),
-            //    //    new CoolingSetup(2000, 0.03, new AllRandomCooling())),
-            //    //new SimulatedAnnealing(graph, new MinimumVertexCover(),
-            //    //    new CoolingSetup(4000, 0.03, new AllRandomCooling())),
+            //    new SimulatedAnnealing(graph, new MinimumVertexCover(),
+            //        new CoolingSetup(1000, 0.03, new AllRandomCooling())),
+            //    new SimulatedAnnealing(graph, new MinimumVertexCover(),
+            //        new CoolingSetup(2000, 0.03, new AllRandomCooling())),
+            //    new SimulatedAnnealing(graph, new MinimumVertexCover(),
+            //        new CoolingSetup(4000, 0.03, new AllRandomCooling())),
             //    new GeneticAlgorithm(graph, new MinimumVertexCover(),
             //        new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph), new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
             //        new GeneticAlgorithmSettings(400, 50, 0.5f, 0.3f)),
@@ -60,7 +63,17 @@
             //    });
             //}
 
-            new UpdateProblem(new MinimumVertexCover()).Run();
+            var algorithms = new GetAlgorithm().Query();
+
+            foreach (Algorithm alg in algorithms)
+            {
+                Console.WriteLine(
+                    "ID: {0} | Algorithm of type {1}\r\n" +
+                    "Problem: {2} \r\n" +
+                    "Solution fitness: {3} \r\n" +
+                    "\r\n",
+                    alg.Id, alg.GetType().Name, alg.Problem.GetType().Name, alg.Problem.CurrentOutcome);
+            }
 
             Console.ReadKey();
         }

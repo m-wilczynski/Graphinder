@@ -5,6 +5,7 @@
     using Entities.Algorithms;
     using Entities.Algorithms.GeneticAlgorithm;
     using Entities.Algorithms.SimulatedAnnealing;
+    using Entities.Graph;
     using Exceptions;
     using GeneticAlgorithm;
     using SimulatedAnnealing;
@@ -21,12 +22,12 @@
             throw new MappingNotImplementedException(entity);
         }
 
-        public static AlgorithmEntity AsEntityModelResolved(this IAlgorithm model)
+        public static AlgorithmEntity AsEntityModelResolved(this IAlgorithm model, GraphEntity graph = null)
         {
             if (model is Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm)
-                return ((Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm) model).AsEntityModel();
+                return ((Core.Algorithms.GeneticAlgorithm.GeneticAlgorithm) model).AsEntityModel(graph);
             if (model is Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing)
-                return ((Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing) model).AsEntityModel();
+                return ((Core.Algorithms.SimulatedAnnealing.SimulatedAnnealing) model).AsEntityModel(graph);
 
             throw new MappingNotImplementedException(model as Algorithm);
         }

@@ -4,6 +4,7 @@
     using Core.Algorithms.SimulatedAnnealing;
     using Core.Algorithms.SimulatedAnnealing.Setup;
     using Entities.Algorithms.SimulatedAnnealing;
+    using Entities.Graph;
     using Factories.SimulatedAnnealing;
     using Graph;
     using Problems;
@@ -16,7 +17,7 @@
         public static SimulatedAnnealing AsDomainModel(this SimulatedAnnealingEntity entity)
         {
             var graph = entity.Graph.AsDomainModel();
-            var problem = entity.Problem.AsDomainModelResolved();
+            var problem = entity.Problem.AsDomainModelResolved(graph);
             return new SimulatedAnnealing(graph, problem,
                 new CoolingSetup(entity.InitialTemperature, entity.CoolingRate,
                     CoolingFactory.ProvideOfType(entity.CoolingStrategy)),
@@ -24,10 +25,10 @@
                 entity.Id);
         }
 
-        public static SimulatedAnnealingEntity AsEntityModel(this SimulatedAnnealing model)
+        public static SimulatedAnnealingEntity AsEntityModel(this SimulatedAnnealing model, GraphEntity graph = null)
         {
-            var graph = model.Graph.AsEntityModel();
-            var problem = model.Problem.AsEntityModelResolved();
+            var usedGraph = graph ?? model.Graph.AsEntityModel();
+            var problem = model.Problem.AsEntityModelResolved(graph);
             return new SimulatedAnnealingEntity
             {
                 Id = model.Id,

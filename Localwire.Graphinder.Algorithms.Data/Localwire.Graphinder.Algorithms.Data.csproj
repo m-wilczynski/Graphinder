@@ -82,7 +82,9 @@
     <Compile Include="Mappers\Problems\GenericProblemMappingResolver.cs" />
     <Compile Include="Mappers\Problems\MinimumVertexCoverMapper.cs" />
     <Compile Include="Operations\Commands\AddAlgorithm.cs" />
+    <Compile Include="Operations\Commands\AddGraph.cs" />
     <Compile Include="Operations\Commands\UpdateProblem.cs" />
+    <Compile Include="Operations\Queries\GetAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Operations\SqlServerOperation.cs" />
   </ItemGroup>

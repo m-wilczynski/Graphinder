@@ -25,6 +25,7 @@
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<AlgorithmEntity>().ToTable("Algorithm");
             modelBuilder.Entity<SimulatedAnnealingEntity>().ToTable("SimulatedAnnealing");
             modelBuilder.Entity<GeneticAlgorithmEntity>().ToTable("GeneticAlgorithm");
             modelBuilder.Entity<IndividualEntity>().ToTable("Individual");
@@ -32,7 +33,15 @@
             modelBuilder.Entity<NodeEntity>().ToTable("Node");
             modelBuilder.Entity<MinimumVertexCoverEntity>().ToTable("MinimumVertexCover");
 
-            modelBuilder.Entity<NodeEntity>().HasMany(m => m.Neighbours).WithMany();
+            modelBuilder.Entity<NodeEntity>()
+                .HasMany(m => m.Neighbours)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.MapLeftKey("NodeId");
+                    m.MapRightKey("NeighbourId");
+                    m.ToTable("NodeNeighbourhood");
+                });
         }
 
     }
