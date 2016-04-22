@@ -31,6 +31,8 @@
             CoolingSetup = setup;
             if (currentTemperature.HasValue)
                 CurrentTemperature = currentTemperature.Value;
+            else
+                CurrentTemperature = setup.InitialTemperature;
         }
 
         /// <summary>

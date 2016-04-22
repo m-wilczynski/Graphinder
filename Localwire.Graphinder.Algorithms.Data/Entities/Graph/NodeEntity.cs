@@ -6,6 +6,6 @@
     {
         public string Key { get; set; }
         public GraphEntity Graph { get; set; }
-        public ICollection<NodeEntity> Neighbours { get; set; } 
+        public virtual ICollection<NodeEntity> Neighbours { get; set; } 
     }
 }

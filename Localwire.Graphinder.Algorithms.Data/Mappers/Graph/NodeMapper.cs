@@ -26,15 +26,27 @@
         public static IEnumerable<NodeEntity> AsEntityModel(this IEnumerable<Node> models, GraphEntity graph)
         {
             if (models == null || graph == null) return new List<NodeEntity>();
-            return models.Where(m => m != null)
+
+            var nodes = models as IList<Node> ?? models.ToList();
+            var dict = nodes.FirstOrDefault(n => n != null).Parent.Nodes.Where(m => m != null)
                 .Select(m =>
                     new NodeEntity
                     {
                         Graph = graph,
                         Id = m.Id,
                         Key = m.Key,
-                        Neighbours = m.Neighbours.AsEntityModel(graph).ToList()
-                    });
+                    })
+                    .ToDictionary(m => m.Id, m => m);
+            foreach (var model in nodes.Where(m => m != null))
+            {
+                NodeEntity entity = dict[model.Id];
+                entity.Neighbours = new List<NodeEntity>();
+                foreach (var ngh in model.Neighbours.Where(ngh => ngh != null))
+                {
+                    entity.Neighbours.Add(dict[ngh.Id]);
+                }
+            }
+            return dict.Values.ToList();
         }
     }
 }

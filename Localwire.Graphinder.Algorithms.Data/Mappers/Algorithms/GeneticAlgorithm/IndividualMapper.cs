@@ -1,5 +1,6 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Mappers.Algorithms.GeneticAlgorithm
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Core.Algorithms.GeneticAlgorithm;
@@ -15,7 +16,7 @@
     {
         private static Individual AsDomainModel(this IndividualEntity entity, Graph graph, IProblem problem)
         {
-            return new Individual(graph, problem, entity.CurrentSolution, entity.Id); 
+            return new Individual(graph, problem, entity.CurrentSolution.Select(Convert.ToBoolean).ToArray(), entity.Id); 
         }
 
         private static IndividualEntity AsEntityModel(this Individual model, GraphEntity graph, ProblemEntity problem)
@@ -25,7 +26,7 @@
                 Id = model.Id,
                 Graph = graph,
                 Problem = problem,
-                CurrentSolution = model.CurrentSolution
+                CurrentSolution = model.CurrentSolution.Select(Convert.ToByte).ToArray()
             };
         }
 

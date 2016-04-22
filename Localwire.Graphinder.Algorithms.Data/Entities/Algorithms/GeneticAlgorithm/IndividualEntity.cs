@@ -7,6 +7,6 @@
     {
         public GraphEntity Graph { get; set; }
         public ProblemEntity Problem { get; set; }
-        public bool[] CurrentSolution { get; set; }
+        public byte[] CurrentSolution { get; set; }
     }
 }

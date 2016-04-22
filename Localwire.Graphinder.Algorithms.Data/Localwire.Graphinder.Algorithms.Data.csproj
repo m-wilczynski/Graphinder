@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\UpdateProblem.cs" />
     <Compile Include="Entities\Algorithms\AlgorithmEntity.cs" />
     <Compile Include="Entities\Algorithms\GeneticAlgorithm\GeneticAlgorithmEntity.cs" />
     <Compile Include="Entities\Algorithms\GeneticAlgorithm\IndividualEntity.cs" />
@@ -60,6 +59,8 @@
     <Compile Include="Entities\Graph\NodeEntity.cs" />
     <Compile Include="Entities\Problems\MinimumVertexCoverEntity.cs" />
     <Compile Include="Entities\Problems\ProblemEntity.cs" />
+    <Compile Include="EntityFramework\AlgorithmContext.cs" />
+    <Compile Include="EntityFramework\InitialConfiguration.cs" />
     <Compile Include="Exceptions\InvalidMapperException.cs" />
     <Compile Include="Exceptions\MappingNotImplementedException.cs" />
     <Compile Include="Factories\GeneticAlgorithm\CrossoverStrategyFactory.cs" />
@@ -80,7 +81,10 @@
     <Compile Include="Mappers\Graph\NodeMapper.cs" />
     <Compile Include="Mappers\Problems\GenericProblemMappingResolver.cs" />
     <Compile Include="Mappers\Problems\MinimumVertexCoverMapper.cs" />
+    <Compile Include="Operations\Commands\AddAlgorithm.cs" />
+    <Compile Include="Operations\Commands\UpdateProblem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Operations\SqlServerOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
