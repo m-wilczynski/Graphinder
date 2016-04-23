@@ -1,6 +1,7 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Operations.Commands
 {
     using System;
+    using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
     using Core.Algorithms;
@@ -30,7 +31,7 @@
 
         public bool Execute()
         {
-            var matchingGraph = Context.Graphs.SingleOrDefault(g => g.Id.Equals(_algorithm.Graph.Id));
+            var matchingGraph = Context.Graphs.Include(g => g.Nodes).SingleOrDefault(g => g.Id.Equals(_algorithm.Graph.Id));
             var resolvedEntity = _algorithm.AsEntityModelResolved(matchingGraph);
             if (resolvedEntity == null)
                 return false;

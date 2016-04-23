@@ -16,7 +16,6 @@
                 .Include(a => a.Graph.Nodes)
                 .Include(a => a.Graph.Nodes.Select(n => n.Neighbours))
                 .Include(a => a.Problem.Graph)
-                .Include(a => a.Problem.CurrentSolution)
                 .ToList().Select(a => a.AsDomainModelResolved()).ToList();
         }
     }

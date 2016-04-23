@@ -12,7 +12,7 @@
             List<EdgeMapping> edgesToAdd = new List<EdgeMapping>();
 
             var graph = new Graph(entity.Id);
-            foreach (var node in entity.Nodes)
+            foreach (var node in entity.Nodes.OrderBy(e => e.Position))
             {
                 graph.AddNode(node.Key, node.Id);
                 edgesToAdd.AddRange(node.Neighbours

@@ -2,9 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Algorithms.DataAccess.EntityFramework;
     using Algorithms.DataAccess.Operations.Commands;
     using Algorithms.DataAccess.Operations.Queries;
     using Core.Algorithms;
@@ -24,9 +21,8 @@
     {
         public static void Main()
         {
-            RunFewAlgorithms();
-
-            //ReadAlgorithmsFromDb();
+            //RunFewAlgorithms();
+            ReadAlgorithmsFromDb();
 
             while (true)
             {

@@ -35,8 +35,6 @@
             modelBuilder.Entity<GraphEntity>().ToTable("Graph");
             modelBuilder.Entity<NodeEntity>().ToTable("Node");
 
-            modelBuilder.Entity<ProblemEntity>()
-                .HasMany(p => p.CurrentSolution);
             modelBuilder.Entity<ProblemEntity>().ToTable("Problem");
             modelBuilder.Entity<MinimumVertexCoverEntity>().ToTable("MinimumVertexCover");
 

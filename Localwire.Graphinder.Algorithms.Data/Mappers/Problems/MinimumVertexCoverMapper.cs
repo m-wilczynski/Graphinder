@@ -1,5 +1,8 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.Mappers.Problems
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using Core.Graph;
     using Core.Problems.OptimizationProblems;
@@ -13,7 +16,9 @@
         {
             var problem = new MinimumVertexCover(entity.Id);
             problem.Initialize(graph ?? entity.Graph.AsDomainModel());
-            problem.SetNewSolution(entity.CurrentSolution.AsDomainModel(problem.Graph).ToList());
+            problem.SetNewSolution(problem.Graph
+                .BinarySolutionAsNodes(entity.CurrentSolution
+                    .Select(Convert.ToBoolean).ToArray()));
             return problem;
         }
 
@@ -24,7 +29,10 @@
             {
                 Id = model.Id,
                 Graph = outputGraph,
-                CurrentSolution = model.CurrentSolution.AsEntityModel(outputGraph).ToList()
+                CurrentSolution = model.Graph.Nodes.Select(graphNode =>
+                {
+                    return Convert.ToByte(model.CurrentSolution.Any(node => node.Id.Equals(graphNode.Id)));
+                }).ToArray()
             };
         }
     }

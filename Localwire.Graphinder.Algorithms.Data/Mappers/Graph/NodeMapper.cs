@@ -42,7 +42,7 @@
                     counter++;
                     return entity;
                 })
-                    .ToDictionary(m => m.Id, m => m);
+                .ToDictionary(m => m.Id, m => m);
             foreach (var model in nodes.Where(m => m != null))
             {
                 NodeEntity entity = dict[model.Id];
