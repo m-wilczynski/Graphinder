@@ -26,11 +26,18 @@
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<AlgorithmEntity>().ToTable("Algorithm");
+            modelBuilder.Entity<AlgorithmEntity>().HasRequired(a => a.Graph);
+            modelBuilder.Entity<AlgorithmEntity>().HasRequired(a => a.Problem);
+
             modelBuilder.Entity<SimulatedAnnealingEntity>().ToTable("SimulatedAnnealing");
             modelBuilder.Entity<GeneticAlgorithmEntity>().ToTable("GeneticAlgorithm");
             modelBuilder.Entity<IndividualEntity>().ToTable("Individual");
             modelBuilder.Entity<GraphEntity>().ToTable("Graph");
             modelBuilder.Entity<NodeEntity>().ToTable("Node");
+
+            modelBuilder.Entity<ProblemEntity>()
+                .HasMany(p => p.CurrentSolution);
+            modelBuilder.Entity<ProblemEntity>().ToTable("Problem");
             modelBuilder.Entity<MinimumVertexCoverEntity>().ToTable("MinimumVertexCover");
 
             modelBuilder.Entity<NodeEntity>()

@@ -27,10 +27,10 @@
                     SelectionFactory.ProvideOfType(entity.SelectionStrategy),
                     CrossoverFactory.ProvideOfType(entity.CrossoverStrategy, graph),
                     MutationFactory.ProvideOfType(entity.MutationStrategy)),
-                new GeneticAlgorithmSettings(entity.GenerationsToCome, entity.InitialPopulationSize,
+                new GeneticAlgorithmSettings((uint)entity.GenerationsToCome, (uint)entity.InitialPopulationSize,
                     entity.CrossoverProbability, entity.MutationProbability, entity.WithElitistSelection),
                 entity.CurrentPopulation.AsDomainModel(graph, problem).ToList(),
-                entity.CurrentGeneration,
+                (uint)entity.CurrentGeneration,
                 entity.Id);
         }
 
@@ -46,13 +46,13 @@
                 SelectionStrategy = SelectionFactory.ProvideMappingType(model.GeneticOperators.SelectionStrategy),
                 CrossoverStrategy = CrossoverFactory.ProvideMappingType(model.GeneticOperators.CrossoverStrategy),
                 MutationStrategy = MutationFactory.ProvideMappingType(model.GeneticOperators.MutationStrategy),
-                GenerationsToCome = model.Settings.GenerationsToCome,
-                InitialPopulationSize = model.Settings.InitialPopulationSize,
+                GenerationsToCome = (int)model.Settings.GenerationsToCome,
+                InitialPopulationSize = (int)model.Settings.InitialPopulationSize,
                 CrossoverProbability = model.Settings.CrossoverProbability,
                 MutationProbability = model.Settings.MutationProbability,
                 WithElitistSelection = model.Settings.WithElitistSelection,
                 CurrentPopulation = model.CurrentPopulation.AsEntityModel(graph, problem).ToList(),
-                CurrentGeneration = model.CurrentGeneration,
+                CurrentGeneration = (int)model.CurrentGeneration,
                 TotalProcessorTimeCost = model.TotalProcessorTimeCost
             };
         }

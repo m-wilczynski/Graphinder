@@ -13,7 +13,7 @@
 
             var output = new List<Node>();
 
-            foreach (var entity in entities.Where(e => e != null))
+            foreach (var entity in entities.Where(e => e != null).OrderBy(e => e.Position))
             {
                 var match = graph.GetNodeOfKey(entity.Key);
                 if (match == null)
@@ -28,14 +28,20 @@
             if (models == null || graph == null) return new List<NodeEntity>();
 
             var nodes = models as IList<Node> ?? models.ToList();
+            var counter = 0;
             var dict = nodes.FirstOrDefault(n => n != null).Parent.Nodes.Where(m => m != null)
                 .Select(m =>
-                    new NodeEntity
+                {
+                    var entity = new NodeEntity
                     {
                         Graph = graph,
                         Id = m.Id,
                         Key = m.Key,
-                    })
+                        Position = counter
+                    };
+                    counter++;
+                    return entity;
+                })
                     .ToDictionary(m => m.Id, m => m);
             foreach (var model in nodes.Where(m => m != null))
             {
