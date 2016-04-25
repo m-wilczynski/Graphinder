@@ -1,18 +1,20 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.EntityFramework
 {
     using System.Data.Entity;
+    using System.Linq;
     using Entities.Algorithms;
     using Entities.Algorithms.GeneticAlgorithm;
     using Entities.Algorithms.SimulatedAnnealing;
     using Entities.Graph;
     using Entities.Problems;
+    using Mappers.Algorithms;
 
     internal class AlgorithmContext : DbContext 
     {
         public AlgorithmContext() : base("name=Algorithms.Core.SqlServer")
         {
             Database.SetInitializer(new InitialConfiguration());
-            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public IDbSet<AlgorithmEntity> Algorithms { get; set; }
@@ -49,5 +51,30 @@
                 });
         }
 
+    }
+
+    internal static class AlgorithmContextExtensions
+    {
+        public static IQueryable<AlgorithmEntity> EagerLoaded(this IDbSet<AlgorithmEntity> algorithms)
+        {
+            return algorithms
+                .Include(a => a.Graph)
+                .Include(a => a.Problem)
+                .Include(a => a.Graph.Nodes)
+                .Include(a => a.Graph.Nodes.Select(n => n.Neighbours))
+                .Include(a => a.Problem.Graph);
+        }
+
+        public static IQueryable<ProblemEntity> EagerLoaded(this IDbSet<ProblemEntity> problems)
+        {
+            return problems.Include(p => p.Graph);
+        }
+
+        public static IQueryable<GraphEntity> EagerLoaded(this IDbSet<GraphEntity> graphs)
+        {
+            return graphs
+                .Include(g => g.Nodes)
+                .Include(g => g.Nodes.Select(n => n.Neighbours));
+        } 
     }
 }

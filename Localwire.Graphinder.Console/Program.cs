@@ -32,7 +32,7 @@
 
         private static void ReadAlgorithmsFromDb()
         {
-            var algorithms = new GetAlgorithm().Query();
+            var algorithms = new GetAlgorithms().Query();
 
             foreach (Algorithm alg in algorithms)
             {

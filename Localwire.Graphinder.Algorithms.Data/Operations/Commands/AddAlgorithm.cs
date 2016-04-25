@@ -4,10 +4,11 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
+    using Base;
     using Core.Algorithms;
     using Mappers.Algorithms;
 
-    public class AddAlgorithm : SqlServerOperation
+    public class AddAlgorithm : SqlServerOperation, ICommandOperation
     {
         private IAlgorithm _algorithm;
 
@@ -20,7 +21,7 @@
 
         public async Task<bool> ExecuteAsync()
         {
-            var matchingGraph = Context.Graphs.SingleOrDefault(g => g.Id.Equals(_algorithm.Graph.Id));
+            var matchingGraph = await Context.Graphs.Include(g => g.Nodes).SingleOrDefaultAsync(g => g.Id.Equals(_algorithm.Graph.Id));
             var resolvedEntity = _algorithm.AsEntityModelResolved(matchingGraph);
             if (resolvedEntity == null)
                  return false;
