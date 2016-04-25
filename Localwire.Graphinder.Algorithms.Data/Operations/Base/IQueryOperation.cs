@@ -2,12 +2,16 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Core;
-    using Entities;
 
-    public interface IQueryOperation<TDomain>
+    public interface IQueryManyOperation<TDomain>
     {
         Task<ICollection<TDomain>> QueryAsync();
         ICollection<TDomain> Query();
+    }
+
+    public interface IQuerySingleOperation<TDomain>
+    {
+        Task<TDomain> QueryAsync();
+        TDomain Query();
     }
 }

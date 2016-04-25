@@ -9,7 +9,7 @@
     using EntityFramework;
     using Mappers.Algorithms;
 
-    public class GetAlgorithms : SqlServerOperation, IQueryOperation<IAlgorithm>
+    public class GetAlgorithms : SqlServerOperation, IQueryManyOperation<IAlgorithm>
     {
         public async Task<ICollection<IAlgorithm>> QueryAsync()
         {
