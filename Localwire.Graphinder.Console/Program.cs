@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Algorithms.DataAccess.Entities.DataSpecific;
     using Algorithms.DataAccess.Operations.Commands;
     using Algorithms.DataAccess.Operations.Queries;
     using Core.Algorithms;
@@ -32,16 +33,13 @@
 
         private static void ReadAlgorithmsFromDb()
         {
-            var algorithms = new GetAlgorithms().Query();
+            var algorithms = new GetAlgorithmsList().Query();
 
-            foreach (Algorithm alg in algorithms)
+            foreach (AlgorithmListElement alg in algorithms)
             {
                 Console.WriteLine(
-                    "ID: {0} | Algorithm of type {1}\r\n" +
-                    "Problem: {2} \r\n" +
-                    "Solution fitness: {3} \r\n" +
-                    "\r\n",
-                    alg.Id, alg.GetType().Name, alg.Problem.GetType().Name, alg.Problem.CurrentOutcome);
+                    $"Algorithm of ID [{alg.Id}] of type {alg.AlgorithmType.Name}" + Environment.NewLine +
+                    $"Problem of type: {alg.ProblemType.Name} | Graph nodes: {alg.GraphNodesCount}" + Environment.NewLine);
             }
         }
 

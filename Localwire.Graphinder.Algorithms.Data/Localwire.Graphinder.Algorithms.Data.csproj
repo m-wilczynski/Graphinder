@@ -55,6 +55,7 @@
     <Compile Include="Entities\Algorithms\GeneticAlgorithm\IndividualEntity.cs" />
     <Compile Include="Entities\Algorithms\SimulatedAnnealing\SimulatedAnnealingEntity.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\DataSpecific\AlgorithmListElement.cs" />
     <Compile Include="Entities\Graph\GraphEntity.cs" />
     <Compile Include="Entities\Graph\NodeEntity.cs" />
     <Compile Include="Entities\Problems\MinimumVertexCoverEntity.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Operations\Commands\AddGraph.cs" />
     <Compile Include="Operations\Queries\GetAlgorithmById.cs" />
     <Compile Include="Operations\Queries\GetAlgorithms.cs" />
+    <Compile Include="Operations\Queries\GetAlgorithmsList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
