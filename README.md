@@ -22,7 +22,7 @@ http://localwire.pl/category/dajsiepoznac/
 - [x] Implementing missing unit tests for part of the code.
 - [x] Reporting problem solving progress once upon a time.
 - [x] Parallelizing problem solving.
-- [ ] Algorithms domain - persistence
+- [x] Algorithms domain - persistence
 - [ ] Algorithms domain - WebAPI
 - [ ] ASP.NET MVC base implementation for algorithms and problems.
 - [ ] User management domain - persistence and WebAPI
