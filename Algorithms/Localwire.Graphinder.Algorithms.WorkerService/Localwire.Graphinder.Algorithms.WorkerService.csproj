@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\IAlgorithmWorker.cs" />
+    <Compile Include="Configuration\Base\IConnectionTester.cs" />
+    <Compile Include="Configuration\Base\IWorkerConfiguration.cs" />
+    <Compile Include="CurrentWork\Base\ICurrentWorkWrapper.cs" />
+    <Compile Include="CurrentWork\CurrentWorkWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
