@@ -32,6 +32,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,11 +50,14 @@
   <ItemGroup>
     <Compile Include="Configuration\Base\IConnectionTester.cs" />
     <Compile Include="Configuration\Base\IWorkerConfiguration.cs" />
+    <Compile Include="Configuration\WorkerConfiguration.cs" />
     <Compile Include="CurrentWork\Base\ICurrentWorkWrapper.cs" />
     <Compile Include="CurrentWork\CurrentWorkWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Localwire.Graphinder.Algorithms.Core\Localwire.Graphinder.Algorithms.Core.csproj">
       <Project>{9be00b94-b116-4387-9acd-7902bc0b5e37}</Project>
