@@ -11,7 +11,7 @@
 
     internal class AlgorithmContext : DbContext 
     {
-        public AlgorithmContext() : base("name=Algorithms.Core.SqlServer")
+        public AlgorithmContext(IDatabaseConfiguration configuration) : base(configuration.ConnectionString)
         {
             Database.SetInitializer(new InitialConfiguration());
             this.Configuration.LazyLoadingEnabled = false;

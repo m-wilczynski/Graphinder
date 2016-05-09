@@ -6,23 +6,22 @@
     using System.Threading.Tasks;
     using Base;
     using Core.Algorithms;
+    using EntityFramework;
     using Mappers.Algorithms;
 
     public class AddAlgorithm : SqlServerOperation, ICommandOperation
     {
-        private IAlgorithm _algorithm;
-
-        public AddAlgorithm(IAlgorithm algorithm)
+        public AddAlgorithm(IDatabaseConfiguration configuration) : base(configuration)
         {
-            if (algorithm == null)
-                throw new ArgumentNullException(nameof(algorithm));
-            _algorithm = algorithm;
         }
+
+        public IAlgorithm Algorithm { get; set; }
 
         public async Task<bool> ExecuteAsync()
         {
-            var matchingGraph = await Context.Graphs.Include(g => g.Nodes).SingleOrDefaultAsync(g => g.Id.Equals(_algorithm.Graph.Id));
-            var resolvedEntity = _algorithm.AsEntityModelResolved(matchingGraph);
+            ValidateOperationInputs();
+            var matchingGraph = await Context.Graphs.Include(g => g.Nodes).SingleOrDefaultAsync(g => g.Id.Equals(Algorithm.Graph.Id));
+            var resolvedEntity = Algorithm.AsEntityModelResolved(matchingGraph);
             if (resolvedEntity == null)
                  return false;
             Context.Algorithms.Add(resolvedEntity);
@@ -32,13 +31,20 @@
 
         public bool Execute()
         {
-            var matchingGraph = Context.Graphs.Include(g => g.Nodes).SingleOrDefault(g => g.Id.Equals(_algorithm.Graph.Id));
-            var resolvedEntity = _algorithm.AsEntityModelResolved(matchingGraph);
+            ValidateOperationInputs();
+            var matchingGraph = Context.Graphs.Include(g => g.Nodes).SingleOrDefault(g => g.Id.Equals(Algorithm.Graph.Id));
+            var resolvedEntity = Algorithm.AsEntityModelResolved(matchingGraph);
             if (resolvedEntity == null)
                 return false;
             Context.Algorithms.Add(resolvedEntity);
             Context.SaveChanges();
             return true;
+        }
+
+        protected override void ValidateOperationInputs()
+        {
+            if (Algorithm == null)
+                throw new ArgumentNullException(nameof(Algorithm));
         }
     }
 }

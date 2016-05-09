@@ -1,7 +1,7 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DataAccess.EntityFramework
 {
-    public class DatabaseConfiguration
+    public interface IDatabaseConfiguration
     {
-        public string ConnectionString { get; set; }
+        string ConnectionString { get; }
     }
 }

@@ -4,22 +4,20 @@
     using System.Threading.Tasks;
     using Base;
     using Core.Graph;
+    using EntityFramework;
     using Mappers.Graph;
 
     public class AddGraph : SqlServerOperation, ICommandOperation
     {
-        private Graph _graph;
-
-        public AddGraph(Graph algorithm)
+        public AddGraph(IDatabaseConfiguration configuration) : base(configuration)
         {
-            if (algorithm == null)
-                throw new ArgumentNullException(nameof(algorithm));
-            _graph = algorithm;
         }
+
+        public Graph Graph { get; set; }
 
         public async Task<bool> ExecuteAsync()
         {
-            var resolvedEntity = _graph.AsEntityModel();
+            var resolvedEntity = Graph.AsEntityModel();
             if (resolvedEntity == null)
                 return false;
             Context.Graphs.Add(resolvedEntity);
@@ -29,12 +27,18 @@
 
         public bool Execute()
         {
-            var resolvedEntity = _graph.AsEntityModel();
+            var resolvedEntity = Graph.AsEntityModel();
             if (resolvedEntity == null)
                 return false;
             Context.Graphs.Add(resolvedEntity);
             Context.SaveChanges();
             return true;
+        }
+
+        protected override void ValidateOperationInputs()
+        {
+            if (Graph == null)
+                throw new ArgumentNullException(nameof(Graph));
         }
     }
 }

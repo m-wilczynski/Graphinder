@@ -11,16 +11,26 @@
 
     public class GetAlgorithms : SqlServerOperation, IQueryManyOperation<IAlgorithm>
     {
+        public GetAlgorithms(IDatabaseConfiguration configuration) : base(configuration)
+        {
+        }
+
         public async Task<ICollection<IAlgorithm>> QueryAsync()
         {
+            ValidateOperationInputs();
             var alghs = await Context.Algorithms.EagerLoaded().ToListAsync();
             return alghs.Select(a => a.AsDomainModelResolved()).ToList();
         }
 
         public ICollection<IAlgorithm> Query()
         {
+            ValidateOperationInputs();
             return Context.Algorithms.EagerLoaded().ToList()
                 .Select(a => a.AsDomainModelResolved()).ToList();
+        }
+
+        protected override void ValidateOperationInputs()
+        {
         }
     }
 }
