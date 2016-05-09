@@ -40,16 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administration\WorkerJobDelegation\Base\IAvailabilityRequest.cs" />
-    <Compile Include="Administration\WorkerJobDelegation\Base\IWorkerJobRequest.cs" />
-    <Compile Include="Administration\WorkerRegistration\Base\IGatewayRegistrationCallback.cs" />
-    <Compile Include="Administration\WorkerRegistration\Base\IWorkerRegistration.cs" />
+    <Compile Include="Administration\WorkerJobDelegation\IsWorkerBusyRequest.cs" />
     <Compile Include="Administration\WorkerRegistration\GatewayRegistrationCallback.cs" />
     <Compile Include="Administration\WorkerRegistration\WorkerRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

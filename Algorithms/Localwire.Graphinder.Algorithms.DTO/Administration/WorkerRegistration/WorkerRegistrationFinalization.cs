@@ -3,10 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-
-    public class WorkerRegistration
+    public class WorkerRegistrationFinalization
     {
         [Required]
-        public Uri WorkerAddress { get; set; }
+        public bool HasSuccessfullyConnectedToDatabase { get; set; }
+        public Exception ConnectionException { get; set; }
     }
 }
