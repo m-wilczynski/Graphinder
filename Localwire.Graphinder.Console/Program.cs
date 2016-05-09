@@ -58,14 +58,14 @@
                     new CoolingSetup(2000, 0.03, new AllRandomCooling())),
                 new SimulatedAnnealing(graph, new MinimumVertexCover(),
                     new CoolingSetup(4000, 0.03, new AllRandomCooling())),
-                new GeneticAlgorithm(graph, new MinimumVertexCover(),
-                    new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph),
-                        new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
-                    new GeneticAlgorithmSettings(400, 50, 0.5f, 0.3f)),
-                new GeneticAlgorithm(graph, new MinimumVertexCover(),
-                    new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph),
-                        new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
-                    new GeneticAlgorithmSettings(400, 50, 0.5f, 0.3f, true))
+                //new GeneticAlgorithm(graph, new MinimumVertexCover(),
+                //    new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph),
+                //        new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
+                //    new GeneticAlgorithmSettings(400, 50, 0.5f, 0.3f)),
+                //new GeneticAlgorithm(graph, new MinimumVertexCover(),
+                //    new GeneticOperators(new RouletteStrategy(), new OnePointCrossoverStrategy(graph),
+                //        new BinaryTransformationStrategy(BinaryTransformationType.RandomBitFlip)),
+                //    new GeneticAlgorithmSettings(400, 50, 0.5f, 0.3f, true))
             };
             foreach (Algorithm algh in alghs)
             {
