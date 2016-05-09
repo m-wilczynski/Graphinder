@@ -3,7 +3,7 @@
     using Core.Algorithms;
     using Core.Reports;
 
-    public interface ICurrentWorkWrapper
+    public interface IWorkerScheduler
     {
         IAlgorithm CurrentlyWorked { get; }
 

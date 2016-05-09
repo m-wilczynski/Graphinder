@@ -6,6 +6,7 @@
     {
         Uri NotificationHubAddress { get; }
         TimeSpan HowOftenPersistWork { get; }
+        bool IsDatabaseSetUp { get; }
 
         void AcceptNewNotificationHub(Uri hubAddress);
     }

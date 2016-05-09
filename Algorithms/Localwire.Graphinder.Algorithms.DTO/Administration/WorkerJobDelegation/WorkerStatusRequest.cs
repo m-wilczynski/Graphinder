@@ -1,6 +1,6 @@
 ﻿namespace Localwire.Graphinder.Algorithms.DTO.Administration.WorkerJobDelegation
 {
-    public class IsWorkerBusyRequest
+    public class WorkerStatusRequest
     {
     }
 }

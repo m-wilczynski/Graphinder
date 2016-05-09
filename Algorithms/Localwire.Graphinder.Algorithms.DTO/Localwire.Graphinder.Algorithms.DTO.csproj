@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administration\WorkerJobDelegation\IsWorkerBusyRequest.cs" />
+    <Compile Include="Administration\WorkerJobDelegation\WorkerStatusRequest.cs" />
+    <Compile Include="Administration\WorkerJobDelegation\WorkerStatusResponse.cs" />
     <Compile Include="Administration\WorkerRegistration\GatewayRegistrationCallback.cs" />
     <Compile Include="Administration\WorkerRegistration\WorkerRegistration.cs" />
+    <Compile Include="Administration\WorkerRegistration\WorkerRegistrationFinalization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

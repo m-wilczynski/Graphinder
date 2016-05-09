@@ -1,8 +1,7 @@
-﻿using System.Web;
-using System.Web.Mvc;
-
-namespace Localwire.Graphinder.Algorithms.WebApi
+﻿namespace Localwire.Graphinder.Algorithms.WorkerApi
 {
+    using System.Web.Mvc;
+
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)

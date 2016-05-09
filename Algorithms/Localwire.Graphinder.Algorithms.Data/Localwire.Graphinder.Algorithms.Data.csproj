@@ -61,6 +61,7 @@
     <Compile Include="Entities\Problems\MinimumVertexCoverEntity.cs" />
     <Compile Include="Entities\Problems\ProblemEntity.cs" />
     <Compile Include="EntityFramework\AlgorithmContext.cs" />
+    <Compile Include="EntityFramework\DatabaseConfiguration.cs" />
     <Compile Include="EntityFramework\InitialConfiguration.cs" />
     <Compile Include="Exceptions\InvalidMapperException.cs" />
     <Compile Include="Exceptions\MappingNotImplementedException.cs" />

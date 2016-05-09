@@ -50,9 +50,10 @@
   <ItemGroup>
     <Compile Include="Configuration\Base\IConnectionTester.cs" />
     <Compile Include="Configuration\Base\IWorkerConfiguration.cs" />
+    <Compile Include="Configuration\EntityFrameworkConnectionBuilder.cs" />
     <Compile Include="Configuration\WorkerConfiguration.cs" />
-    <Compile Include="CurrentWork\Base\ICurrentWorkWrapper.cs" />
-    <Compile Include="CurrentWork\CurrentWorkWrapper.cs" />
+    <Compile Include="CurrentWork\Base\IWorkerScheduler.cs" />
+    <Compile Include="CurrentWork\WorkerScheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

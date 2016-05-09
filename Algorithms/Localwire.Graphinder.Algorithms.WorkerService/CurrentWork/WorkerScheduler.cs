@@ -8,13 +8,13 @@
     using Core.Reports;
     using System.Reactive;
 
-    public class CurrentWorkWrapper : ICurrentWorkWrapper
+    public class WorkerScheduler : IWorkerScheduler
     {
         private IWorkerConfiguration _configuration;
         private Thread _currentWorkerThread;
         private IDisposable _progressSubscription;
 
-        public CurrentWorkWrapper(IWorkerConfiguration configuration)
+        public WorkerScheduler(IWorkerConfiguration configuration)
         {
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));

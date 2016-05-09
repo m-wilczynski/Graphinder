@@ -3,10 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class IsWorkerBusyResponse
+    public class WorkerStatusResponse
     {
         [Required]
         public bool IsBusy { get; set; }
-        public Guid? WorkedAlgorithmInstance { get; set; }
+        public Guid? CurrentlyWorkedAlgorithmInstance { get; set; }
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
-
-namespace Localwire.Graphinder.Algorithms.WebApi
+﻿namespace Localwire.Graphinder.Algorithms.WorkerApi
 {
+    using System.Web.Http;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-
-namespace Localwire.Graphinder.Algorithms.WebApi
+﻿namespace Localwire.Graphinder.Algorithms.WorkerApi
 {
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()

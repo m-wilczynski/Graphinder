@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-
-namespace Localwire.Graphinder.Algorithms.WebApi.Controllers
+﻿namespace Localwire.Graphinder.Algorithms.WorkerApi.Controllers
 {
+    using System.Collections.Generic;
+    using System.Web.Http;
+
     public class WorkerStartController : ApiController
     {
         // GET api/<controller>

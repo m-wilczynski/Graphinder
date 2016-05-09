@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Localwire.Graphinder.Algorithms.WebApi.WebApiApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Localwire.Graphinder.Algorithms.WorkerApi.WebApiApplication" Language="C#" %>
