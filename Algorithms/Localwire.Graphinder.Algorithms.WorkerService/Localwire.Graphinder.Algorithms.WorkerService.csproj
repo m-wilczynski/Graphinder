@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
@@ -48,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Base\IConnectionStringBuilder.cs" />
     <Compile Include="Configuration\Base\IConnectionTester.cs" />
     <Compile Include="Configuration\Base\IWorkerConfiguration.cs" />
+    <Compile Include="Configuration\DatabaseConfiguration.cs" />
     <Compile Include="Configuration\EntityFrameworkConnectionBuilder.cs" />
     <Compile Include="Configuration\WorkerConfiguration.cs" />
     <Compile Include="CurrentWork\Base\IWorkerScheduler.cs" />
@@ -68,6 +71,13 @@
       <Project>{b3e0699b-dcc8-4176-a512-ae397ea69912}</Project>
       <Name>Localwire.Graphinder.Algorithms.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Localwire.Graphinder.Algorithms.DTO\Localwire.Graphinder.Algorithms.DTO.csproj">
+      <Project>{8c404406-0fa6-453b-99a4-ca71441e9aab}</Project>
+      <Name>Localwire.Graphinder.Algorithms.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
