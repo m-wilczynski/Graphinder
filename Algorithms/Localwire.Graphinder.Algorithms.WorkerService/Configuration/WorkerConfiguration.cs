@@ -6,6 +6,13 @@
 
     public class WorkerConfiguration : IWorkerConfiguration
     {
+        private readonly IConnectionTester _connectionTester;
+
+        public WorkerConfiguration(IConnectionTester connectionTester)
+        {
+            _connectionTester = connectionTester;
+        }
+
         public IDatabaseConfiguration Configuration { get; private set; }
         public Uri NotificationHubAddress { get; private set; }
         public TimeSpan HowOftenPersistWork { get; set; }
