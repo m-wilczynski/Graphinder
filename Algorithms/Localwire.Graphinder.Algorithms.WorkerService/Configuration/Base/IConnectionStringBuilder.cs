@@ -3,7 +3,7 @@
     using DataAccess.EntityFramework;
     using DTO.Administration.WorkerRegistration;
 
-    interface IConnectionStringBuilder
+    public interface IConnectionStringBuilder
     {
         IDatabaseConfiguration BuildConnectionString(GatewayRegistrationCallback registrationCallback);
     }
