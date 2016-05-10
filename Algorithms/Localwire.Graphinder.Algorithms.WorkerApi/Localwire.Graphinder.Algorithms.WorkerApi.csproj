@@ -164,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Base\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +171,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\WorkerStartController.cs" />
+    <Compile Include="Controllers\Base\WorkerController.cs" />
+    <Compile Include="Controllers\Configuration\WorkerRegistrationController.cs" />
+    <Compile Include="Controllers\Configuration\WorkerStatusController.cs" />
+    <Compile Include="Controllers\WorkDelegation\WorkerStartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,7 +193,24 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Localwire.Graphinder.Algorithms.Core\Localwire.Graphinder.Algorithms.Core.csproj">
+      <Project>{9be00b94-b116-4387-9acd-7902bc0b5e37}</Project>
+      <Name>Localwire.Graphinder.Algorithms.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Localwire.Graphinder.Algorithms.Data\Localwire.Graphinder.Algorithms.Data.csproj">
+      <Project>{b3e0699b-dcc8-4176-a512-ae397ea69912}</Project>
+      <Name>Localwire.Graphinder.Algorithms.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Localwire.Graphinder.Algorithms.DTO\Localwire.Graphinder.Algorithms.DTO.csproj">
+      <Project>{8c404406-0fa6-453b-99a4-ca71441e9aab}</Project>
+      <Name>Localwire.Graphinder.Algorithms.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Localwire.Graphinder.Algorithms.WorkerService\Localwire.Graphinder.Algorithms.WorkerService.csproj">
+      <Project>{9e475737-11b5-4aa7-aedc-c1d1e3861214}</Project>
+      <Name>Localwire.Graphinder.Algorithms.WorkerService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

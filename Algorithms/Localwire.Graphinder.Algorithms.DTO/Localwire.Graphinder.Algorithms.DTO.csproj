@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administration\WorkerJobDelegation\WorkerStatusRequest.cs" />
     <Compile Include="Administration\WorkerJobDelegation\WorkerStatusResponse.cs" />
     <Compile Include="Administration\WorkerRegistration\GatewayRegistrationCallback.cs" />
     <Compile Include="Administration\WorkerRegistration\WorkerRegistration.cs" />
