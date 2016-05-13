@@ -16,7 +16,8 @@ namespace Localwire.Graphinder.Algorithms.WorkerApi.Controllers.Configuration
         {
         }
 
-        public WorkerRegistrationFinalization Post([FromBody]GatewayRegistrationCallback registrationCallback)
+        [Route("finalize")]
+        public WorkerRegistrationFinalization FinalizeRegistration([FromBody]GatewayRegistrationCallback registrationCallback)
         {
             if (registrationCallback == null)
                 throw new ArgumentNullException(nameof(registrationCallback));
