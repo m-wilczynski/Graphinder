@@ -16,12 +16,27 @@ namespace Localwire.Graphinder.Algorithms.WorkerApi.Controllers.Configuration
         {
         }
 
-        public void Post([FromBody]GatewayRegistrationCallback registrationCallback)
+        public WorkerRegistrationFinalization Post([FromBody]GatewayRegistrationCallback registrationCallback)
         {
             if (registrationCallback == null)
                 throw new ArgumentNullException(nameof(registrationCallback));
-            //TODO: Respond on failure?
-            WorkerConfiguration.AcceptNewDatabaseConnection(registrationCallback);
+
+            bool success = false;
+            Exception exception = null;
+            try
+            {
+                success = WorkerConfiguration.AcceptNewDatabaseConnection(registrationCallback);
+            }
+            catch (Exception e)
+            {
+                exception = e;
+            }
+
+            return new WorkerRegistrationFinalization
+            {
+                HasSuccessfullyConnectedToDatabase = success,
+                ConnectionException = exception
+            };
         }
     }
 }
