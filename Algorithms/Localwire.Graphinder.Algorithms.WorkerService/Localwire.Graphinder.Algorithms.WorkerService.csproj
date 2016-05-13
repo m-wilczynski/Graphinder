@@ -52,6 +52,7 @@
     <Compile Include="Configuration\Base\IConnectionStringBuilder.cs" />
     <Compile Include="Configuration\Base\IConnectionTester.cs" />
     <Compile Include="Configuration\Base\IWorkerConfiguration.cs" />
+    <Compile Include="Configuration\ConnectionTester.cs" />
     <Compile Include="Configuration\DatabaseConfiguration.cs" />
     <Compile Include="Configuration\EntityFrameworkConnectionBuilder.cs" />
     <Compile Include="Configuration\WorkerConfiguration.cs" />
