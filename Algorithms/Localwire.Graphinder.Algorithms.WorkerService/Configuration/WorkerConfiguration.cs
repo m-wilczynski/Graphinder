@@ -33,6 +33,7 @@
             var result = _connectionTester.CanConnectToDatabase(Configuration);
             if (!result)
                 Configuration = null;
+            //TODO: Flush hubs
             return result;
         }
     }
