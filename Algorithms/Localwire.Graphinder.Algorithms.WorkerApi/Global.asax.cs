@@ -1,5 +1,6 @@
 ﻿namespace Localwire.Graphinder.Algorithms.WorkerApi
 {
+    using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -22,6 +23,7 @@
                 .WithControllersRegistered();
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            new GatewayConnection();
         }
     }
 }
