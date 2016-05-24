@@ -6,6 +6,7 @@
     using System.Reactive.Linq;
     using System.Web;
     using System.Web.Configuration;
+    using DTO.Administration.WorkerRegistration;
     using RestSharp;
 
     /// <summary>
@@ -49,9 +50,13 @@
         private bool RegisterInGateway()
         {
             Uri gatewayAddress = null;
+            string instanceName = null;
             try
             {
                 gatewayAddress = new Uri(WebConfigurationManager.AppSettings["GatewayRegistrationAddress"]);
+                instanceName = WebConfigurationManager.AppSettings["InstanceName"];
+                if (string.IsNullOrEmpty(instanceName))
+                    throw new ArgumentNullException();
             }
             catch
             {
@@ -59,6 +64,7 @@
             }
             var client = new RestClient(gatewayAddress);
             var request = new RestRequest(Method.POST);
+            request.AddBody(new WorkerRegistration { WorkerName = instanceName });
             IRestResponse response = client.Execute(request);
             if (response.StatusCode == HttpStatusCode.Accepted)
                 return false;
