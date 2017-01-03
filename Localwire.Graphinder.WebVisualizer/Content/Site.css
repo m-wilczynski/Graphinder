@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.container-body {
+    width: 100%;
+    padding: 25px;
+}
+
+table, tr, td input {
+    width: 100%;
+    max-width: 100%;
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  fill: none;
+  stroke: #bbb;
+}
+
+#graph-container {
+    margin-top: 35px;
+}
+
+svg {
+    border: 1px solid rgba(230, 230, 230, 1);
+}

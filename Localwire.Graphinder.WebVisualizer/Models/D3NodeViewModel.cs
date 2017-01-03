@@ -5,5 +5,6 @@
     public class D3NodeViewModel
     {
         public string Key { get; set; }
+        public int ColorGroup { get; set; }
     }
 }

@@ -5,27 +5,43 @@
     Layout = "..\\Shared\\_Layout.cshtml";
 }
 
+<script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="@Url.Content("~/Scripts/graphinder_simulated-annealing.js")" type="text/javascript"></script>
+
 <h2>Simulated Annealing algorithm</h2>
 
-@using (Ajax.BeginForm("StartSimulatedAnnealing", new AjaxOptions
+<br/>
+
+<div class="col-lg-8">
+    @using (Html.BeginForm("StartSimulatedAnnealing", "Algorithms"))
     {
-        HttpMethod = "POST",
-        OnSuccess = "renderGraph"
-    }))
-{
-    @Html.LabelFor(m => m.NumberOfNodesToGenerate);
-    @Html.EditorFor(m => m.NumberOfNodesToGenerate);
-    @Html.LabelFor(m => m.MaxNeighboursForNode);
-    @Html.EditorFor(m => m.MaxNeighboursForNode);
-
-    <input type="submit" value="Send" class="btn btn-default" />
-}
-
-<div class="graph-canvas"></div>
-
-<script>
-    function renderGraph(graphJson) {
-        alert("GOT IT");
+        <table>
+            <tr>
+                <td>@Html.LabelFor(m => m.NumberOfNodesToGenerate)</td>
+                <td>@Html.EditorFor(m => m.NumberOfNodesToGenerate)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.MaxNeighboursForNode)</td>
+                <td>@Html.EditorFor(m => m.MaxNeighboursForNode)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p></p>
+                    <input type="submit" value="Send" style="width: 100%" class="btn btn-default"/>
+                </td>
+            </tr>
+        </table>
     }
-</script>
+</div>
 
+<div id="graph-container" class="col-lg-12">
+    <h4>Graph simulation</h4>
+
+    <div class="graph-canvas">
+        <svg width="960" height="600"></svg>
+    </div>
+
+    <span>Graph d3.js implementation based on work of <a href="http://bl.ocks.org/mbostock/4600693">Mike Bostock</a></span>
+</div>
