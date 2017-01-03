@@ -78,6 +78,11 @@
         }
 
         /// <summary>
+        /// Copy of all graph's edges
+        /// </summary>
+        public List<Edge> Edges => new List<Edge>(_edges);
+
+        /// <summary>
         /// Total nodes in graph.
         /// </summary>
         public int TotalNodes

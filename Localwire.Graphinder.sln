@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.Core", "Algorithms\Localwire.Graphinder.Algorithms.Core\Localwire.Graphinder.Algorithms.Core.csproj", "{9BE00B94-B116-4387-9ACD-7902BC0B5E37}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Shared", "_Shared", "{DDADC210-5BCD-40A2-B410-B35F5E48372E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.Algorithms.DTO", "Algorithms\Localwire.Graphinder.Algorithms.DTO\Localwire.Graphinder.Algorithms.DTO.csproj", "{8C404406-0FA6-453B-99A4-CA71441E9AAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localwire.Graphinder.WebVisualizer", "Localwire.Graphinder.WebVisualizer\Localwire.Graphinder.WebVisualizer.csproj", "{455D4D75-D64F-43DC-8039-EACEB3211882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{8C404406-0FA6-453B-99A4-CA71441E9AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C404406-0FA6-453B-99A4-CA71441E9AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C404406-0FA6-453B-99A4-CA71441E9AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{455D4D75-D64F-43DC-8039-EACEB3211882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{455D4D75-D64F-43DC-8039-EACEB3211882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{455D4D75-D64F-43DC-8039-EACEB3211882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{455D4D75-D64F-43DC-8039-EACEB3211882}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -54,8 +54,8 @@
             {
                 //new SimulatedAnnealing(graph, new MinimumVertexCover(),
                 //    new CoolingSetup(1000, 0.03, new AllRandomCooling())),
-                //new SimulatedAnnealing(graph, new MinimumVertexCover(),
-                //    new CoolingSetup(2000, 0.03, new AllRandomCooling())),
+                new SimulatedAnnealing(graph, new MinimumVertexCover(),
+                    new CoolingSetup(2000, 0.03, new AllRandomCooling())),
                 //new SimulatedAnnealing(graph, new MinimumVertexCover(),
                 //    new CoolingSetup(4000, 0.03, new AllRandomCooling())),
                 new GeneticAlgorithm(graph, new MinimumVertexCover(),

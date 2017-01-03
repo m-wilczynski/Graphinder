@@ -1,0 +1,31 @@
+﻿@model Localwire.Graphinder.WebVisualizer.Models.SimulatedAnnealingRequestViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "..\\Shared\\_Layout.cshtml";
+}
+
+<h2>Simulated Annealing algorithm</h2>
+
+@using (Ajax.BeginForm("StartSimulatedAnnealing", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "renderGraph"
+    }))
+{
+    @Html.LabelFor(m => m.NumberOfNodesToGenerate);
+    @Html.EditorFor(m => m.NumberOfNodesToGenerate);
+    @Html.LabelFor(m => m.MaxNeighboursForNode);
+    @Html.EditorFor(m => m.MaxNeighboursForNode);
+
+    <input type="submit" value="Send" class="btn btn-default" />
+}
+
+<div class="graph-canvas"></div>
+
+<script>
+    function renderGraph(graphJson) {
+        alert("GOT IT");
+    }
+</script>
+

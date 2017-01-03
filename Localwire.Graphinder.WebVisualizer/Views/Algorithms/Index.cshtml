@@ -1,0 +1,15 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "..\\Shared\\_Layout.cshtml";
+}
+
+<br/>
+<div class="jumbotron">
+    <div class="container">
+        <a href="@Url.Action("SimulatedAnnealingPanel")" type="button" class="btn btn-default btn-lg btn-block">Simulated Annealing</a>
+        <button type="button" class="btn btn-default btn-lg btn-block">Genetic Algorithm</button>
+    </div>
+</div>
+
