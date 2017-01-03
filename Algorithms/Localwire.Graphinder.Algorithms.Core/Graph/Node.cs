@@ -9,7 +9,8 @@
     /// </summary>
     public class Node : BaseModel
     {
-        public readonly HashSet<Node> Neighbours;
+        private readonly HashSet<Node> _neighbours;
+        public IReadOnlyCollection<Node> Neighbours => _neighbours.ToList();
         public readonly string Key;
         public readonly Graph Parent;
 
@@ -23,7 +24,7 @@
             if (string.IsNullOrEmpty(key)) throw new ArgumentException("Node needs valid key!");
             if (parent == null) throw new ArgumentNullException(nameof(parent));
             Key = key;
-            Neighbours = new HashSet<Node>();
+            _neighbours = new HashSet<Node>();
             Parent = parent;
         }
 
@@ -36,13 +37,13 @@
             if (node == null)
                 throw new ArgumentNullException(nameof(node));
             //Prevent endless circular adding
-            if (Neighbours.Contains(node))
+            if (_neighbours.Contains(node))
                 return;
             if (node.Equals(this))
                 throw new InvalidOperationException("Attempt to add self as neighbour!");
             if (!CanAddNeighbour(node))
                 throw new InvalidOperationException("Neighbour cannot be added!");
-            Neighbours.Add(node);
+            _neighbours.Add(node);
             node.AddNeighbour(this);
         }
 
@@ -54,13 +55,13 @@
         {
             if (node == null)
                 throw new ArgumentNullException(nameof(node));
-            var match = Neighbours.SingleOrDefault(n => node.Equals(n));
+            var match = _neighbours.SingleOrDefault(n => node.Equals(n));
             //Prevent endless circular removing
             if (match == null)
                 return;
             if (!CanRemoveNeighbour(node))
                 throw new InvalidOperationException("Neighbour cannot be removed!");
-            Neighbours.Remove(match);
+            _neighbours.Remove(match);
             match.RemoveNeighbour(this);
         }
 
