@@ -2,17 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Class providing utility (generation/parsing) functionalities for graph data structure
     /// </summary>
     public class NodeGenerator
     {
-        /// <summary>
-        /// How many times should generator attempt to add additional neighbour before giving up,
-        /// due to rolled node not meeting requirements
-        /// </summary>
-        public const uint RollsBeforeGivingUp = 10;
+        public const uint MinimumNeighbours = 2;
         private readonly Random _random = new Random();
 
         /// <summary>
@@ -43,35 +40,36 @@
             {
                 var howManyNeigbhours = _random.Next((int)maxNeighbours) - nodes[i].Neighbours.Count;
                 HashSet<int> alreadyPickedIndexes = new HashSet<int>();
+                var indexesToPickFrom = new Stack<int>(Enumerable.Range(0, nodes.Count).OrderBy(r => _random.Next()));
                 while (nodes[i].Neighbours.Count < howManyNeigbhours)
                 {
-                    var pick = _random.Next((int)nodeCount);
-                    uint attempts = 0;
+                    var pick = indexesToPickFrom.Pop();
                     while (pick == i
                            || alreadyPickedIndexes.Contains(pick)
                            || nodes[pick].Neighbours.Count == maxNeighbours
                            || parent.ContainsEdge(nodes[pick], nodes[i]))
                     {
-                        pick = _random.Next((int) nodeCount);
-                        attempts++;
-                        //Give up if rolling takes too long
-                        if (attempts == RollsBeforeGivingUp)
+                        if (indexesToPickFrom.Count == 0)
                             break;
+                        pick = indexesToPickFrom.Pop();
                     }
-                    //Give up if rolling takes too long
-                    if (attempts == RollsBeforeGivingUp)
-                        break;
                     parent.AddEdge(nodes[i].Key, nodes[pick].Key);
                     alreadyPickedIndexes.Add(pick);
                 }
+
                 //Make sure to not produce dead end
-                if (nodes[i].Neighbours.Count == 0)
+                var indexesToPickFromAgain = new Stack<int>(Enumerable.Range(0, nodes.Count).OrderBy(r => _random.Next()));
+                var giveUpCounter = 1;
+                while (nodes[i].Neighbours.Count < MinimumNeighbours && giveUpCounter < nodeCount)
                 {
                     var pick = _random.Next((int)nodeCount);
                     while (pick == i
-                        || alreadyPickedIndexes.Contains(pick)
-                        || nodes[pick].Neighbours.Count == maxNeighbours)
-                        pick = _random.Next((int)nodeCount);
+                           || alreadyPickedIndexes.Contains(pick)
+                           || parent.ContainsEdge(nodes[pick], nodes[i]))
+                    {
+                        pick = indexesToPickFromAgain.Pop();
+                        giveUpCounter++;
+                    }
                     parent.AddEdge(nodes[i].Key, nodes[pick].Key);
                 }
             }

@@ -9,7 +9,7 @@
         public uint NumberOfNodesToGenerate { get; set; }
 
         [Required]
-        [Range(1, 50)]
+        [Range(2, 50)]
         public uint MaxNeighboursForNode { get; set; }
     }
 }
