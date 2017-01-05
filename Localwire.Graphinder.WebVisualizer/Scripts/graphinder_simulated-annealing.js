@@ -9,7 +9,8 @@
                 dataType: "json",
                 data: $(this).serialize(),
                 success: function(result) {
-                    renderGraph(result);
+                    renderGraph(result.graph);
+                    joinHub(result.hubId)
                 }
             });
         }
@@ -41,7 +42,7 @@
             links.forEach(function(link) {
                 var s = link.source = nodeById.get(link.Source),
                     t = link.target = nodeById.get(link.Target),
-                    i = {}; // intermediate node
+                    i = {};
                 nodes.push(i);
                 links.push({ source: s, target: i }, { source: i, target: t });
                 bilinks.push([s, i, t]);
@@ -99,6 +100,32 @@
                 if (!d3.event.active) simulation.alphaTarget(0);
                 d.fx = null, d.fy = null;
             }
+        })();
+    }
+
+    function joinHub(hubId) {
+        (function () {
+            var hub = $.connection.SimulatedAnnealingHub;
+
+            $("#feed").empty();
+
+            hub.client.send = function (report) {
+
+                var msg = '<div class="entry ';
+                msg += report.Accepted ? 'bg-success' : 'bg-danger';
+                msg += '">';
+                msg += '<span class=glyphicon ';
+                msg += report.Accepted ? 'glyphicon-ok' : 'glyphicon-remove';
+                msg += 'aria-hidden="true"></span>';
+                msg += 'Current solution: ' + report.CurrentSolution.length;
+                msg += '</div>';
+
+                $("#feed").append(msg);
+            };
+
+            $.connection.hub.start().done(function() {
+                hub.server.joinFeed(hubId);
+            });
         })();
     }
 });

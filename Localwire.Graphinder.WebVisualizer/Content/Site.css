@@ -50,3 +50,13 @@ table, tr, td input {
 svg {
     border: 1px solid rgba(230, 230, 230, 1);
 }
+
+#feed {
+    max-height: 175px;
+    height: 175px;
+    overflow-y: scroll;
+}
+
+#feed .entry {
+    padding: 7.5px;
+}
