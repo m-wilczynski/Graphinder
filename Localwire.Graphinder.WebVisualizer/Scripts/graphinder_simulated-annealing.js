@@ -114,13 +114,18 @@
                 var msg = '<div class="entry ';
                 msg += report.Accepted ? 'bg-success' : 'bg-danger';
                 msg += '">';
-                msg += '<span class=glyphicon ';
+                msg += '<span class="glyphicon ';
                 msg += report.Accepted ? 'glyphicon-ok' : 'glyphicon-remove';
-                msg += 'aria-hidden="true"></span>';
-                msg += 'Current solution: ' + report.CurrentSolution.length;
+                msg += '" aria-hidden="true"></span>';
+                msg += '<strong>Current solution: </strong>' + report.CurrentSolution.length;
                 msg += '</div>';
 
-                $("#feed").append(msg);
+                setTimeout(function() {
+                        var feed = document.getElementById("feed");
+                        feed.innerHTML += (msg);
+                        feed.scrollTop = feed.scrollHeight;
+                    },
+                    500);
             };
 
             $.connection.hub.start().done(function() {

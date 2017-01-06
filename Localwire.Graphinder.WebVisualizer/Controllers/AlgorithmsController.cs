@@ -4,6 +4,7 @@ namespace Localwire.Graphinder.WebVisualizer.Controllers
 {
     using System;
     using System.Net;
+    using System.Reactive.Linq;
     using Core.Algorithms.SimulatedAnnealing;
     using Core.Algorithms.SimulatedAnnealing.CoolingStrategies;
     using Core.Algorithms.SimulatedAnnealing.Setup;
@@ -42,7 +43,10 @@ namespace Localwire.Graphinder.WebVisualizer.Controllers
             algorithm.LaunchAlgorithm();
             algorithm.ProgressReportChanged.Subscribe(report =>
             {
-                hubContext.Clients.Group(algorithm.Id.ToString()).send(report.AsReportViewModel());
+                Observable.Timer(TimeSpan.FromMilliseconds(500)).Subscribe(_ =>
+                {
+                    hubContext.Clients.Group(algorithm.Id.ToString()).send(report.AsReportViewModel());
+                });
             });
 
             return new JsonResult
