@@ -27,7 +27,7 @@ http://localwire.pl/category/dajsiepoznac/
 - [ ] ASP.NET MVC base implementation for algorithms and problems.
 - [ ] User management domain - persistence and WebAPI
 - [ ] Task queue implementation.
-- [ ] SignalR basic reporting back on progress on searching solution.
+- [x] SignalR basic reporting back on progress on searching solution.
 - [ ] Front-end sugar.
 
 ### Backlog:
