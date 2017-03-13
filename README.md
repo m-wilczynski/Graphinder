@@ -9,6 +9,10 @@
 
 Project intends to forge my current interest in solving optimization problems into something bigger, that will also allow me to try (and catch!) some new technologies I wanted to try out before while practicing a little more my design (patterns/architecture) skills along with some web development skills refresh from ASP.NET MVC stack.
 
+### Web visualization:
+
+[![https://gyazo.com/4a81b5bbe41bbf1d9ea4699d1ef673af](https://i.gyazo.com/4a81b5bbe41bbf1d9ea4699d1ef673af.gif)](https://gyazo.com/4a81b5bbe41bbf1d9ea4699d1ef673af)
+
 ### Current status:
 ##### Trello:
 https://trello.com/b/g6Rm8Cdm/graphinder
