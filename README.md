@@ -10,8 +10,9 @@
 Project intends to forge my current interest in solving optimization problems into something bigger, that will also allow me to try (and catch!) some new technologies I wanted to try out before while practicing a little more my design (patterns/architecture) skills along with some web development skills refresh from ASP.NET MVC stack.
 
 ### Web visualization:
+As implemented in: <a href="https://github.com/m-wilczynski/Graphinder/tree/master/Localwire.Graphinder.WebVisualizer">Localwire.Graphinder.WebVisualizer</a>
 
-[![https://gyazo.com/4a81b5bbe41bbf1d9ea4699d1ef673af](https://i.gyazo.com/4a81b5bbe41bbf1d9ea4699d1ef673af.gif)](https://gyazo.com/4a81b5bbe41bbf1d9ea4699d1ef673af)
+![](https://i.gyazo.com/75f118d81ab4cf52af8a52126755790d.gif)
 
 ### Current status:
 ##### Trello:
