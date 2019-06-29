@@ -15,8 +15,6 @@ As implemented in: <a href="https://github.com/m-wilczynski/Graphinder/tree/mast
 ![](https://i.gyazo.com/75f118d81ab4cf52af8a52126755790d.gif)
 
 ### Current status:
-##### Trello:
-https://trello.com/b/g6Rm8Cdm/graphinder
 ##### Blog:
 http://localwire.pl/category/dajsiepoznac/
 
